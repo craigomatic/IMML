@@ -1,0 +1,9 @@
+<IMML Camera="Camera" xmlns="http://schemas.vastpark.com/2007/imml/">
+    <Camera Name="Camera" Position="0,0,-5" />
+
+    <Primitive Type="Box">
+        <MaterialGroup Id="-1">
+            <Video Enabled="True" Source="videos/hello-world.webm" />                  
+        </MaterialGroup>
+    </Primitive>
+</IMML>

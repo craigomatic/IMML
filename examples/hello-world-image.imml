@@ -1,0 +1,10 @@
+<IMML Camera="Camera" xmlns="http://schemas.vastpark.com/2007/imml/">
+    <Camera Name="Camera" Position="0,0.25,-1" />
+
+    <Primitive Type="Box" Size="1.28,0.72,0.1">
+        <MaterialGroup Id="-1">
+            <Material Emissive="#FFFFFF" />
+            <Texture Source="images/hello-world.jpg" />                    
+        </MaterialGroup>
+    </Primitive>
+</IMML>

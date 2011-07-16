@@ -1,0 +1,4 @@
+<IMML Camera="Camera" xmlns="http://schemas.vastpark.com/2007/imml/">
+    <Camera Name="Camera" Position="0,0,-5" />
+    <Sound Enabled="True" Source="sounds/hello-world.ogg" Spatial="True"/>
+</IMML>
