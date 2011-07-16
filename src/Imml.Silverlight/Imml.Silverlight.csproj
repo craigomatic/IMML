@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A2A298A2-2660-4DCC-9F6E-16276C6F33CF}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Imml.Silverlight</RootNamespace>
+    <AssemblyName>Imml.Silverlight</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Imml\BindableObject.cs">
+      <Link>BindableObject.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\CubicElement.cs">
+      <Link>ComponentModel\CubicElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\ICubicElement.cs">
+      <Link>ComponentModel\ICubicElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\IImmlContext.cs">
+      <Link>ComponentModel\IImmlContext.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\IPositionalElement.cs">
+      <Link>ComponentModel\IPositionalElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\IVisibleElement.cs">
+      <Link>ComponentModel\IVisibleElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\PhysicsElement.cs">
+      <Link>ComponentModel\PhysicsElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\PositionalElement.cs">
+      <Link>ComponentModel\PositionalElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\VisibleElement.cs">
+      <Link>ComponentModel\VisibleElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Drawing\Color3.cs">
+      <Link>Drawing\Color3.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ElementFactory.cs">
+      <Link>ElementFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ElementNotFoundException.cs">
+      <Link>ElementNotFoundException.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Enums.cs">
+      <Link>Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\IImmlElement.cs">
+      <Link>IImmlElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\IImmlElementRegistry.cs">
+      <Link>IImmlElementRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ImmlElement.cs">
+      <Link>ImmlElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ImmlElementRegistry.cs">
+      <Link>ImmlElementRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ImmlHelper.cs">
+      <Link>ImmlHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\IO\IImmlSerialiser.cs">
+      <Link>IO\IImmlSerialiser.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\IO\ImmlSerialiser.cs">
+      <Link>IO\ImmlSerialiser.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\MarkupException.cs">
+      <Link>MarkupException.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Angle.cs">
+      <Link>Numerics\Angle.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Float.cs">
+      <Link>Numerics\Float.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\BoundingBox.cs">
+      <Link>Numerics\Geometry\BoundingBox.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\BoundingSphere.cs">
+      <Link>Numerics\Geometry\BoundingSphere.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\Distance.cs">
+      <Link>Numerics\Geometry\Distance.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\Intersect.cs">
+      <Link>Numerics\Geometry\Intersect.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\Line.cs">
+      <Link>Numerics\Geometry\Line.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\LineSegment.cs">
+      <Link>Numerics\Geometry\LineSegment.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\Plane.cs">
+      <Link>Numerics\Geometry\Plane.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\Project.cs">
+      <Link>Numerics\Geometry\Project.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Geometry\Ray.cs">
+      <Link>Numerics\Geometry\Ray.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\HashCode.cs">
+      <Link>Numerics\HashCode.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Matrix4.cs">
+      <Link>Numerics\Matrix4.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Quaternion.cs">
+      <Link>Numerics\Quaternion.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\ValueCountMismatchException.cs">
+      <Link>Numerics\ValueCountMismatchException.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Vector2.cs">
+      <Link>Numerics\Vector2.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Vector3.cs">
+      <Link>Numerics\Vector3.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Numerics\Vector4.cs">
+      <Link>Numerics\Vector4.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Condition.cs">
+      <Link>Scene\Condition.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Container\ImmlDocument.cs">
+      <Link>Scene\Container\ImmlDocument.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Container\ImmlWidget.cs">
+      <Link>Scene\Container\ImmlWidget.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Anchor.cs">
+      <Link>Scene\Controls\Anchor.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Background.cs">
+      <Link>Scene\Controls\Background.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Camera.cs">
+      <Link>Scene\Controls\Camera.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Effect.cs">
+      <Link>Scene\Controls\Effect.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Emitter.cs">
+      <Link>Scene\Controls\Emitter.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Light.cs">
+      <Link>Scene\Controls\Light.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Model.cs">
+      <Link>Scene\Controls\Model.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Plugin.cs">
+      <Link>Scene\Controls\Plugin.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Preload.cs">
+      <Link>Scene\Controls\Preload.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Primitive.cs">
+      <Link>Scene\Controls\Primitive.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Script.cs">
+      <Link>Scene\Controls\Script.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Shader.cs">
+      <Link>Scene\Controls\Shader.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Sound.cs">
+      <Link>Scene\Controls\Sound.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Text.cs">
+      <Link>Scene\Controls\Text.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\TextBox.cs">
+      <Link>Scene\Controls\TextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Texture.cs">
+      <Link>Scene\Controls\Texture.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Video.cs">
+      <Link>Scene\Controls\Video.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Web.cs">
+      <Link>Scene\Controls\Web.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Controls\Widget.cs">
+      <Link>Scene\Controls\Widget.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Define.cs">
+      <Link>Scene\Define.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Design\Style.cs">
+      <Link>Scene\Design\Style.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Element.cs">
+      <Link>Scene\Element.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Filter.cs">
+      <Link>Scene\Filter.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Include.cs">
+      <Link>Scene\Include.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Interaction.cs">
+      <Link>Scene\Interaction.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Layout\Dock.cs">
+      <Link>Scene\Layout\Dock.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Layout\Grid.cs">
+      <Link>Scene\Layout\Grid.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Layout\Repeater.cs">
+      <Link>Scene\Layout\Repeater.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Layout\Scatter.cs">
+      <Link>Scene\Layout\Scatter.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Layout\Stack.cs">
+      <Link>Scene\Layout\Stack.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Material.cs">
+      <Link>Scene\Material.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\MaterialGroup.cs">
+      <Link>Scene\MaterialGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Network.cs">
+      <Link>Scene\Network.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Parameter.cs">
+      <Link>Scene\Parameter.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Physics.cs">
+      <Link>Scene\Physics.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Timers\ExecuteEvent.cs">
+      <Link>Scene\Timers\ExecuteEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Timers\KeyFrameEvent.cs">
+      <Link>Scene\Timers\KeyFrameEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Timers\PropertyEvent.cs">
+      <Link>Scene\Timers\PropertyEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Timers\Timeline.cs">
+      <Link>Scene\Timers\Timeline.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Timers\TimelineEvent.cs">
+      <Link>Scene\Timers\TimelineEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\Trigger.cs">
+      <Link>Scene\Trigger.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\TypeConvert.cs">
+      <Link>TypeConvert.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Imml\imml.xsd">
+      <Link>imml.xsd</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
