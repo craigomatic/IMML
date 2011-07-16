@@ -1,0 +1,2120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+You may not remove this copyright notice. This work is an XML schema. Parts of this work are copyright VastPark Pty Ltd, 2007-2008.  Unless you have been granted a commercial license from VastPark that provides you with the rights to distribute your own version of the schema, using this work is subject to the Creative Commons Attribution-No Derivative Works version 3 license (See http://creativecommons.org/licenses/by-nd/3.0/legalcode). 
+
+What we take this license to mean: You may use this schema as is in any open source or commercial application you like. You have a choice if you pay us a royalty fee in relation to this schema. The license frees you from any requirement to pay a fee to use the schema. You may not alter this schema or distribute such a change with the VastPark software or with other software without agreement in writing with VastPark. We make the exception that if you are posting parts of the schema to be viewed as text on a webpage we allow you to show off suggested alterations to the schema. 
+
+Also please note that using a non-official modified version of this work with the VastPark software breaches VastPark’s software EULA. 
+
+Why we are releasing this schema in this way: We provide this schema so that other applications can be created that are compatible with the VastPark applications and so we can expand the ecosystem of projects using this framework. Rather than attempting to restrict you, we are wishing to create greater uniformity for anyone coding in IMML. IMML is intended as a “Write once, run anyway” markup language. Developers with strong understanding of XML and IMML are welcome to work with us to improve IMML. Please contact the dev team at with a detailed outline of your ideas and test cases: developer @ vastpark.com.
+Modified: 9/9/08
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:imml="http://schemas.vastpark.com/2007/imml/"
+           targetNamespace="http://schemas.vastpark.com/2007/imml/"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+  <xs:element name="Widget">
+    <xs:annotation>
+      <xs:documentation>A light-weight document container that allows for a combination of logic and visual presentation. Similar to the IMML element, but is assumed to never be the main document context of a scene, rather a child context of an IMML document element.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Include" maxOccurs="unbounded" minOccurs="0" type="imml:Include"/>
+
+        <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+          <xs:annotation>
+            <xs:documentation>A key/value pair defining a variable</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+
+        <xs:element name="Effect" minOccurs="0" type="imml:Effect"/>
+        <xs:element name="Primitive" minOccurs="0" type="imml:Primitive"/>
+        <xs:element name="Sound" minOccurs="0" type="imml:Sound"/>
+        <xs:element name="Model" minOccurs="0" type="imml:Model"/>
+        <xs:element name="Light" minOccurs="0" type="imml:Light"/>
+        <xs:element name="Camera" minOccurs="0" type="imml:Camera"/>
+        <xs:element name="Script" minOccurs="0" type="imml:Script"/>
+        <xs:element name="Text" minOccurs="0" type="imml:Text"/>
+        <xs:element name="Textbox" minOccurs="0" type="imml:Textbox"/>
+        <xs:element name="Plugin" minOccurs="0" type="imml:Plugin"/>
+
+        <xs:element name="Trigger" type="imml:Trigger"/>
+
+        <xs:element name="Timeline" type="imml:Timeline" minOccurs="0"/>
+        <xs:element name="Region" type="imml:Region" minOccurs="0"/>
+        <xs:element name="Repeater" type="imml:Repeater" minOccurs="0"/>
+        <xs:element name="Scatter" type="imml:Scatter" minOccurs="0"/>
+        <xs:element name="Stack" type="imml:Stack" minOccurs="0"/>
+        <xs:element name="Grid" type="imml:Grid" minOccurs="0"/>
+        <xs:element name="Dock" type="imml:Dock" minOccurs="0"/>
+
+        <xs:element name="Widget" type="imml:Widget" minOccurs="0"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IMML">
+    <xs:annotation>
+      <xs:documentation>The primary document container. Provides support for compositing a fully immersive scene, including the visual representation, logic interaction and simulation modifiers.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Include" maxOccurs="unbounded" minOccurs="0" type="imml:Include"/>
+        <xs:element name="Network" maxOccurs="1" minOccurs="0" type="imml:Network"/>
+
+        <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+          <xs:annotation>
+            <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+
+        <xs:element name="Preload" minOccurs="0" maxOccurs="1" type="imml:Preload"/>
+
+        <xs:element name="Effect" minOccurs="0" type="imml:Effect"/>
+        <xs:element name="Primitive" minOccurs="0" type="imml:Primitive"/>
+        <xs:element name="Sound" minOccurs="0" type="imml:Sound"/>
+        <xs:element name="Model" minOccurs="0" type="imml:Model"/>
+        <xs:element name="Light" minOccurs="0" type="imml:Light"/>
+        <xs:element name="Camera" minOccurs="0" type="imml:Camera"/>
+        <xs:element name="Script" minOccurs="0" type="imml:Script"/>
+        <xs:element name="Background" minOccurs="0" type="imml:Background"/>
+        <xs:element name="Text" minOccurs="0" type="imml:Text"/>
+        <xs:element name="Textbox" minOccurs="0" type="imml:Textbox"/>
+
+        <xs:element name="Anchor" minOccurs="0" type="imml:Anchor"/>
+        <xs:element name="Plugin" minOccurs="0" type="imml:Plugin"/>
+        <xs:element name="Trigger" type="imml:Trigger"/>
+
+        <xs:element name="Timeline" type="imml:Timeline" minOccurs="0"/>
+        <xs:element name="Region" type="imml:Region" minOccurs="0"/>
+        <xs:element name="Repeater" type="imml:Repeater" minOccurs="0"/>
+        <xs:element name="Scatter" type="imml:Scatter" minOccurs="0"/>
+        <xs:element name="Stack" type="imml:Stack" minOccurs="0"/>
+        <xs:element name="Grid" type="imml:Grid" minOccurs="0"/>
+        <xs:element name="Dock" type="imml:Dock" minOccurs="0"/>
+        <xs:element name="Canvas" type="imml:Canvas" minOccurs="0"/>
+
+        <xs:element name="Widget" type="imml:Widget" minOccurs="0"/>
+      </xs:choice>
+      <xs:attribute name="Behaviours" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>Comma separated list of behaviours for the document</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PhysicsSpeed" type="xs:float" use="optional" default="1">
+        <xs:annotation>
+          <xs:documentation>The current speed for physics simulation</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AnimationSpeed" type="xs:float" use="optional" default="1">
+        <xs:annotation>
+          <xs:documentation>The current speed for animation playback</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SoundSpeed" type="xs:float" use="optional" default="1">
+        <xs:annotation>
+          <xs:documentation>The current speed for sound playback</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Gravity" type="imml:Vector3" use="optional" default="0,-9.8,0">
+        <xs:annotation>
+          <xs:documentation>The current gravity value to apply</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GlobalIllumination" type="imml:Colour" use="optional" default="#4c4c4c">
+        <xs:annotation>
+          <xs:documentation>The amount of illumination to apply globally to all visible elements</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Background" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>Name of the background to use as the current background</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Camera" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>Name of the camera to use as the current view</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Name" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>Name of the element</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Description" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            A description of the purpose of this document
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Tags" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            Tags that are relevant to this document
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Author" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            The name of the author of this document
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="HostUri" type="xs:anyURI" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            The HostUri of the live server that manages network interaction with this document
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="Widget">
+    <xs:annotation>
+      <xs:documentation>Provides a reference to a Widget</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:SizableMovableElement">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:MaterialGroup" name="MaterialGroup" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <xs:element type="imml:Parameter" name="Parameter" maxOccurs="unbounded" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A parameter which sets the value of a define internal to the widget</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--Allow only one of these elements-->
+          <xs:element type="imml:Physics" name="Physics" maxOccurs="1" minOccurs="0"/>
+          <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+        <xs:attribute name="Enabled" type="imml:Boolean" use="optional">
+          <xs:annotation>
+            <xs:documentation>When true, widget interaction with its parent context is allowed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Visible" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>When true, the visibility of the elements within the widget will behave as instructed. When false, the elements within will not be visible</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Preload">
+    <xs:annotation>
+      <xs:documentation>Instructs the loader to load child elements of this node before continuing to load the remainder of the document</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="xs:anyType">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <xs:element name="Effect" minOccurs="0" type="imml:Effect"/>
+          <xs:element name="Primitive" minOccurs="0" type="imml:Primitive"/>
+          <xs:element name="Sound" minOccurs="0" type="imml:Sound"/>
+          <xs:element name="Model" minOccurs="0" type="imml:Model"/>
+          <xs:element name="Light" minOccurs="0" type="imml:Light"/>
+          <xs:element name="Camera" minOccurs="0" type="imml:Camera"/>
+          <xs:element name="Script" minOccurs="0" type="imml:Script"/>
+          <xs:element name="Background" minOccurs="0" type="imml:Background"/>
+          <xs:element name="Text" minOccurs="0" type="imml:Text"/>
+          <xs:element name="Textbox" minOccurs="0" type="imml:Textbox"/>
+
+          <xs:element name="Plugin" minOccurs="0" type="imml:Plugin"/>
+          <xs:element name="Trigger" type="imml:Trigger"/>
+
+          <xs:element name="Timeline" type="imml:Timeline" minOccurs="0"/>
+          <xs:element name="Region" type="imml:Region" minOccurs="0"/>
+          <xs:element name="Repeater" type="imml:Repeater" minOccurs="0"/>
+          <xs:element name="Scatter" type="imml:Scatter" minOccurs="0"/>
+          <xs:element name="Stack" type="imml:Stack" minOccurs="0"/>
+          <xs:element name="Grid" type="imml:Grid" minOccurs="0"/>
+          <xs:element name="Dock" type="imml:Dock" minOccurs="0"/>
+
+          <xs:element name="Widget" type="imml:Widget" minOccurs="0"/>
+        </xs:choice>
+        <!--<xs:attribute name="Background" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>The name of the background to render</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>-->
+        <xs:attribute name="ProgressUpdate" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The name of the executable element to invoke on a progress update</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="DocumentLoaded" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The name of the executable element to invoke when the document has finished loading</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Plugin">
+    <xs:annotation>
+      <xs:documentation>Provides support for custom extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:SourceableElement">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element name="Element" type="imml:Element">
+            <xs:annotation>
+              <xs:documentation>
+                Optional elements that are to be added to the plugin's collection of elements for manipulation
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Parameter" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>
+                Optional parameters to pass into the plugin
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:attribute name="Enabled" type="imml:Boolean" use="optional">
+          <xs:annotation>
+            <xs:documentation>Enables plugin functionality when true</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Include">
+    <xs:annotation>
+      <xs:documentation>Directs the document to include a resource from the specified Source URI</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="xs:anyType">
+        <xs:attribute name="Source">
+          <xs:annotation>
+            <xs:documentation>Location of the resource</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Background">
+    <xs:annotation>
+      <xs:documentation>Represents a background resource for the document</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:OptionallySourceableElement">
+        <xs:attribute name="Colour" type="imml:Colour" use="optional">
+          <xs:annotation>
+            <xs:documentation>The colour to apply to the background</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Primitive">
+    <xs:annotation>
+      <xs:documentation>Provides basic rendering of four main types of primitve: Box, Cone, Cylinder and Sphere.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="unbounded">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:MaterialGroup" name="MaterialGroup" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--Allow only one of these elements-->
+          <xs:element type="imml:Physics" name="Physics" maxOccurs="1" minOccurs="0"/>
+          <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+        <xs:attribute name="Pivot" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>
+              The pivot point for the element to pivot on when performing transformations
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Type" type="imml:PrimitiveType" use="required">
+          <xs:annotation>
+            <xs:documentation>The type of primitive to represent: Box, Cone, Cylinder or Sphere</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Complexity" type="imml:PrimitiveComplexity" use="optional" default="Medium">
+          <xs:annotation>
+            <xs:documentation>The complexity of the primitive. The higher the complexity, the greater the quality.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Visible" type="imml:Boolean" use="optional">
+          <xs:annotation>
+            <xs:documentation>When true, the element is visible</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CastShadows" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>If true and the element is Visible, it should cast shadows</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Size" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>Size of the element</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Text">
+    <xs:annotation>
+      <xs:documentation>Provides functionality for spatial display of text</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="true">
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="unbounded">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--Allow only one of these elements-->
+          <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+        <xs:attribute name="Size" type="xs:float" use="optional" default="0.2">
+          <xs:annotation>
+            <xs:documentation>The size of the font in units</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Opacity" type="xs:float" use="optional" default="1.0">
+          <xs:annotation>
+            <xs:documentation>A value between 0 and 1 describing the amount of opacity</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Colour" type="imml:Colour" use="optional">
+          <xs:annotation>
+            <xs:documentation>The colour of the font</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Visible" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>When true, the element is visible</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Billboard" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, the font will always face the current view</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Bold" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, the font is bold</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Italic" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, the font is italicised</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Underline" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, the font is underlined</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Font" type="xs:string" use="optional" default="Arial">
+          <xs:annotation>
+            <xs:documentation>The name of the font to use. Valid values depend on the supported fonts on the client system.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Value" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The text to display.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Alignment" type="imml:TextAlignment" use="optional" default="Left">
+          <xs:annotation>
+            <xs:documentation>The alignment to apply when formatting the text</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Textbox">
+    <xs:annotation>
+      <xs:documentation>Provides functionality for text input</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="true">
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="unbounded">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--Allow only one of these elements-->
+          <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+
+        <xs:attribute name="Password" type="imml:Boolean" use="optional" default="False" />
+
+        <xs:attribute name="Size" type="xs:int" use="optional" default="10">
+          <xs:annotation>
+            <xs:documentation>The size of the font in pixels</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Opacity" type="xs:float" use="optional" default="1.0">
+          <xs:annotation>
+            <xs:documentation>A value between 0 and 1 describing the amount of opacity</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Colour" type="imml:Colour" use="optional">
+          <xs:annotation>
+            <xs:documentation>The colour of the font</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Visible" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>When true, the element is visible</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Billboard" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, the font will always face the current view</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Bold" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, the font is bold</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Italic" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, the font is italicised</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Underline" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, the font is underlined</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Font" type="xs:string" use="optional" default="Arial">
+          <xs:annotation>
+            <xs:documentation>The name of the font to use. Valid values depend on the supported fonts on the client system.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Model">
+    <xs:annotation>
+      <xs:documentation>Provides functionality for displaying mesh data</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:SizableMovableElement">
+        <xs:choice maxOccurs="unbounded">
+
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:MaterialGroup" name="MaterialGroup" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:AnimationTrack" name="AnimationTrack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Include" name="Include" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--Allow only one of these elements-->
+          <xs:element name="Physics" type="imml:Physics" maxOccurs="1" minOccurs="0"/>
+          <xs:element name="Network" type="imml:Network" maxOccurs="1" minOccurs="0"/>
+        </xs:choice>
+        <xs:attribute name="Visible" type="imml:Boolean" use="optional">
+          <xs:annotation>
+            <xs:documentation>When true, the element is visible</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CastShadows" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>If true and the element is Visible, it should cast shadows</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="RenderMode" type="imml:RenderMode" use="optional" default="Fill">
+          <xs:annotation>
+            <xs:documentation>The style of rendering to use when rendering this element</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Sound">
+    <xs:annotation>
+      <xs:documentation>Provides functionality for audio playback</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:SourcableMovableElement">
+        <xs:choice maxOccurs="unbounded">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--Only one of these-->
+          <xs:element type="imml:Network" name="Network" maxOccurs="1" minOccurs="0"/>
+        </xs:choice>
+
+        <xs:attribute name="Enabled" type="imml:Boolean" default="True" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              When a sound is enabled, it will begin playback
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Spatial" type="imml:Boolean" default="True" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              When true, the sound is positional according to the rotation and position specified
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Volume" type="xs:float" default="0.5" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              A value between 0 and 1 that describes the amount of volume to use, where 1 is the full amount of available volume
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Stream" type="imml:Boolean" default="False" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              When true, the sound is streamed from the source on playback.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Pitch" type="xs:float" default="1" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The amount to multiply the frequency of the sound by
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Loop" type="imml:Boolean" default="False" use="optional">
+          <xs:annotation>
+            <xs:documentation>When true, the sound should loop on playback</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Timeline">
+    <xs:annotation>
+      <xs:documentation>A linear, time-based, data structure supporting keyframe, property and execute events at specific time intervals</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:Element">
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+          <xs:element name="KeyframeEvent" type="imml:KeyframeEvent" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element name="PropertyEvent" type="imml:PropertyEvent" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element name="ExecuteEvent" type="imml:ExecuteEvent" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:choice>
+        <xs:attribute name="AutoTween" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>When true, values are automatically tweened to their next state in a linear progression</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Loop" type="imml:Boolean" use="optional" default="False">
+          <xs:annotation>
+            <xs:documentation>
+              When true, the timeline will repeat its operations once finished
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Enabled" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>
+              When enabled, the timeline will start. Timelines that are enabled before the context has loaded will start immediately after the context has completed loading.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Speed" type="xs:float" use="optional" default="1">
+          <xs:annotation>
+            <xs:documentation>
+              A value which modulates the playback speed of the timeline, where 1 is normal speed, 2 is double speed and 0.5 is half speed
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AnimationTrack">
+    <xs:annotation>
+      <xs:documentation>An override animation which instructs that a particular Group should play a particular Sequence</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Group" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>The group this animation track is targeting</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Sequence" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>The name of the sequence to play</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Loop" type="imml:Boolean" use="optional" default="False">
+      <xs:annotation>
+        <xs:documentation>When true, this animation sequence should loop.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Shader">
+    <xs:annotation>
+      <xs:documentation>Supports referencing a resource that can define the render of a visible element</xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="Parameter" type="imml:Parameter" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:choice>
+    <xs:attribute name="Enabled" type="imml:Boolean" default="True">
+      <xs:annotation>
+        <xs:documentation>When true, allows the shader to perform its operations on the parent element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Source" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The source location of the resource for this element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Script" mixed="true">
+    <xs:annotation>
+      <xs:documentation>Provides support for script based logic.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Name of the element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Source" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Source of the resource for this element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Language" type="xs:string" use="optional" default="Lua">
+      <xs:annotation>
+        <xs:documentation>Scripting language used by the block</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Physics">
+    <xs:annotation>
+      <xs:documentation>Settings that define the physics behaviour of an element</xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="imml:Interaction" name="Interaction"/>
+    </xs:choice>
+    <xs:attribute name="Enabled" type="imml:Boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>When true, requires the parent element to be included in the physics engine operations</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Weight" type="xs:float" use="optional">
+      <xs:annotation>
+        <xs:documentation>Weight of the element in kilograms</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Movable" type="imml:Boolean" use="optional" default="True">
+      <xs:annotation>
+        <xs:documentation>When true, the physics engine should allow the body that represents this element to move</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Bounding" type="imml:BoundingType" use="optional" default="ConvexHull">
+      <xs:annotation>
+        <xs:documentation>
+          The style of physics bounding to use. Performance and interaction requirements should be taken into account when selecting a bounding type. By default, the BoundingType will wrap as closely as possible to the element's bounds.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Centre" type="imml:Vector3" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          The centre of mass the element should have.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Network">
+    <xs:annotation>
+      <xs:documentation>Provides support for enabling state change propagation</xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="imml:Filter" name="Filter"/>
+    </xs:choice>
+    <xs:attribute name="Owner" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          An identifier that specifies the owner of a given element
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Enabled" type="imml:Boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          When true, implies the element should perform network updates in relation to property changes
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Filter">
+    <xs:annotation>
+      <xs:documentation>Provides support for filtering state change of an attribute on a given element</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Target" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The target property to filter</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Enabled" type="imml:Boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>When true, filtering should be applied</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="UpdateRate" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>The upper-limit of updates that should occur per second when the property which is being filtered changes</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Texture">
+    <xs:annotation>
+      <xs:documentation>Defines a custom texture and the mapping to use when applying it to a material group</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Source" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>The resource for this element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Type" type="imml:TextureType" use="optional" default="Diffuse">
+      <xs:annotation>
+        <xs:documentation>The type of texture loading to use</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="TileU" type="xs:float" use="optional" default="1.0">
+      <xs:annotation>
+        <xs:documentation>The number of segments in the U direction to use when tiling</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="TileV" type="xs:float" use="optional" default="1.0">
+      <xs:annotation>
+        <xs:documentation>The number of segments in the V direction to use when tiling</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OffsetU" type="xs:float" use="optional" default="0.0">
+      <xs:annotation>
+        <xs:documentation>The offset of the U coordinate in the UV texture coordinate system</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OffsetV" type="xs:float" use="optional" default="0.0">
+      <xs:annotation>
+        <xs:documentation>The offset of the V coordinate in the UV texture coordinate system</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Material">
+    <xs:annotation>
+      <xs:documentation>Defines the appearance of a given material group and the way light will interact with it</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Ambient" type="imml:Colour" use="optional">
+      <xs:annotation>
+        <xs:documentation>A value determining how ambient light is reflected</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Diffuse" type="imml:Colour" use="optional">
+      <xs:annotation>
+        <xs:documentation>A value determining how diffuse light is reflected</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Emissive" type="imml:Colour" use="optional">
+      <xs:annotation>
+        <xs:documentation>A value determining the light to emit</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Specular" type="imml:Colour" use="optional">
+      <xs:annotation>
+        <xs:documentation>A value that indicates the highlight colour. Increase/decrease this using the Power attribute.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Opacity" type="xs:float" use="optional">
+      <xs:annotation>
+        <xs:documentation>A value between 0 and 1 describing the amount of opacity</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Power" type="xs:float" use="optional">
+      <xs:annotation>
+        <xs:documentation>The amount of specular highlighting</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="AlphaThreshold" type="xs:float" use="optional" default="0.5">
+      <xs:annotation>
+        <xs:documentation>A value between 0 and 1 which represents the alpha threshold for this material</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Interaction">
+    <xs:annotation>
+      <xs:documentation>Defines physics material interaction properties between physics enabled elements</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Element" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The name of the element to apply the interaction properties to
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="StaticFriction" type="xs:float" use="optional" default="0.9">
+      <xs:annotation>
+        <xs:documentation>The force to apply between the parent element and the referred element when they are not moving relative to each other</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="DynamicFriction" type="xs:float" use="optional" default="0.5">
+      <xs:annotation>
+        <xs:documentation>The force to apply between the parent element and the referred element when they are moving relative to each other</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Elasticity" type="xs:float" use="optional" default="0.4">
+      <xs:annotation>
+        <xs:documentation>The bounciness to apply between the parent element and referred element when they come into contact</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Softness" type="xs:float" use="optional" default="0.7">
+      <xs:annotation>
+        <xs:documentation>The softness to apply between the parent element and the referred element when they come into contact</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Trigger">
+    <xs:annotation>
+      <xs:documentation>Provides hooks between events and the logic to execute when an event is invoked.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:Element">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element name="Condition" type="imml:Condition">
+            <xs:annotation>
+              <xs:documentation>Condition governing the execution of the trigger</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+        <xs:attribute name="Event" type="imml:EventType" use="required">
+          <xs:annotation>
+            <xs:documentation>Event that triggers invocation</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Target" type="xs:string" use="required">
+          <xs:annotation>
+            <xs:documentation>Name of the target element to execute on invocation of the trigger</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Enabled" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>When true, the event the trigger listens for should be consumed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Light">
+    <xs:annotation>
+      <xs:documentation>A source of illumination with three different modes: point, spot and directional</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:MaterialGroup" name="MaterialGroup" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--Allow only one of these elements-->
+          <xs:element name="Network" type="imml:Network" maxOccurs="1" minOccurs="0"/>
+        </xs:choice>
+        <xs:attribute name="Enabled" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>When true, light is cast</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CastShadows" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>When true, shadows are cast by this light</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ConstantAttenuation" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>Constant attenuation value specifying how the light intensity changes over distance. Valid values between 0 and infinity. Does not affect lights of type Directional.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="LinearAttenuation" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>Linear attenuation value specifying how the light intensity changes over distance. Valid values between 0 and infinity. Does not affect lights of type Directional.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="QuadraticAttenuation" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>Quadratic attenuation value specifying how the light intensity changes over distance. Valid values between 0 and infinity. Does not affect lights of type Directional.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Range" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>Distance beyond which the light has no effect. Does not affect lights of type Directional.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Falloff" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>Decrease in illumination between a spotlight's InnerCone and the outer edge of the OuterCone. Only valid for lights of type Spot</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Diffuse" type="imml:Colour" use="optional">
+          <xs:annotation>
+            <xs:documentation>Diffuse colour emitted by the light when enabled</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Specular" type="imml:Colour" use="optional">
+          <xs:annotation>
+            <xs:documentation>Specular colour emitted by the light when enabled</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Type" type="imml:LightType" use="required">
+          <xs:annotation>
+            <xs:documentation>The type of light source to simulate</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="InnerCone" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>The angle in degrees of the inner cone. This value must be in the range from 0 through the value specified by OuterCone. Only valid for lights of type Spot.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="OuterCone" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>The angle in degrees of the outer cone. Points outside this cone are not lit. This value must be between 0 and pi. Only valid for lights of type Spot.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Video">
+    <xs:annotation>
+      <xs:documentation>Provides support for embedding video resources in a spatial manner</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Source" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The source location of the resource for this element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Enabled" type="imml:Boolean" default="True" use="optional">
+      <xs:annotation>
+        <xs:documentation>When enabled the video should begin playback from the current seek position</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Volume" type="xs:float" default="0.5" use="optional">
+      <xs:annotation>
+        <xs:documentation>Value between 0 and 1 describing the amount of volume</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Loop" type="imml:Boolean" default="False" use="optional">
+      <xs:annotation>
+        <xs:documentation>Value that decides if the video should loop.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Seek" type="xs:time" default="00:00:00" use="optional">
+      <xs:annotation>
+        <xs:documentation>Time specifying the seek position of the associated media</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Stream" type="imml:Boolean" default="False" use="optional">
+      <xs:annotation>
+        <xs:documentation>If true, stream rather than fully acquire the resource for presentation</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Camera">
+    <xs:annotation>
+      <xs:documentation>Defines a view into the scene. Supports chasing positional elements.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:MaterialGroup" name="MaterialGroup" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--Allow only one of these elements-->
+          <xs:element type="imml:Shader" name="Shader" maxOccurs="1" minOccurs="0"/>
+          <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+        <xs:attribute name="Enabled" type="imml:Boolean" use="optional">
+          <xs:annotation>
+            <xs:documentation>If a valid ChaseTarget has been specified, enables the camera chase functionality. </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ChaseTarget" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>Name of the element in the current document context to chase</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ChasePositionOffset" type="imml:Vector3" use="optional">
+          <xs:annotation>
+            <xs:documentation>Desired camera position in the chased element's coordinate system.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ChaseLookAtOffset" type="imml:Vector3" use="optional">
+          <xs:annotation>
+            <xs:documentation>The point in the chased element's coordinate system to look at.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ChaseDamping" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>Physics coefficient which approximates internal friction of the spring.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ChaseStiffness" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>Physics coefficient which controls the influence of the camera's position over the spring force. The stiffer the spring, the closer it will stay to the chased object.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ChaseMass" type="xs:float" use="optional">
+          <xs:annotation>
+            <xs:documentation>The amount of mass to simulate the camera has when chasing.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Projection" type="imml:ProjectionType" use ="optional" default="Perspective">
+          <xs:annotation>
+            <xs:documentation>The style of projection to use</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="FOV" type="xs:float" use="optional" default="60">
+          <xs:annotation>
+            <xs:documentation>
+              The field of view, expressed as a floating point angle
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="NearPlane" type="xs:float" use="optional" default="0.01">
+          <xs:annotation>
+            <xs:documentation>
+              The near clipping distance from camera. Anything within this distance of the camera will not be rendered.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="FarPlane" type="xs:float" use="optional" default="1000">
+          <xs:annotation>
+            <xs:documentation>
+              The far clipping distance from camera. Anything beyond this distance from the camera will not be rendered.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Effect">
+    <xs:annotation>
+      <xs:documentation>Container for Emitter elements</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Trigger" name="Trigger" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Emitter" name="Emitter"  maxOccurs="unbounded" minOccurs="0" />
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <!--One of these elements-->
+          <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+        <xs:attribute name="Enabled" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>When enabled the effect should operate</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Visible" type="imml:Boolean" use="optional" default="True">
+          <xs:annotation>
+            <xs:documentation>When true, the effect should be rendered</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Emitter">
+    <xs:annotation>
+      <xs:documentation>Container for referencing particle based effects resources for rendering</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:Element">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <!--Allow multiple of these elements-->
+          <xs:element type="imml:ParticleChange" name="ParticleChange"  maxOccurs="unbounded" minOccurs="0" />
+
+          <!--Allow one of these elements-->
+          <xs:element name="Shader" type="imml:Shader" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="Video" type="imml:Video" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="Texture" type="imml:Texture" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="Web" type="imml:Web" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+        <xs:attribute name="Rate" type="xs:float" use="optional" default="100.0">
+          <xs:annotation>
+            <xs:documentation>Modulator that alters the number of particles emitted per second</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Count" type="xs:int" use="optional" default="1000">
+          <xs:annotation>
+            <xs:documentation>Maximum number of particle that can exist at any one time</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Cone" type="xs:float" use="optional" default="30.0">
+          <xs:annotation>
+            <xs:documentation>The maximum angle in degrees that particles will vary from the direction of their force</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Force" type="imml:Vector3" use="optional" default="0.0,1.0,0.0">
+          <xs:annotation>
+            <xs:documentation>Force applied to particles</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="LifeMin" type="xs:float" use="optional" default="1.0">
+          <xs:annotation>
+            <xs:documentation>The minumum number of seconds a particle will live for</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="LifeMax" type="xs:float" use="optional" default="3.0">
+          <xs:annotation>
+            <xs:documentation>The maximum number of seconds a particle will live for</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Anchor">
+    <xs:annotation>
+      <xs:documentation>
+        Used to define geometric links between IMML documents or non-geometric links to a resource
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="1" minOccurs="0">
+          <!--Allow any one of these elements-->
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+
+          <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
+            <xs:annotation>
+              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+
+          <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+        <xs:attribute name="Type" type="imml:AnchorType" default="NonGeometric" use="optional">
+          <xs:annotation>
+            <xs:documentation>The type of Anchor</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Uri" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The location of the resource</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Web">
+    <xs:annotation>
+      <xs:documentation>Provides support for rendering a web resource onto a material group</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Source" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>The location of the resource for this element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="UpdateRate" type="xs:int" use="optional" default="-1">
+      <xs:annotation>
+        <xs:documentation>The period of time in milliseconds to wait before redrawing the web display</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Width" type="xs:int" use="optional" default="1024">
+      <xs:annotation>
+        <xs:documentation>The width in pixels of the web display</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Height" type="xs:int" use="optional" default="1024">
+      <xs:annotation>
+        <xs:documentation>The height in pixels of the web display</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+
+  </xs:complexType>
+
+  <!--Layout Elements-->
+  <xs:complexType name="Dock">
+    <xs:annotation>
+      <xs:documentation>Overrides positional values for a given element with a layout instruction to dock to a particular region of the view with an optionally specified offset</xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Model" name="Model" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="imml:Primitive" name="Primitive" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="imml:Widget" name="Widget" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="imml:Grid" name="Grid" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="imml:Stack" name="Stack" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="imml:Sound" name="Sound" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="imml:Text" name="Text" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="imml:Textbox" name="Textbox" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional">
+      <xs:annotation>
+        <xs:documentation>Name of this element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute type="imml:HorizontalAlignment" name="HorizontalAlignment" use="optional">
+      <xs:annotation>
+        <xs:documentation>The horizontal alignment to apply during layout</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute type="imml:VerticalAlignment" name="VerticalAlignment" use="optional">
+      <xs:annotation>
+        <xs:documentation>The vertical alignment to apply during layout</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute type="imml:Vector3" name="Offset" use="optional">
+      <xs:annotation>
+        <xs:documentation>The offset to apply during positioning where x is horizontal offset, y is vertical offset and z is depth offset</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Repeater">
+    <xs:annotation>
+      <xs:documentation>Repeats the nested child elements the number of times specified by the Count attribute. All elements are generated with the same attributes</xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element type="imml:Camera" name="Camera"/>
+      <xs:element type="imml:Effect" name="Effect"/>
+      <xs:element type="imml:Model" name="Model"/>
+      <xs:element type="imml:Sound" name="Sound"/>
+      <xs:element type="imml:Light" name="Light"/>
+      <xs:element type="imml:Primitive" name="Primitive"/>
+      <xs:element type="imml:Widget" name="Widget" />
+      <xs:element type="imml:Anchor" name="Anchor"/>
+
+      <xs:element type="imml:Grid" name="Grid"/>
+      <xs:element type="imml:Repeater" name="Repeater"/>
+      <xs:element type="imml:Stack" name="Stack"/>
+    </xs:choice>
+    <xs:attribute name="Count" type="xs:int" use="required">
+      <xs:annotation>
+        <xs:documentation>Number of times to repeat the instances of the nested element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Scatter">
+    <xs:annotation>
+      <xs:documentation>Arranges child elements onto a target element in a pseudo-random manner</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:choice>
+    <xs:attribute name="Target" type="xs:string" use="optional"/>
+    <xs:attribute name="Seed" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>The constant to use when generating the scatter positions. Enables persistent scatter on all document hosts. If not specified, consistent layout is not guaranteed.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Stack">
+    <xs:complexContent>
+      <xs:annotation>
+        <xs:documentation>Allows elements to be stacked together according to the specified spacing.</xs:documentation>
+      </xs:annotation>
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element type="imml:Grid" name="Grid"/>
+          <xs:element type="imml:Repeater" name="Repeater"/>
+          <xs:element type="imml:Stack" name="Stack"/>
+          <xs:element type="imml:Widget" name="Widget"/>
+
+          <xs:element type="imml:Camera" name="Camera"/>
+          <xs:element type="imml:Light" name="Light"/>
+          <xs:element type="imml:Model" name="Model"/>
+          <xs:element type="imml:Text" name="Text"/>
+          <xs:element type="imml:Sound" name="Sound"/>
+          <xs:element type="imml:Effect" name="Effect"/>
+          <xs:element type="imml:Anchor" name="Anchor"/>
+          <xs:element type="imml:Primitive" name="Primitive"/>
+        </xs:choice>
+
+        <xs:attribute name="Spacing" type="imml:Vector3" default="0,0,0">
+          <xs:annotation>
+            <xs:documentation>The amount of spacing to apply between each child element of the stack</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Pivot" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>
+              The pivot point for the element to pivot on when performing transformations
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Visible" type="imml:Boolean" use="optional">
+          <xs:annotation>
+            <xs:documentation>When true, the element is visible</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Canvas">
+    <xs:complexContent>
+      <xs:annotation>
+        <xs:documentation>Allows one or more elements to be scaled uniformly.</xs:documentation>
+      </xs:annotation>
+      <xs:extension base="imml:ScalableElement">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element type="imml:Grid" name="Grid"/>
+          <xs:element type="imml:Repeater" name="Repeater"/>
+          <xs:element type="imml:Stack" name="Stack"/>
+          <xs:element type="imml:Canvas" name="Canvas"/>
+          <xs:element type="imml:Widget" name="Widget"/>
+
+          <xs:element type="imml:Camera" name="Camera"/>
+          <xs:element type="imml:Light" name="Light"/>
+          <xs:element type="imml:Model" name="Model"/>
+          <xs:element type="imml:Text" name="Text"/>
+          <xs:element type="imml:Sound" name="Sound"/>
+          <xs:element type="imml:Effect" name="Effect"/>
+          <xs:element type="imml:Anchor" name="Anchor"/>
+          <xs:element type="imml:Primitive" name="Primitive"/>
+        </xs:choice>
+
+        <xs:attribute name="Pivot" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>
+              The pivot point for the element to pivot on when performing transformations
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Visible" type="imml:Boolean" use="optional">
+          <xs:annotation>
+            <xs:documentation>When true, the element is visible</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Grid">
+    <xs:annotation>
+      <xs:documentation>
+        A grid defines uniformly sized cells for placement of elements. An undefined grid defaults to a size of 1,1,1 with 1 row, column and layer.
+        Child elements added to the grid are limited in maximum size to the size of the cell they occupy. New elements are added to the next available cell
+        in a column, row, layer order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:MovableElement">
+        <xs:choice maxOccurs="unbounded">
+          <xs:element type="imml:Anchor" name="Anchor" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Repeater" name="Repeater" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Stack" name="Stack" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Grid" name="Grid" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Model" name="Model" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Effect" name="Effect" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Text" name="Text" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Primitive" name="Primitive" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Sound" name="Sound" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Light" name="Light" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Camera" name="Camera" maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element type="imml:Widget" name="Widget" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:choice>
+        <xs:attribute name="Rows" type="xs:int" default="1">
+          <xs:annotation>
+            <xs:documentation>The number of horizontal segments to divide the grid into</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Columns" type="xs:int" default="1">
+          <xs:annotation>
+            <xs:documentation>The number of vertical segments to divide the grid into</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Layers" type="xs:int" default="1">
+          <xs:annotation>
+            <xs:documentation>The number of depth segments to divide the grid into</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Size" type="imml:Vector3" default="1,1,1">
+          <xs:annotation>
+            <xs:documentation>The size of the element</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--End Layout Modifiers-->
+
+  <xs:complexType name="Region">
+    <xs:annotation>
+      <xs:documentation>
+        Defines a region that can be used to trigger events or as the target for element placement
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:Element">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="3">
+            <xs:element name="Point" type="imml:Point">
+            </xs:element>
+          </xs:choice>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="imml:Trigger" name="Trigger"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Height" type="xs:float" default="0.1"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ParticleChange">
+    <xs:annotation>
+      <xs:documentation>
+        A change relating to a particle within an Effect
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="imml:Element">
+        <xs:attribute name="Type" type="imml:ParticleChangeType" use="required">
+          <xs:annotation>
+            <xs:documentation>The type of particle change to use</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Minimum" type="xs:float" use="required">
+          <xs:annotation>
+            <xs:documentation>The minumum initial bounds for the particle change</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Maximum" type="xs:float" use="required">
+          <xs:annotation>
+            <xs:documentation>The maximum initial bounds for the particle change</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="EndRate" type="xs:float" use="optional" default="1.0">
+          <xs:annotation>
+            <xs:documentation>Fraction of the initial change value when particle is dying</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!--Base Types-->
+  <xs:complexType name="Condition">
+    <xs:attribute name="Expression" type="xs:string" use="required" >
+      <xs:annotation>
+        <xs:documentation>Expression governing the condition. When the expression evaluates to true, the conditional logic is executed according to the Type specified. Valid expression operators are '&lt;', '&gt;', '==', '!=', '&lt;=', '&gt;='</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Type" type="imml:ConditionType" use="required" >
+      <xs:annotation>
+        <xs:documentation>Determines the course of action to take should the Expression evaluate to true. Ignore will prevent the trigger from firing, Allow will not prevent the trigger from firing</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Source" type="imml:ConditionSource" use="required" >
+      <xs:annotation>
+        <xs:documentation>The source of the data for the expression</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+
+  <!--Timeline Events-->
+  <xs:complexType name="KeyframeEvent">
+    <xs:attribute name="Element" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Element to keyframe</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Time" type="xs:time" use="required">
+      <xs:annotation>
+        <xs:documentation>The time to apply this keyframe</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Value" type="imml:Vector3" use="required">
+      <xs:annotation>
+        <xs:documentation>The destination value for the keyframe</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Target" type="imml:KeyFrameType" use="required">
+      <xs:annotation>
+        <xs:documentation>The type of keyframing to apply. Position, Rotation or Size</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Relative" type="imml:Boolean" default="False">
+      <xs:annotation>
+        <xs:documentation>When true, means the transformation to this keyframe should be done relatively rather than absolutely</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="PropertyEvent">
+    <xs:attribute name="Target" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The target property to modify</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Element" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Element to modify</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Time" type="xs:time" use="required">
+      <xs:annotation>
+        <xs:documentation>The time to apply the modification</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Value" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The destination value</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="ExecuteEvent">
+    <xs:attribute name="Element" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Element to execute</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Time" type="xs:time" use="required">
+      <xs:annotation>
+        <xs:documentation>The time to execute the element</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <!--End Timeline Events-->
+
+  <xs:complexType name="MaterialGroup">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="Material" type="imml:Material" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Shader" type="imml:Shader" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Video" type="imml:Video" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Texture" type="imml:Texture" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Web" type="imml:Web" minOccurs="0" maxOccurs="1"/>
+    </xs:choice>
+    <xs:attribute name="Id" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:simpleType name="Boolean">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="True"/>
+      <xs:enumeration value="False"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ProjectionType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Isometric" />
+      <xs:enumeration value="Perspective" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AnchorType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Geometric"/>
+      <xs:enumeration value="NonGeometric"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LightType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Point"/>
+      <xs:enumeration value="Spot"/>
+      <xs:enumeration value="Directional"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="KeyFrameType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Position"/>
+      <xs:enumeration value="Rotation"/>
+      <xs:enumeration value="Size"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TextureType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Ambient"/>
+      <xs:enumeration value="AmbientOcclusion"/>
+      <xs:enumeration value="Diffuse"/>
+      <xs:enumeration value="Emissive"/>
+      <xs:enumeration value="Normal"/>
+      <xs:enumeration value="Specular"/>
+      <xs:enumeration value="SpecularHighlight"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ParticleChangeType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Movement"/>
+      <xs:enumeration value="Rotation"/>
+      <xs:enumeration value="Size"/>
+      <xs:enumeration value="Drag"/>
+      <xs:enumeration value="Red"/>
+      <xs:enumeration value="Green"/>
+      <xs:enumeration value="Blue"/>
+      <xs:enumeration value="Opacity"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ConditionType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Ignore"/>
+      <xs:enumeration value="Allow"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ConditionSource">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="EventData"/>
+      <xs:enumeration value="Element"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BoundingType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Box"/>
+      <xs:enumeration value="Sphere"/>
+      <xs:enumeration value="ConvexHull"/>
+      <xs:enumeration value="Cylinder"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EventType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Collided"/>
+      <xs:enumeration value="DragEnter"/>
+      <xs:enumeration value="DragDrop"/>
+      <xs:enumeration value="DragLeave"/>
+      <xs:enumeration value="KeyDown"/>
+      <xs:enumeration value="KeyPress"/>
+      <xs:enumeration value="KeyUp"/>
+      <xs:enumeration value="Loaded"/>
+      <xs:enumeration value="Unloaded"/>
+      <xs:enumeration value="MouseEnter"/>
+      <xs:enumeration value="MouseHover"/>
+      <xs:enumeration value="MouseLeave"/>
+      <xs:enumeration value="MouseMove"/>
+      <xs:enumeration value="MouseDown"/>
+      <xs:enumeration value="MouseClick"/>
+      <xs:enumeration value="MouseDoubleClick"/>
+      <xs:enumeration value="MouseUp"/>
+      <xs:enumeration value="NetworkCustomMessage"/>
+      <xs:enumeration value="NetworkConnectionEstablished"/>
+      <xs:enumeration value="NetworkConnectionDropped"/>
+      <xs:enumeration value="NetworkConnectionRejected" />
+      <xs:enumeration value="ProximityEnter"/>
+      <xs:enumeration value="ProximityHover"/>
+      <xs:enumeration value="ProximityLeave"/>
+      <xs:enumeration value="AnimationFinished"/>
+      <xs:enumeration value="SoundFinished"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RenderMode">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Point"/>
+      <xs:enumeration value="Line"/>
+      <xs:enumeration value="Fill"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PrimitiveType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Box"/>
+      <xs:enumeration value="Cone"/>
+      <xs:enumeration value="Cylinder"/>
+      <xs:enumeration value="Plane"/>
+      <xs:enumeration value="Sphere"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PrimitiveComplexity">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="VeryLow"/>
+      <xs:enumeration value="Low"/>
+      <xs:enumeration value="Medium"/>
+      <xs:enumeration value="High"/>
+      <xs:enumeration value="VeryHigh"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Point">
+    <xs:attribute name="Value" type="imml:Vector3"/>
+  </xs:complexType>
+  <xs:simpleType name="HorizontalAlignment">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Left"/>
+      <xs:enumeration value="Centre"/>
+      <xs:enumeration value="Right"/>
+      <xs:enumeration value="Stretch"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="VerticalAlignment">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Top"/>
+      <xs:enumeration value="Centre"/>
+      <xs:enumeration value="Bottom"/>
+      <xs:enumeration value="Stretch"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TextAlignment">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Left">
+        <xs:annotation>
+          <xs:documentation>Aligns the text to the left margin</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Centre">
+        <xs:annotation>
+          <xs:documentation>Aligns the text to the centre</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Right">
+        <xs:annotation>
+          <xs:documentation>Aligns the text to the right margin</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Justify">
+        <xs:annotation>
+          <xs:documentation>Aligns the text to both the left and the right margins, adding extra space between words as necessary</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Colour">
+    <xs:restriction base="xs:string">
+      <!--TODO: The regex pattern for #FFFFFF-->
+      <!--<xs:pattern value="\d+\,\d+\,\d+"/>-->
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Vector3">
+    <xs:annotation>
+      <xs:documentation>
+        Contains 3 floating point numbers using a period as the radix
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[-+]?[0-9]+[.]?[0-9]*([eE][-+]?[0-9]+)?,[-+]?[0-9]+[.]?[0-9]*([eE][-+]?[0-9]+)?,[-+]?[0-9]+[.]?[0-9]*([eE][-+]?[0-9]+)?"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SizableMovableElement" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="imml:SourcableMovableElement">
+        <xs:attribute name="Size" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>Size of the element</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Pivot" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>
+              The pivot point for the element to pivot on when performing transformations
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ScalableElement" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="imml:StyleableElement">
+        <xs:attribute name="Scale" type="imml:Vector3" default="1,1,1" use="optional">
+          <xs:annotation>
+            <xs:documentation>Location of the resource</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SourcableMovableElement" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="imml:StyleableElement">
+        <xs:attribute name="Source" type="xs:string" use="required">
+          <xs:annotation>
+            <xs:documentation>Location of the resource</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Position" type="imml:Vector3" default="0,0,0" use="optional">
+          <xs:annotation>
+            <xs:documentation>Position of the element, relative to its parent</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Rotation" type="imml:Vector3" default="0,0,0" use="optional">
+          <xs:annotation>
+            <xs:documentation>Rotation of the element in degrees, relative to its parent</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MovableElement" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="imml:StyleableElement">
+        <xs:attribute name="Position" type="imml:Vector3" default="0,0,0" use="optional">
+          <xs:annotation>
+            <xs:documentation>Position of the element, relative to its parent</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Rotation" type="imml:Vector3" default="0,0,0" use="optional">
+          <xs:annotation>
+            <xs:documentation>Rotation of the element in degrees, relative to its parent</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StyleableElement" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="imml:Element">
+        <!--<xs:attribute name="Style" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Style to apply to this element</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>-->
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OptionallySourceableElement" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="imml:Element">
+        <xs:attribute name="Source" use="optional">
+          <xs:annotation>
+            <xs:documentation>Location of the resource</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SourceableElement" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="imml:Element">
+        <xs:attribute name="Source" use="required">
+          <xs:annotation>
+            <xs:documentation>Location of the resource</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Parameter">
+    <xs:complexContent>
+      <xs:restriction base="xs:anyType">
+        <xs:attribute name="Key">
+          <xs:annotation>
+            <xs:documentation>Key of the parameter to set</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Value">
+          <xs:annotation>
+            <xs:documentation>Corresponding value for the given key</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Element" abstract="false">
+    <xs:complexContent>
+      <xs:restriction base="xs:anyType">
+        <xs:attribute name="Name" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>Name of the element</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Behaviours" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>Comma separated list of behaviours for the element</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Context" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>Data context for the element used during binding</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--End Base Types-->
+</xs:schema>
