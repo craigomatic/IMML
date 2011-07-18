@@ -291,5 +291,29 @@ namespace Imml.Test
             Assert.Equal(model.Position.ToString(), xElementModel.Attribute(XName.Get("Position")).Value);
             Assert.Equal(model.Rotation.ToString(), xElementModel.Attribute(XName.Get("Rotation")).Value);
         }
+    
+        [Fact]
+        public void Serialiser_Reports_An_Error_When_A_Minor_Validation_Problem_Is_Encountered()
+        {
+            //the camera position attribute is invalid
+            var immlString = "<IMML Author=\"craigomatic\" Camera=\"Camera\" xmlns=\"http://schemas.vastpark.com/2007/imml/\"><Camera Name=\"Camera\" Position=\"5\" /><Primitive Type=\"Box\" Size=\"1,1,1\" /></IMML>"; ;
+
+            var immlSerialiser = new ImmlSerialiser();
+            immlSerialiser.Read<ImmlDocument>(new MemoryStream(Encoding.UTF8.GetBytes(immlString)));
+
+            Assert.NotEmpty(immlSerialiser.Errors);
+            Assert.Equal(1, immlSerialiser.Errors.Count);
+        }
+
+        [Fact]
+        public void Serialiser_Does_Not_Report_Errors_When_The_IMML_Is_Valid()
+        {
+            var immlString = "<IMML Author=\"craigomatic\" Camera=\"Camera\" xmlns=\"http://schemas.vastpark.com/2007/imml/\"><Camera Name=\"Camera\" Position=\"5,5,5\" /><Primitive Type=\"Box\" Size=\"1,1,1\" /></IMML>"; ;
+
+            var immlSerialiser = new ImmlSerialiser();
+            immlSerialiser.Read<ImmlDocument>(new MemoryStream(Encoding.UTF8.GetBytes(immlString)));
+
+            Assert.Empty(immlSerialiser.Errors);
+        }
     }
 }

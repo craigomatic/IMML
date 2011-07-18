@@ -300,7 +300,7 @@ namespace Imml.IO
 
             foreach (var attribute in (node as XElement).Attributes())
             {
-                if (!attribute.Name.Equals("xmlns"))
+                if (!attribute.Name.LocalName.Equals("xmlns"))
                 {
                     try
                     {
