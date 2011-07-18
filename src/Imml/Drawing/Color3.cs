@@ -18,13 +18,9 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 using System.Diagnostics;
 using System.Globalization;
-using System.Windows.Media;
 
 namespace Imml.Drawing
 {
@@ -59,14 +55,9 @@ namespace Imml.Drawing
 
             try
             {
-                var c = Color.FromArgb(0xff,
-                        byte.Parse(colorString.Substring(0, 2), NumberStyles.HexNumber),
-                        byte.Parse(colorString.Substring(2, 2), NumberStyles.HexNumber),
-                        byte.Parse(colorString.Substring(4, 2), NumberStyles.HexNumber));
-
-                this.R = (float)c.R / 255f;
-                this.G = (float)c.G / 255f;
-                this.B = (float)c.B / 255f;
+                this.R = (float)byte.Parse(colorString.Substring(0, 2), NumberStyles.HexNumber) / 255f;
+                this.G = (float)byte.Parse(colorString.Substring(2, 2), NumberStyles.HexNumber) / 255f;
+                this.B = (float)byte.Parse(colorString.Substring(4, 2), NumberStyles.HexNumber) / 255f;
             }
             catch
             {
@@ -139,9 +130,7 @@ namespace Imml.Drawing
         /// <returns>A <see cref="String"/> containing a human-readable representation of the object.</returns>
         public override string ToString()
         {
-            var c = System.Windows.Media.Color.FromArgb((byte)255, (byte)(this.R * 255), (byte)(this.G * 255), (byte)(this.B * 255));
-
-            return String.Format("#{0:x2}{1:x2}{2:x2}", c.R, c.G, c.B);
+            return string.Format("#{0:x2}{1:x2}{2:x2}", (byte)(this.R * 255), (byte)(this.G * 255), (byte)(this.B * 255));
         }
 
         /// <summary>
@@ -185,35 +174,6 @@ namespace Imml.Drawing
                 value1.B != value2.B;
         }
 
-        /// <summary>
-        /// Converts a <see cref="Color3"/> instance to <see cref="Color"/> instance.
-        /// </summary>
-        /// <param name="value">A <see cref="Color3"/>.</param>
-        /// <returns>A <see cref="Color"/>.</returns>
-        public static explicit operator Color(Color3 value)
-        {
-            return Color.FromArgb(
-                (byte)255,
-                (byte)(value.R * 255),
-                (byte)(value.G * 255),
-                (byte)(value.B * 255));
-        }
-
-        /// <summary>
-        /// Converts a <see cref="Color"/> instance to <see cref="Color3"/> instance.
-        /// </summary>
-        /// <param name="value">A <see cref="Color"/>.</param>
-        /// <returns>A <see cref="Color3"/>.</returns>
-        public static implicit operator Color3(Color value)
-        {
-            float s = 1 / 255.0f;
-
-            Color3 result;
-            result.R = value.R * s;
-            result.G = value.G * s;
-            result.B = value.B * s;
-            return result;
-        }
         #endregion
 
         #region Properties
