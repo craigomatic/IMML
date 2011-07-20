@@ -46,7 +46,7 @@ namespace Imml
         /// <param name="element">The element.</param>
         /// <param name="id">The id.</param>
         /// <returns></returns>
-        public static MaterialGroup GetMaterialGroup<T>(this T element, int id) where T : IMaterialHostElement
+        public static MaterialGroup GetMaterialGroup(this IMaterialHostElement element, int id)
         {
             return element.Elements.OfType<MaterialGroup>().Where(e => e.Id == id).FirstOrDefault();
         }
@@ -89,6 +89,26 @@ namespace Imml
         public static Video GetVideo(this MaterialGroup materialGroup)
         {
             return materialGroup.Elements.OfType<Video>().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the physics element.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns></returns>
+        public static Physics GetPhysics(this IPhysicsHostElement element)
+        {
+            return element.Elements.OfType<Physics>().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the physics interactions.
+        /// </summary>
+        /// <param name="physics">The physics.</param>
+        /// <returns></returns>
+        public static IList<Interaction> GetInteractions(this Physics physics)
+        {
+            return physics.Elements.OfType<Interaction>().ToList();
         }
     }
 }

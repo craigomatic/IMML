@@ -20,7 +20,10 @@ using System.Text;
 
 namespace Imml.ComponentModel
 {
-    public abstract class PhysicsElement : CubicElement
+    /// <summary>
+    /// /// Represents an IImmlElement that supports physics
+    /// </summary>
+    public interface IPhysicsHostElement : IImmlElement
     {
        
     }

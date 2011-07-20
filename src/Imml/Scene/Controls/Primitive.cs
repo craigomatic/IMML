@@ -21,7 +21,7 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
-    public class Primitive : PhysicsElement, IMaterialHostElement
+    public class Primitive : CubicElement, IPhysicsHostElement, IMaterialHostElement
     {
         #region Properties
 

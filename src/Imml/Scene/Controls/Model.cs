@@ -22,7 +22,7 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
-    public class Model : PhysicsElement, IMaterialHostElement
+    public class Model : CubicElement, IPhysicsHostElement, IMaterialHostElement
     {
         #region Properties
 

@@ -8,10 +8,16 @@ using Imml.Numerics.Geometry;
 namespace Imml.ComponentModel
 {
     /// <summary>
-    /// Abstract class that represents an element that has 3-dimensions
+    /// Abstract class that represents an element with 3-dimensions
     /// </summary>
     public abstract class CubicElement : VisibleElement, ICubicElement
     {
+        /// <summary>
+        /// Gets or sets the point for the element to pivot on when performing transformations.
+        /// </summary>
+        /// <value>
+        /// The pivot.
+        /// </value>
         public virtual Vector3 Pivot { get; set; }
 
         protected RenderMode _RenderMode;
@@ -67,6 +73,12 @@ namespace Imml.ComponentModel
 
         protected Vector3 _Size;
 
+        /// <summary>
+        /// Gets or sets the size.
+        /// </summary>
+        /// <value>
+        /// The size.
+        /// </value>
         public virtual Vector3 Size
         {
             get { return _Size; }

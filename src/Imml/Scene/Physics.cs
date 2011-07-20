@@ -6,10 +6,19 @@ using Imml.Numerics;
 
 namespace Imml.Scene
 {
+    /// <summary>
+    /// Settings that define the physics behaviour of an element
+    /// </summary>
     public class Physics : ImmlElement
     {
         private bool _Enabled;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Physics"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool Enabled
         {
             get { return _Enabled; }
@@ -27,6 +36,12 @@ namespace Imml.Scene
 
         private bool _Movable;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Physics"/> is movable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if movable; otherwise, <c>false</c>.
+        /// </value>
         public bool Movable
         {
             get { return _Movable; }
@@ -43,6 +58,12 @@ namespace Imml.Scene
 
         private float _Weight;
 
+        /// <summary>
+        /// Gets or sets the weight.
+        /// </summary>
+        /// <value>
+        /// The weight.
+        /// </value>
         public float Weight
         {
             get { return _Weight; }
@@ -60,6 +81,12 @@ namespace Imml.Scene
 
         private Vector3 _Centre;
 
+        /// <summary>
+        /// Gets or sets the centre.
+        /// </summary>
+        /// <value>
+        /// The centre.
+        /// </value>
         public Vector3 Centre
         {
             get { return _Centre; }
@@ -76,6 +103,12 @@ namespace Imml.Scene
             }
         }
 
+        /// <summary>
+        /// Gets or sets the bounding.
+        /// </summary>
+        /// <value>
+        /// The bounding.
+        /// </value>
         public BoundingType Bounding { get; set; }
 
         public bool IsCentreDefault { get; private set; }
