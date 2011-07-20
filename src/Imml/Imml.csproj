@@ -82,6 +82,7 @@
     <Compile Include="ComponentModel\CubicElement.cs" />
     <Compile Include="ComponentModel\ICubicElement.cs" />
     <Compile Include="ComponentModel\IMaterialHostElement.cs" />
+    <Compile Include="ComponentModel\IPhysicsHostElement.cs" />
     <Compile Include="ComponentModel\IPositionalElement.cs" />
     <Compile Include="ComponentModel\IVisibleElement.cs" />
     <Compile Include="ElementFactory.cs" />
@@ -122,7 +123,6 @@
     <Compile Include="Scene\Container\ImmlWidget.cs" />
     <Compile Include="Scene\Controls\Anchor.cs" />
     <Compile Include="Scene\Controls\Background.cs" />
-    <Compile Include="ComponentModel\PhysicsElement.cs" />
     <Compile Include="ComponentModel\PositionalElement.cs" />
     <Compile Include="ComponentModel\VisibleElement.cs" />
     <Compile Include="Scene\Controls\Camera.cs" />
