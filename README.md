@@ -67,6 +67,6 @@ To achieve this, IMML provides an abstract series of elements as its foundation 
 	
 #### License
 
-IMML was developed at VastPark and under the VastPark [Open Specification Promise](http://vastpark.org/wiki/vp/Open_specification_license).
+IMML was developed at VastPark under the VastPark [Open Specification Promise](http://vastpark.org/wiki/vp/Open_specification_license).
 
 The libraries available on GitHub are under the MIT license.
