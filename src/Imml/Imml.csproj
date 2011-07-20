@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,6 +81,7 @@
     <Compile Include="BindableObject.cs" />
     <Compile Include="ComponentModel\CubicElement.cs" />
     <Compile Include="ComponentModel\ICubicElement.cs" />
+    <Compile Include="ComponentModel\IMaterialHostElement.cs" />
     <Compile Include="ComponentModel\IPositionalElement.cs" />
     <Compile Include="ComponentModel\IVisibleElement.cs" />
     <Compile Include="ElementFactory.cs" />
