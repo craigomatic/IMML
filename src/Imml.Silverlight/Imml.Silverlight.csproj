@@ -68,14 +68,17 @@
     <Compile Include="..\Imml\ComponentModel\IImmlContext.cs">
       <Link>ComponentModel\IImmlContext.cs</Link>
     </Compile>
+    <Compile Include="..\Imml\ComponentModel\IMaterialHostElement.cs">
+      <Link>ComponentModel\IMaterialHostElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\IPhysicsHostElement.cs">
+      <Link>ComponentModel\IPhysicsHostElement.cs</Link>
+    </Compile>
     <Compile Include="..\Imml\ComponentModel\IPositionalElement.cs">
       <Link>ComponentModel\IPositionalElement.cs</Link>
     </Compile>
     <Compile Include="..\Imml\ComponentModel\IVisibleElement.cs">
       <Link>ComponentModel\IVisibleElement.cs</Link>
-    </Compile>
-    <Compile Include="..\Imml\ComponentModel\PhysicsElement.cs">
-      <Link>ComponentModel\PhysicsElement.cs</Link>
     </Compile>
     <Compile Include="..\Imml\ComponentModel\PositionalElement.cs">
       <Link>ComponentModel\PositionalElement.cs</Link>
