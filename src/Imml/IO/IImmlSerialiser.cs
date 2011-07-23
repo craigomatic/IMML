@@ -40,17 +40,15 @@ namespace Imml.IO
         /// <summary>
         /// Writes the specified element.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        string Write<T>(T element) where T : IImmlElement;
+        string Write(IImmlElement element);
 
         /// <summary>
         /// Writes the specified element.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="element">The element.</param>
         /// <param name="outputStream">The output stream.</param>
-        void Write<T>(T element, Stream outputStream) where T : IImmlElement;
+        void Write(IImmlElement element, Stream outputStream);
     }
 }

@@ -111,13 +111,13 @@ namespace Imml.IO
             return immlContext;
         }
 
-        public string Write<T>(T element) where T : IImmlElement
+        public string Write(IImmlElement element)
         {
-            var xNodeParent = _WriteImml<T>(element);
+            var xNodeParent = _WriteImml(element);
             return xNodeParent.ToString(SaveOptions.None);
         }
 
-        public void Write<T>(T element, Stream outputStream) where T : IImmlElement
+        public void Write(IImmlElement element, Stream outputStream)
         {
             var xNodeParent = _WriteImml(element);
             
@@ -131,7 +131,7 @@ namespace Imml.IO
 
         #region Writer methods
 
-        private XNode _WriteImml<T>(T element) where T : IImmlElement
+        private XNode _WriteImml(IImmlElement element)
         {
 
 #if SILVERLIGHT
