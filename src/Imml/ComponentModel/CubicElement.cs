@@ -12,14 +12,6 @@ namespace Imml.ComponentModel
     /// </summary>
     public abstract class CubicElement : VisibleElement, ICubicElement
     {
-        /// <summary>
-        /// Gets or sets the point for the element to pivot on when performing transformations.
-        /// </summary>
-        /// <value>
-        /// The pivot.
-        /// </value>
-        public virtual Vector3 Pivot { get; set; }
-
         protected RenderMode _RenderMode;
 
         /// <summary>
