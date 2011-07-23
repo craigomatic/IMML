@@ -196,6 +196,12 @@ namespace Imml.IO
                 try
                 {
                     var pInfo = type.GetProperty(attribute.Name);
+
+                    if (pInfo == null)
+                    {
+                        throw new XmlSchemaValidationException(string.Format("Object model for '{1}' elements is missing support for the '{0}' attribute.", attribute.Name, xElement.Name.LocalName));
+                    }
+
                     var value = pInfo.GetValue(immlElement, null);
                     var valueString = TypeConvert.Parse(value);
 
@@ -209,7 +215,7 @@ namespace Imml.IO
                     this.Errors.Add(new MarkupException(e.Message, e.LineNumber, e.LinePosition));
 
                     //schema valid property is probably missing
-                    System.Diagnostics.Debug.Fail(string.Format("Schema contains an attribute '{0}' that is not represented in the object model for '{1}' elements.", attribute.Name, xElement.Name));
+                    System.Diagnostics.Debug.Fail(string.Format("Schema contains an attribute '{0}' that is not represented in the object model for '{1}' elements.", attribute.Name, xElement.Name.LocalName));
                 }
             }
 
