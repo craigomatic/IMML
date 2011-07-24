@@ -12,6 +12,14 @@ namespace Imml.IO
     public interface IImmlSerialiser
     {
         /// <summary>
+        /// Gets a value indicating whether to omit the XML declaration.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the XML declaration should be omitted; otherwise, <c>false</c>.
+        /// </value>
+        bool OmitXmlDeclaration { get; }
+
+        /// <summary>
         /// Gets the errors.
         /// </summary>
         IList<MarkupException> Errors { get; }

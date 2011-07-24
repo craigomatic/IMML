@@ -23,6 +23,14 @@ namespace Imml.IO
     public class ImmlSerialiser : IImmlSerialiser
     {
         /// <summary>
+        /// Gets a value indicating whether to omit the XML declaration. Defaults to true.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if the XML declaration should be omitted; otherwise, <c>false</c>.
+        /// </value>
+        public bool OmitXmlDeclaration { get; set; }
+
+        /// <summary>
         /// Gets the namespace.
         /// </summary>
         public string Namespace { get; private set; }
@@ -38,6 +46,7 @@ namespace Imml.IO
         public ImmlSerialiser()
         {
             this.Errors = new List<MarkupException>();
+            this.OmitXmlDeclaration = true;
 
 #if !SILVERLIGHT
             //load the schema from the embedded resource
@@ -122,7 +131,7 @@ namespace Imml.IO
             var xNodeParent = _WriteImml(element);
             
             //TODO: Optimise this so that it progressively writes the XML to the stream instead of one big chunk at the end
-            using (var xmlWriter = XmlWriter.Create(outputStream, new XmlWriterSettings { Indent = true }))
+            using (var xmlWriter = XmlWriter.Create(outputStream, new XmlWriterSettings { OmitXmlDeclaration = this.OmitXmlDeclaration, Indent = true }))
             {
                 xNodeParent.WriteTo(xmlWriter);
             }
