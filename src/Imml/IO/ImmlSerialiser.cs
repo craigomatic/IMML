@@ -202,6 +202,12 @@ namespace Imml.IO
 
             _XmlSchemaValidator.ValidateElement(elementType, this.Namespace, null);
             _WriteAttributes(element, xNode);
+
+            //script elements are a special case, they need to have their value property written to the element value
+            if (element is Script)
+            {
+                xNode.Value = (element as Script).Value;
+            }
             
             //test if this element has children that need to be written also
             if(element.HasChildren)

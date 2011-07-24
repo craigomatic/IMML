@@ -315,5 +315,33 @@ namespace Imml.Test
 
             Assert.Empty(immlSerialiser.Errors);
         }
+
+        [Fact]
+        public void Serialiser_Correctly_Writes_Script_Elements()
+        {
+            var script = new Script();
+            script.Value = "function main(obj, args)\r\nend";
+
+            var immlSerialiser = new ImmlSerialiser();
+            var immlString = immlSerialiser.Write(script);
+
+            var textReader = new StringReader(immlString);
+            var xDoc = XDocument.Load(textReader);
+
+            var xElementScript = xDoc.Descendants(XName.Get("Script", immlSerialiser.Namespace)).FirstOrDefault();
+            Assert.NotNull(xElementScript);
+
+            Assert.Contains("function main(obj, args)", xElementScript.Value);
+        }
+
+        [Fact]
+        public void Serialiser_Correctly_Reads_IMML_Containing_Script_Elements()
+        {
+            var immlString = "<Script Language=\"Lua\" Name=\"Script\" Source=\"\" xmlns=\"http://schemas.vastpark.com/2007/imml/\">function main(obj, args)\r\nend</Script>";
+            var immlSerialiser = new ImmlSerialiser();
+            var script = immlSerialiser.Read<Script>(new MemoryStream(Encoding.UTF8.GetBytes(immlString)));
+
+            Assert.Contains("function main(obj, args)", script.Value);
+        }
     }
 }
