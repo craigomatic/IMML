@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-
-#if !SILVERLIGHT
 using System.Xml.Linq;
-#endif
-
 using System.Xml.Schema;
 using System.Xml;
 using Imml.Scene.Container;
 using System.Reflection;
 using Imml.Scene.Controls;
-using System.Xml.Linq;
 
 namespace Imml.IO
 {
     /// <summary>
-    /// Provides support for 
+    /// Provides support for reading and writting IMML to and from streams.
     /// </summary>
     public class ImmlSerialiser : IImmlSerialiser
     {
@@ -35,6 +30,9 @@ namespace Imml.IO
         /// </summary>
         public string Namespace { get; private set; }
 
+        /// <summary>
+        /// Gets the errors.
+        /// </summary>
         public IList<MarkupException> Errors { get; private set; }
 
         private XmlReaderSettings _ReaderSettings;
@@ -43,6 +41,9 @@ namespace Imml.IO
         private XmlSchemaValidator _XmlSchemaValidator;
 #endif
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImmlSerialiser"/> class.
+        /// </summary>
         public ImmlSerialiser()
         {
             this.Errors = new List<MarkupException>();
@@ -82,6 +83,12 @@ namespace Imml.IO
         }
 #endif
 
+        /// <summary>
+        /// Reads the specified file path.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filePath">The file path.</param>
+        /// <returns></returns>
         public T Read<T>(string filePath) where T : IImmlElement
         {
             using (var fs = new FileStream(filePath, FileMode.Open))
@@ -90,6 +97,12 @@ namespace Imml.IO
             }
         }
 
+        /// <summary>
+        /// Reads the specified stream.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="stream">The stream.</param>
+        /// <returns></returns>
         public T Read<T>(Stream stream) where T : IImmlElement
         {
             this.Errors.Clear();
@@ -120,12 +133,22 @@ namespace Imml.IO
             return immlContext;
         }
 
+        /// <summary>
+        /// Writes the specified element.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns></returns>
         public string Write(IImmlElement element)
         {
             var xNodeParent = _WriteImml(element);
             return xNodeParent.ToString(SaveOptions.None);
         }
 
+        /// <summary>
+        /// Writes the specified element.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="outputStream">The output stream.</param>
         public void Write(IImmlElement element, Stream outputStream)
         {
             var xNodeParent = _WriteImml(element);
