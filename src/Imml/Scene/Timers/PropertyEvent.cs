@@ -20,6 +20,9 @@ using System.Text;
 
 namespace Imml.Scene.Timers
 {
+    /// <summary>
+    /// Event that manipulates a property.
+    /// </summary>
     public class PropertyEvent : TimelineEvent
     {
         /// <summary>

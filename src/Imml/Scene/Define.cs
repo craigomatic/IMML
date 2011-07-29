@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Imml.Scene
 {
+    /// <summary>
+    /// A key/value pair defining a variable attached to the parent element.
+    /// </summary>
     public class Define : Parameter
     {
         

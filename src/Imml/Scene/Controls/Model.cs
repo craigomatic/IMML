@@ -22,10 +22,19 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides functionality for displaying mesh data.
+    /// </summary>
     public class Model : CubicElement, IPhysicsHostElement, IMaterialHostElement
     {
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
         public string Source { get; set; }
 
         #endregion        

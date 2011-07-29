@@ -6,6 +6,9 @@ using Imml.Drawing;
 
 namespace Imml.Scene
 {
+    /// <summary>
+    /// Defines the appearance of a given material group and the way light will interact with it.
+    /// </summary>
     public class Material : ImmlElement
     {
         #region Properties

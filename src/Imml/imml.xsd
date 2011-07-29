@@ -344,7 +344,7 @@ Modified: 9/9/08
 
   <xs:complexType name="Primitive">
     <xs:annotation>
-      <xs:documentation>Provides basic rendering of four main types of primitve: Box, Cone, Cylinder and Sphere.</xs:documentation>
+      <xs:documentation>Provides basic rendering of five main types of primitve: Box, Cone, Cylinder, Plane and Sphere.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="imml:MovableElement">
@@ -778,7 +778,7 @@ Modified: 9/9/08
 
   <xs:complexType name="Shader">
     <xs:annotation>
-      <xs:documentation>Supports referencing a resource that can define the render of a visible element</xs:documentation>
+      <xs:documentation>Provides support for shader based manipulation of elements.</xs:documentation>
     </xs:annotation>
     <xs:choice maxOccurs="unbounded">
       <xs:element name="Parameter" type="imml:Parameter" minOccurs="0" maxOccurs="unbounded"/>
@@ -1058,7 +1058,7 @@ Modified: 9/9/08
 
           <xs:element name="Define" maxOccurs="unbounded" minOccurs="0" type="imml:Parameter">
             <xs:annotation>
-              <xs:documentation>A key/value pair defining a variable attached to this node</xs:documentation>
+              <xs:documentation>A key/value pair defining a variable attached to the parent element.</xs:documentation>
             </xs:annotation>
           </xs:element>
 
@@ -1130,7 +1130,7 @@ Modified: 9/9/08
   </xs:complexType>
   <xs:complexType name="Video">
     <xs:annotation>
-      <xs:documentation>Provides support for embedding video resources in a spatial manner</xs:documentation>
+      <xs:documentation>Provides support for embedding video resources into a material group.</xs:documentation>
     </xs:annotation>
     <xs:attribute name="Source" type="xs:string" use="required">
       <xs:annotation>
@@ -1328,7 +1328,7 @@ Modified: 9/9/08
         </xs:attribute>
         <xs:attribute name="Count" type="xs:int" use="optional" default="1000">
           <xs:annotation>
-            <xs:documentation>Maximum number of particle that can exist at any one time</xs:documentation>
+            <xs:documentation>Maximum number of particles that can exist at any one time</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="Cone" type="xs:float" use="optional" default="30.0">
@@ -2003,7 +2003,7 @@ Modified: 9/9/08
       <xs:extension base="imml:StyleableElement">
         <xs:attribute name="Scale" type="imml:Vector3" default="1,1,1" use="optional">
           <xs:annotation>
-            <xs:documentation>Location of the resource</xs:documentation>
+            <xs:documentation>Scale of the element.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>

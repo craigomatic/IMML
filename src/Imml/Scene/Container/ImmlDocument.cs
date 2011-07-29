@@ -24,6 +24,9 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Container
 {
+    /// <summary>
+    /// The primary document container. Provides support for compositing a fully immersive scene, including the visual representation, logic interaction and simulation modifiers.
+    /// </summary>
     public class ImmlDocument : ImmlElement, IImmlContext
     {
         #region Properties 
@@ -31,8 +34,11 @@ namespace Imml.Scene.Container
         private Uri _HostUri;
 
         /// <summary>
-        /// HostUri associated with this document
+        /// Gets or sets the host URI.
         /// </summary>
+        /// <value>
+        /// The host URI.
+        /// </value>
         public Uri HostUri
         {
             get { return _HostUri; }
@@ -46,12 +52,14 @@ namespace Imml.Scene.Container
             }
         }
 
-
         private string _Camera;
 
         /// <summary>
-        /// The default camera for this document to use
+        /// Gets or sets the camera.
         /// </summary>
+        /// <value>
+        /// The camera.
+        /// </value>
         public string Camera
         {
             get { return _Camera; }
@@ -68,6 +76,10 @@ namespace Imml.Scene.Container
         }        
 
         private string _Author;
+
+        /// <summary>
+        /// Gets the author.
+        /// </summary>
         public string Author
         {
             get { return _Author; }
@@ -82,6 +94,10 @@ namespace Imml.Scene.Container
         }
 
         private string _Description;
+
+        /// <summary>
+        /// Gets the description.
+        /// </summary>
         public string Description
         {
             get { return _Description; }
@@ -96,6 +112,9 @@ namespace Imml.Scene.Container
         }
 
 
+        /// <summary>
+        /// Gets the tags.
+        /// </summary>
         public IList<string> Tags { get; set; }
 
         private string _Background;
@@ -119,6 +138,12 @@ namespace Imml.Scene.Container
 
         private float _PhysicsSpeed;
 
+        /// <summary>
+        /// Gets or sets the physics speed.
+        /// </summary>
+        /// <value>
+        /// The physics speed.
+        /// </value>
         public float PhysicsSpeed
         {
             get { return _PhysicsSpeed; }
@@ -134,6 +159,12 @@ namespace Imml.Scene.Container
 
         private float _SoundSpeed;
 
+        /// <summary>
+        /// Gets or sets the sound speed.
+        /// </summary>
+        /// <value>
+        /// The sound speed.
+        /// </value>
         public float SoundSpeed
         {
             get { return _SoundSpeed; }
@@ -149,6 +180,12 @@ namespace Imml.Scene.Container
 
         private float _AnimationSpeed;
 
+        /// <summary>
+        /// Gets or sets the animation speed.
+        /// </summary>
+        /// <value>
+        /// The animation speed.
+        /// </value>
         public float AnimationSpeed
         {
             get { return _AnimationSpeed; }
@@ -164,6 +201,12 @@ namespace Imml.Scene.Container
 
         private Vector3 _Gravity;
 
+        /// <summary>
+        /// Gets or sets the gravity.
+        /// </summary>
+        /// <value>
+        /// The gravity.
+        /// </value>
         public Vector3 Gravity
         {
             get { return _Gravity; }
@@ -179,6 +222,12 @@ namespace Imml.Scene.Container
 
         private Color3 _GlobalIllumination;
 
+        /// <summary>
+        /// Gets or sets the global illumination.
+        /// </summary>
+        /// <value>
+        /// The global illumination.
+        /// </value>
         public Color3 GlobalIllumination
         {
             get { return _GlobalIllumination; }
@@ -194,6 +243,9 @@ namespace Imml.Scene.Container
 
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImmlDocument"/> class.
+        /// </summary>
         public ImmlDocument()
         {
             this.Behaviours = new List<string>();

@@ -21,6 +21,9 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides a reference to a Widget.
+    /// </summary>
     public class Widget : VisibleElement
     {
         /// <summary>
@@ -30,7 +33,13 @@ namespace Imml.Scene.Controls
         /// The source.
         /// </value>
         public string Source { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Widget"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool Enabled { get; set; }
     }
 }

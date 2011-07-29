@@ -20,26 +20,19 @@ using System.Text;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides support for shader based manipulation of elements.
+    /// </summary>
     public class Shader : ImmlElement
     {
-        private Dictionary<string, Parameter> _Parameters;
-        
-        public Dictionary<string, Parameter> Parameters
-        {
-            get
-            {
-                return _Parameters;
-            }
-            set
-            {
-                var oldVal = _Parameters;
-                _Parameters = value;
-                base.RaisePropertyChanged("Parameters", oldVal, _Parameters);
-            }
-        }
-
         private bool _Enabled;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Shader"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool Enabled
         {
             get { return _Enabled; }
@@ -53,6 +46,12 @@ namespace Imml.Scene.Controls
             }
         }
 
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
         public string Source { get; set; }
     }
 }

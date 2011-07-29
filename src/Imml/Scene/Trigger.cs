@@ -21,6 +21,9 @@ using System.Text;
 
 namespace Imml.Scene
 {
+    /// <summary>
+    /// Provides hooks between events and the logic to execute when an event is invoked.
+    /// </summary>
     public class Trigger : ImmlElement
     {
         /// <summary>

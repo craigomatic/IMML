@@ -21,6 +21,9 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Used to define geometric links between IMML documents or non-geometric links to a resource
+    /// </summary>
     public class Anchor : PositionalElement
     {
         /// <summary>
@@ -39,6 +42,9 @@ namespace Imml.Scene.Controls
         /// </value>
         public AnchorType Type { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Anchor"/> class.
+        /// </summary>
         public Anchor()
         {
             this.Type = AnchorType.NonGeometric;

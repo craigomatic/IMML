@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Imml.Scene
 {
+    /// <summary>
+    /// Provides support for filtering state changes of an attribute on a given element.
+    /// </summary>
     public class Filter : ImmlElement
     {
         /// <summary>
@@ -12,6 +15,12 @@ namespace Imml.Scene
         /// </summary>
         public string Target { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Filter"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool Enabled { get; set; }
 
         /// <summary>

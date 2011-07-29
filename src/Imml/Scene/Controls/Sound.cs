@@ -21,12 +21,21 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides functionality for audio playback.
+    /// </summary>
     public class Sound : PositionalElement
     {
         #region Properties
 
         private bool _Loop;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Sound"/> should loop.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if it should loop; otherwise, <c>false</c>.
+        /// </value>
         public bool Loop
         {
             get { return _Loop; }
@@ -42,6 +51,12 @@ namespace Imml.Scene.Controls
 
         private bool _Enabled;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Sound"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
         public virtual bool Enabled
         {
             get { return _Enabled; }
@@ -55,10 +70,23 @@ namespace Imml.Scene.Controls
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Sound"/> should stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if it should stream; otherwise, <c>false</c>.
+        /// </value>
         public bool Stream { get; set; }
 
         private float _Volume;
 
+        /// <summary>
+        /// Gets or sets the volume.
+        /// </summary>
+        /// <value>
+        /// The volume.
+        /// </value>
+        /// <remarks>A value between 0 and 1 that describes the amount of volume to use, where 1 is the full amount of available volume.</remarks>
         public float Volume
         {
             get { return _Volume; }
@@ -76,6 +104,12 @@ namespace Imml.Scene.Controls
 
         private float _Pitch;
 
+        /// <summary>
+        /// Gets or sets the pitch.
+        /// </summary>
+        /// <value>
+        /// The pitch.
+        /// </value>
         public float Pitch
         {
             get { return _Pitch; }
@@ -93,6 +127,13 @@ namespace Imml.Scene.Controls
 
         private bool _Spatial;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Sound"/> is spatial.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if spatial; otherwise, <c>false</c>.
+        /// </value>
+        /// <remarks>When true, the sound is positional according to the rotation and position specified</remarks>
         public bool Spatial
         {
             get { return _Spatial; }
@@ -108,6 +149,12 @@ namespace Imml.Scene.Controls
 
         private string _Source;
 
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
         public string Source
         {
             get { return _Source; }
@@ -125,6 +172,9 @@ namespace Imml.Scene.Controls
 
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Sound"/> class.
+        /// </summary>
         public Sound()
         {
             this.Volume = 0.5f;

@@ -20,6 +20,9 @@ using System.Text;
 
 namespace Imml.Scene.Timers
 {
+    /// <summary>
+    /// Abstract class representing an event with a time and a target element.
+    /// </summary>
     public abstract class TimelineEvent : ImmlElement
     {
         /// <summary>

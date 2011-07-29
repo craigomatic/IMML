@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Imml.Scene
 {
+    /// <summary>
+    /// Represents a material group.
+    /// </summary>
     public class MaterialGroup : ImmlElement
     {
         /// <summary>

@@ -20,10 +20,19 @@ using System.Text;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides support for embedding video resources into a material group.
+    /// </summary>
     public class Video : ImmlElement
     {
         private string _Source;
 
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
         public virtual string Source
         {
             get { return _Source; }
@@ -40,6 +49,12 @@ namespace Imml.Scene.Controls
 
         protected TimeSpan _Seek;
 
+        /// <summary>
+        /// Gets or sets the seek.
+        /// </summary>
+        /// <value>
+        /// The seek.
+        /// </value>
         public virtual TimeSpan Seek
         {
             get { return _Seek; }
@@ -63,6 +78,13 @@ namespace Imml.Scene.Controls
 
         private bool _Enabled;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Video"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
+        /// <remarks>When enabled the video should begin playback from the current seek position.</remarks>
         public virtual bool Enabled
         {
             get { return _Enabled; }
@@ -78,6 +100,12 @@ namespace Imml.Scene.Controls
 
         private bool _Stream;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Video"/> is stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// </value>
         public virtual bool Stream
         {
             get { return _Stream; }
@@ -93,6 +121,12 @@ namespace Imml.Scene.Controls
         
         private float _Volume;
 
+        /// <summary>
+        /// Gets or sets the volume.
+        /// </summary>
+        /// <value>
+        /// The volume.
+        /// </value>
         public virtual float Volume
         {
             get { return _Volume; }
@@ -121,6 +155,12 @@ namespace Imml.Scene.Controls
 
         private bool _Loop;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Video"/> should loop.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if looped; otherwise, <c>false</c>.
+        /// </value>
         public virtual bool Loop
         {
             get { return _Loop; }
@@ -134,6 +174,9 @@ namespace Imml.Scene.Controls
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Video"/> class.
+        /// </summary>
         public Video()
         {
             this.Volume = 0.5f;

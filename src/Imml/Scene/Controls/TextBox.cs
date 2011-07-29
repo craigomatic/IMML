@@ -21,10 +21,33 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides functionality for text input.
+    /// </summary>
     public class TextBox : VisibleElement
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="TextBox"/> is a password textbox.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if password style; otherwise, <c>false</c>.
+        /// </value>
         public bool Password { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
         public string Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets the max characters.
+        /// </summary>
+        /// <value>
+        /// The max characters.
+        /// </value>
         public int MaxCharacters { get; set; }
     }
 }

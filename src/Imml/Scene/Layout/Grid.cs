@@ -21,14 +21,42 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Layout
 {
+    /// <summary>
+    ///  Defines uniformly sized cells for placement of elements. 
+    /// </summary>
+    /// <remarks>An undefined grid defaults to a size of 1,1,1 with 1 row, column and layer. Child elements added to the grid are limited in maximum size to the size of the cell they occupy. New elements are added to the next available cell in a column, row, layer order.</remarks>
     public class Grid : VisibleElement
     {
+        /// <summary>
+        /// Gets or sets the rows.
+        /// </summary>
+        /// <value>
+        /// The rows.
+        /// </value>
+        /// <remarks>The number of horizontal segments to divide the grid into</remarks>
         public int Rows { get; set; }
 
+        /// <summary>
+        /// Gets or sets the columns.
+        /// </summary>
+        /// <value>
+        /// The columns.
+        /// </value>
+        /// <remarks>The number of vertical segments to divide the grid into</remarks>
         public int Columns { get; set; }
 
+        /// <summary>
+        /// Gets or sets the layers.
+        /// </summary>
+        /// <value>
+        /// The layers.
+        /// </value>
+        /// <remarks>The number of depth segments to divide the grid into</remarks>
         public int Layers { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Grid"/> class.
+        /// </summary>
         public Grid()
         {
             

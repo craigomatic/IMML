@@ -20,6 +20,9 @@ using System.Text;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides support for rendering a web resource onto a material group.
+    /// </summary>
     public class Web : ImmlElement
     {
         private int _UpdateRate;
@@ -101,6 +104,9 @@ namespace Imml.Scene.Controls
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Web"/> class.
+        /// </summary>
         public Web()
         {
             this.UpdateRate = -1;

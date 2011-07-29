@@ -20,6 +20,9 @@ using System.Text;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides support for script based logic.
+    /// </summary>
     public class Script : ImmlElement
     {
         /// <summary>
@@ -37,6 +40,9 @@ namespace Imml.Scene.Controls
         /// </summary>
         public string Language { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Script"/> class.
+        /// </summary>
         public Script()
         {
             this.Language = "Lua";

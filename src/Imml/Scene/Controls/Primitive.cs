@@ -21,12 +21,21 @@ using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Provides basic rendering of five main types of primitve: Box, Cone, Cylinder, Plane and Sphere.
+    /// </summary>
     public class Primitive : CubicElement, IPhysicsHostElement, IMaterialHostElement
     {
         #region Properties
 
         private PrimitiveType _Type;
 
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
         public PrimitiveType Type
         {
             get { return _Type; }
@@ -43,6 +52,12 @@ namespace Imml.Scene.Controls
 
         private PrimitiveComplexity _Complexity;
 
+        /// <summary>
+        /// Gets or sets the complexity.
+        /// </summary>
+        /// <value>
+        /// The complexity.
+        /// </value>
         public PrimitiveComplexity Complexity
         {
             get { return _Complexity; }
@@ -59,6 +74,9 @@ namespace Imml.Scene.Controls
 
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Primitive"/> class.
+        /// </summary>
         public Primitive()
         {
             this.Complexity = PrimitiveComplexity.Medium;

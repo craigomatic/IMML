@@ -21,6 +21,9 @@ using System.Text;
 
 namespace Imml.Scene
 {
+    /// <summary>
+    /// Defines physics material interaction properties between physics enabled elements.
+    /// </summary>
     public class Interaction : ImmlElement
     {
         /// <summary>
@@ -124,6 +127,9 @@ namespace Imml.Scene
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Interaction"/> class.
+        /// </summary>
         public Interaction()
         {
             this.StaticFriction = 0.9f;

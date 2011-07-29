@@ -12,7 +12,7 @@ namespace Imml.ComponentModel
     /// An element that has 3-dimensions
     /// </summary>
     public interface ICubicElement : IVisibleElement
-    {        
+    {
         /// <summary>
         /// Gets the world scale.
         /// </summary>

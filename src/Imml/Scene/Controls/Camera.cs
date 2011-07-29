@@ -22,12 +22,22 @@ using Imml.Numerics;
 
 namespace Imml.Scene.Controls
 {
+    /// <summary>
+    /// Defines a view into the scene. Supports chasing positional elements.
+    /// </summary>
     public class Camera : PositionalElement
     {
         #region Properties
 
         protected bool _Enabled;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Camera"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
+        /// <remarks>If a valid ChaseTarget has been specified, enables the camera chase functionality</remarks>
         public virtual bool Enabled
         {
             get { return _Enabled; }
@@ -44,6 +54,12 @@ namespace Imml.Scene.Controls
 
         protected float _FOV;
 
+        /// <summary>
+        /// Gets or sets the FOV.
+        /// </summary>
+        /// <value>
+        /// The FOV.
+        /// </value>
         public virtual float FOV
         {
             get { return _FOV; }
@@ -60,6 +76,13 @@ namespace Imml.Scene.Controls
 
         protected string _ChaseTarget;
 
+        /// <summary>
+        /// Gets or sets the chase target.
+        /// </summary>
+        /// <value>
+        /// The chase target.
+        /// </value>
+        /// <remarks>The name of the element in the current document context to chase.</remarks>
         public virtual string ChaseTarget
         {
             get { return _ChaseTarget; }
@@ -76,6 +99,13 @@ namespace Imml.Scene.Controls
 
         protected Vector3 _ChasePositionOffset;
 
+        /// <summary>
+        /// Gets or sets the chase position offset.
+        /// </summary>
+        /// <value>
+        /// The chase position offset.
+        /// </value>
+        /// <remarks>Desired camera position in the chased element's coordinate system.</remarks>
         public virtual Vector3 ChasePositionOffset
         {
             get { return _ChasePositionOffset; }
@@ -92,6 +122,13 @@ namespace Imml.Scene.Controls
 
         protected Vector3 _ChaseLookAtOffset;
 
+        /// <summary>
+        /// Gets or sets the chase look at offset.
+        /// </summary>
+        /// <value>
+        /// The chase look at offset.
+        /// </value>
+        /// <remarks>The point in the chased element's coordinate system to look at.</remarks>
         public virtual Vector3 ChaseLookAtOffset
         {
             get { return _ChaseLookAtOffset; }
@@ -108,6 +145,13 @@ namespace Imml.Scene.Controls
 
         protected float _ChaseDamping;
 
+        /// <summary>
+        /// Gets or sets the chase damping.
+        /// </summary>
+        /// <value>
+        /// The chase damping.
+        /// </value>
+        /// <remarks>Physics coefficient which approximates internal friction of the spring.</remarks>
         public virtual float ChaseDamping
         {
             get { return _ChaseDamping; }
@@ -124,6 +168,13 @@ namespace Imml.Scene.Controls
 
         protected float _ChaseStiffness;
 
+        /// <summary>
+        /// Gets or sets the chase stiffness.
+        /// </summary>
+        /// <value>
+        /// The chase stiffness.
+        /// </value>
+        /// <remarks>Physics coefficient which controls the influence of the camera's position over the spring force. The stiffer the spring, the closer it will stay to the chased object.</remarks>
         public virtual float ChaseStiffness
         {
             get { return _ChaseStiffness; }
@@ -140,6 +191,13 @@ namespace Imml.Scene.Controls
 
         protected float _ChaseMass;
 
+        /// <summary>
+        /// Gets or sets the chase mass.
+        /// </summary>
+        /// <value>
+        /// The chase mass.
+        /// </value>
+        /// <remarks>The amount of mass to simulate the camera has when chasing.</remarks>
         public virtual float ChaseMass
         {
             get { return _ChaseMass; }
@@ -156,6 +214,12 @@ namespace Imml.Scene.Controls
 
         protected ProjectionType _Projection;
 
+        /// <summary>
+        /// Gets or sets the projection.
+        /// </summary>
+        /// <value>
+        /// The projection.
+        /// </value>
         public virtual ProjectionType Projection
         {
             get { return _Projection; }
@@ -172,6 +236,13 @@ namespace Imml.Scene.Controls
 
         protected float _NearPlane;
 
+        /// <summary>
+        /// Gets or sets the near plane.
+        /// </summary>
+        /// <value>
+        /// The near plane.
+        /// </value>
+        /// <remarks>The near clipping distance from camera. Anything within this distance of the camera will not be rendered.</remarks>
         public virtual float NearPlane
         {
             get
@@ -192,6 +263,13 @@ namespace Imml.Scene.Controls
 
         protected float _FarPlane;
 
+        /// <summary>
+        /// Gets or sets the far plane.
+        /// </summary>
+        /// <value>
+        /// The far plane.
+        /// </value>
+        /// <remarks>The far clipping distance from camera. Anything beyond this distance from the camera will not be rendered.</remarks>
         public virtual float FarPlane
         {
             get
@@ -212,6 +290,9 @@ namespace Imml.Scene.Controls
 
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Camera"/> class.
+        /// </summary>
         public Camera()
         {
             this.FOV = 60;

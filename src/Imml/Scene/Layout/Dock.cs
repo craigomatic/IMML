@@ -29,8 +29,11 @@ namespace Imml.Scene.Layout
         private HorizontalAlignment _HorizontalAlignment;
 
         /// <summary>
-        /// The horizontal alignment to apply during layout
+        /// Gets or sets the horizontal alignment.
         /// </summary>
+        /// <value>
+        /// The horizontal alignment.
+        /// </value>
         public HorizontalAlignment HorizontalAlignment
         {
             get { return _HorizontalAlignment; }
@@ -48,8 +51,11 @@ namespace Imml.Scene.Layout
         private VerticalAlignment _VerticalAlignment;
 
         /// <summary>
-        /// The vertical alignment to apply during layout
+        /// Gets or sets the vertical alignment.
         /// </summary>
+        /// <value>
+        /// The vertical alignment.
+        /// </value>
         public VerticalAlignment VerticalAlignment
         {
             get { return _VerticalAlignment; }
@@ -67,8 +73,12 @@ namespace Imml.Scene.Layout
         private Vector3 _Offset;
 
         /// <summary>
-        /// The offset to apply during positioning where x is horizontal offset, y is vertical offset and z is depth offset
+        /// Gets or sets the offset.
         /// </summary>
+        /// <value>
+        /// The offset.
+        /// </value>
+        /// <remarks>The offset to apply during positioning where x is horizontal offset, y is vertical offset and z is depth offset</remarks>
         public Vector3 Offset
         {
             get { return _Offset; }
@@ -83,6 +93,9 @@ namespace Imml.Scene.Layout
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Dock"/> class.
+        /// </summary>
         public Dock()
         {
             this.HorizontalAlignment = HorizontalAlignment.Left;
