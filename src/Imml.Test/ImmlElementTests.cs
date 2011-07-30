@@ -5,6 +5,7 @@ using System.Text;
 using Xunit;
 using Imml.Scene.Controls;
 using Moq;
+using Imml.Scene;
 
 namespace Imml.Test
 {
@@ -452,5 +453,26 @@ namespace Imml.Test
             }
         }
 
+        [Fact]
+        public void ImmlElement_Has_No_Defines_By_Default()
+        {
+            var element = new ImmlElement();
+            Assert.Empty(element.GetDefines());
+        }
+
+        [Fact]
+        public void Defines_Can_Be_Retrieved_When_Present()
+        {
+            var element = new ImmlElement();
+            var define = new Define();
+            define.Key = Guid.NewGuid().ToString();
+            define.Value = Guid.NewGuid().ToString();
+
+            element.Add(define);
+
+            Assert.Equal(1, element.GetDefines().Count);
+            Assert.Equal(define.Key, element.GetDefines().First().Key);
+            Assert.Equal(define.Value, element.GetDefines().First().Value);
+        }
     }
 }
