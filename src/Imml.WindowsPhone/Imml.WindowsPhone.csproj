@@ -66,6 +66,12 @@
     <Compile Include="..\Imml\ComponentModel\IMaterialHostElement.cs">
       <Link>ComponentModel\IMaterialHostElement.cs</Link>
     </Compile>
+    <Compile Include="..\Imml\ComponentModel\INetworkHostElement.cs">
+      <Link>ComponentModel\INetworkHostElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\ComponentModel\IParameterHost.cs">
+      <Link>ComponentModel\IParameterHost.cs</Link>
+    </Compile>
     <Compile Include="..\Imml\ComponentModel\IPhysicsHostElement.cs">
       <Link>ComponentModel\IPhysicsHostElement.cs</Link>
     </Compile>
@@ -287,6 +293,9 @@
     </Compile>
     <Compile Include="..\Imml\Scene\Parameter.cs">
       <Link>Scene\Parameter.cs</Link>
+    </Compile>
+    <Compile Include="..\Imml\Scene\ParticleChange.cs">
+      <Link>Scene\ParticleChange.cs</Link>
     </Compile>
     <Compile Include="..\Imml\Scene\Physics.cs">
       <Link>Scene\Physics.cs</Link>
