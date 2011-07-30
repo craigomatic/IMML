@@ -160,5 +160,25 @@ namespace Imml
         {
             return element.Elements.OfType<Trigger>().ToList();
         }
+
+        /// <summary>
+        /// Gets the emitters.
+        /// </summary>
+        /// <param name="effect">The effect.</param>
+        /// <returns></returns>
+        public static IList<Emitter> GetEmitters(this Effect effect)
+        {
+            return effect.Elements.OfType<Emitter>().ToList();
+        }
+
+        /// <summary>
+        /// Gets the particle changes.
+        /// </summary>
+        /// <param name="emitter">The emitter.</param>
+        /// <returns></returns>
+        public static IList<ParticleChange> GetParticleChanges(this Emitter emitter)
+        {
+            return emitter.Elements.OfType<ParticleChange>().ToList();
+        }
     }
 }
