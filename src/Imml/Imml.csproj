@@ -159,6 +159,7 @@
     <Compile Include="Scene\MaterialGroup.cs" />
     <Compile Include="Scene\Network.cs" />
     <Compile Include="Scene\Filter.cs" />
+    <Compile Include="Scene\ParticleChange.cs" />
     <Compile Include="Scene\Physics.cs" />
     <Compile Include="Scene\Timers\ExecuteEvent.cs" />
     <Compile Include="Scene\Timers\KeyFrameEvent.cs" />
