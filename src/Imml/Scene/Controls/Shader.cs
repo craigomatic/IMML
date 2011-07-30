@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
     /// <summary>
     /// Provides support for shader based manipulation of elements.
     /// </summary>
-    public class Shader : ImmlElement
+    public class Shader : ImmlElement, IParameterHost
     {
         private bool _Enabled;
 

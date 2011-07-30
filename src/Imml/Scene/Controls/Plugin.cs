@@ -8,7 +8,7 @@ namespace Imml.Scene.Controls
     /// <summary>
     /// Provides support for custom extensions.
     /// </summary>
-    public class Plugin : ImmlElement, INetworkHostElement
+    public class Plugin : ImmlElement, INetworkHostElement, IParameterHost
     {
         /// <summary>
         /// Gets or sets the source.

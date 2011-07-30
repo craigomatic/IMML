@@ -140,5 +140,10 @@ namespace Imml
         {
             return element.Elements.OfType<Filter>().ToList();
         }
+
+        public static IList<Parameter> GetParameters(this IParameterHost element)
+        {
+            return element.Elements.OfType<Parameter>().ToList();
+        }
     }
 }

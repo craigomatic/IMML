@@ -82,6 +82,7 @@
     <Compile Include="ImmlSerialiserTests.cs" />
     <Compile Include="MaterialTests.cs" />
     <Compile Include="NetworkTests.cs" />
+    <Compile Include="ParameterTests.cs" />
     <Compile Include="PhysicsTests.cs" />
     <Compile Include="PositionalElementTests.cs" />
     <Compile Include="PrimitiveTests.cs" />
