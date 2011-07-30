@@ -50,5 +50,10 @@ namespace Imml.Scene.Container
         /// Gets the tags.
         /// </summary>
         public IList<string> Tags { get; set; }
+
+        public ImmlWidget()
+        {
+            this.Tags = new List<string>();
+        }
     }
 }
