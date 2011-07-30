@@ -7,7 +7,7 @@ using Imml.Numerics;
 
 namespace Imml.ComponentModel
 {
-    public abstract class PositionalElement : ImmlElement, IPositionalElement
+    public abstract class PositionalElement : ImmlElement, IPositionalElement, INetworkHostElement
     {
         /// <summary>
         /// Gets or sets the point for the element to pivot on when performing transformations.

@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Imml.Drawing;
+using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
     /// <summary>
     /// Represents a background resource for the document
     /// </summary>
-    public class Background : ImmlElement
+    public class Background : ImmlElement, INetworkHostElement
     {
         #region Properties
         /// <summary>

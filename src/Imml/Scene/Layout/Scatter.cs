@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Imml.ComponentModel;
 
 namespace Imml.Scene.Layout
 {
     /// <summary>
     /// Arranges child elements onto a target element in a pseudo-random manner.
     /// </summary>
-    public class Scatter : ImmlElement
+    public class Scatter : ImmlElement, INetworkHostElement
     {
         #region Properties
         /// <summary>

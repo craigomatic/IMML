@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Imml.ComponentModel;
 
 namespace Imml.Scene.Controls
 {
     /// <summary>
     /// Provides support for custom extensions.
     /// </summary>
-    public class Plugin : ImmlElement
+    public class Plugin : ImmlElement, INetworkHostElement
     {
         /// <summary>
         /// Gets or sets the source.

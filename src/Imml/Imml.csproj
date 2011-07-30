@@ -83,6 +83,7 @@
     <Compile Include="ComponentModel\CubicElement.cs" />
     <Compile Include="ComponentModel\ICubicElement.cs" />
     <Compile Include="ComponentModel\IMaterialHostElement.cs" />
+    <Compile Include="ComponentModel\INetworkHostElement.cs" />
     <Compile Include="ComponentModel\IPhysicsHostElement.cs" />
     <Compile Include="ComponentModel\IPositionalElement.cs" />
     <Compile Include="ComponentModel\IVisibleElement.cs" />

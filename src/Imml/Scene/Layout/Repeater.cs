@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Imml.ComponentModel;
 
 namespace Imml.Scene.Layout
 {
     /// <summary>
     /// Repeats the nested child elements the number of times specified by the Count attribute. All elements are generated with the same attributes.
     /// </summary>
-    public class Repeater : ImmlElement
+    public class Repeater : ImmlElement, INetworkHostElement
     {
         protected int _Count;
 

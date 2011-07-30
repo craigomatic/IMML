@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Imml.Numerics;
+using Imml.ComponentModel;
 
 namespace Imml.Scene.Layout
 {
     /// <summary>
     /// Overrides positional values for a given element with a layout instruction to dock to a particular region of the view with an optionally specified offset
     /// </summary>
-    public class Dock : ImmlElement
+    public class Dock : ImmlElement, INetworkHostElement
     {
         #region Properties
         private HorizontalAlignment _HorizontalAlignment;

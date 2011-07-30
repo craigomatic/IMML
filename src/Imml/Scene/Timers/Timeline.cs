@@ -9,6 +9,7 @@ namespace Imml.Scene.Timers
     /// </summary>
     public class Timeline : ImmlElement
     {
+        #region Properties
         private bool _Enabled;
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace Imml.Scene.Timers
 
                 if (_Speed == value)
                     return;
-                
+
                 float oldValue = _Speed;
                 _Speed = value;
 
@@ -98,6 +99,7 @@ namespace Imml.Scene.Timers
                 _AutoTween = value;
                 base.RaisePropertyChanged("AutoTween", !_AutoTween, _AutoTween);
             }
-        }
+        } 
+        #endregion
     }
 }

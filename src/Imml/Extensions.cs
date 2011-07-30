@@ -110,5 +110,35 @@ namespace Imml
         {
             return physics.Elements.OfType<Interaction>().ToList();
         }
+
+        /// <summary>
+        /// Gets the defines.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns></returns>
+        public static IList<Define> GetDefines(this IImmlElement element)
+        {
+            return element.Elements.OfType<Define>().ToList();
+        }
+
+        /// <summary>
+        /// Gets the network definition.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns></returns>
+        public static Network GetNetwork(this INetworkHostElement element)
+        {
+            return element.Elements.OfType<Network>().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the network filters.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns></returns>
+        public static IList<Filter> GetFilters(this Network element)
+        {
+            return element.Elements.OfType<Filter>().ToList();
+        }
     }
 }

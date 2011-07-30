@@ -11,7 +11,7 @@ namespace Imml.Scene.Container
     /// <summary>
     /// The primary document container. Provides support for compositing a fully immersive scene, including the visual representation, logic interaction and simulation modifiers.
     /// </summary>
-    public class ImmlDocument : ImmlElement, IImmlContext
+    public class ImmlDocument : ImmlElement, IImmlContext, INetworkHostElement
     {
         #region Properties 
 
