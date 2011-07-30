@@ -264,6 +264,9 @@
     <Compile Include="..\Imml\Scene\Interaction.cs">
       <Link>Scene\Interaction.cs</Link>
     </Compile>
+    <Compile Include="..\Imml\Scene\Layout\Canvas.cs">
+      <Link>Scene\Layout\Canvas.cs</Link>
+    </Compile>
     <Compile Include="..\Imml\Scene\Layout\Dock.cs">
       <Link>Scene\Layout\Dock.cs</Link>
     </Compile>
