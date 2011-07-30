@@ -474,5 +474,27 @@ namespace Imml.Test
             Assert.Equal(define.Key, element.GetDefines().First().Key);
             Assert.Equal(define.Value, element.GetDefines().First().Value);
         }
+
+        [Fact]
+        public void ImmlElement_Has_No_Triggers_By_Default()
+        {
+            var element = new ImmlElement();
+            Assert.Empty(element.GetTriggers());
+        }
+
+        [Fact]
+        public void Triggers_Can_Be_Retrieved_When_Present()
+        {
+            var element = new ImmlElement();
+            var trigger = new Trigger();
+            trigger.Target = Guid.NewGuid().ToString();
+            trigger.Event = EventType.DragDrop;
+
+            element.Add(trigger);
+
+            Assert.Equal(1, element.GetTriggers().Count);
+            Assert.Equal(trigger.Target, element.GetTriggers().First().Target);
+            Assert.Equal(trigger.Event, element.GetTriggers().First().Event);
+        }
     }
 }

@@ -141,9 +141,24 @@ namespace Imml
             return element.Elements.OfType<Filter>().ToList();
         }
 
+        /// <summary>
+        /// Gets the parameters.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns></returns>
         public static IList<Parameter> GetParameters(this IParameterHost element)
         {
             return element.Elements.OfType<Parameter>().ToList();
+        }
+
+        /// <summary>
+        /// Gets the triggers.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns></returns>
+        public static IList<Trigger> GetTriggers(this IImmlElement element)
+        {
+            return element.Elements.OfType<Trigger>().ToList();
         }
     }
 }
