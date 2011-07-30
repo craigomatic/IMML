@@ -343,5 +343,32 @@ namespace Imml.Test
 
             Assert.Contains("function main(obj, args)", script.Value);
         }
+
+        [Fact]
+        public void Serialiser_Does_Not_Write_Optional_Attributes_That_Do_Not_Have_A_Value()
+        {
+            var immlDocument = new ImmlDocument();
+            var immlSerialiser = new ImmlSerialiser();
+            var immlString = immlSerialiser.Write(immlDocument);
+
+            //test for some optional values
+            Assert.DoesNotContain("Author", immlString);
+            Assert.DoesNotContain("Description", immlString);
+        }
+
+        [Fact]
+        public void Serialiser_Does_Not_Write_Attributes_That_Are_Set_To_Their_Default_Values()
+        {
+            var immlDocument = new ImmlDocument();
+            var immlSerialiser = new ImmlSerialiser();
+            var immlString = immlSerialiser.Write(immlDocument);
+
+            //test for some optional values
+            Assert.DoesNotContain("Gravity=\"0,-9.8,0\"", immlString);
+            Assert.DoesNotContain("GlobalIllumination=\"#4c4c4c\"", immlString);
+            Assert.DoesNotContain("AnimationSpeed=\"1\"", immlString);
+            Assert.DoesNotContain("PhysicsSpeed=\"1\"", immlString);
+            Assert.DoesNotContain("SoundSpeed=\"1\"", immlString);
+        }
     }
 }

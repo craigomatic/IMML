@@ -225,7 +225,10 @@ namespace Imml.IO
         }
 
         private void _WriteAttributes(IImmlElement immlElement, XElement xElement)
-        {            
+        {
+            var defaultAttributes = new System.Collections.ArrayList();
+            _XmlSchemaValidator.GetUnspecifiedDefaultAttributes(defaultAttributes);
+
             var validAttributes = _XmlSchemaValidator.GetExpectedAttributes();
             var type = immlElement.GetType();
 
@@ -242,6 +245,18 @@ namespace Imml.IO
 
                     var value = pInfo.GetValue(immlElement, null);
                     var valueString = TypeConvert.Parse(value);
+
+                    //skip attributes that are optional and empty
+                    if (string.IsNullOrEmpty(valueString) && attribute.Use != XmlSchemaUse.Required)
+                    {
+                        continue;
+                    }
+
+                    //only write the attribute if it isn't the default value 
+                    if (defaultAttributes.Contains(attribute) && attribute.DefaultValue == valueString)
+                    {
+                        continue;
+                    }
 
                     var xAttribute = new XAttribute(attribute.Name, valueString);
                     xElement.Add(xAttribute);
