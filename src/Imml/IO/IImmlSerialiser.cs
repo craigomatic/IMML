@@ -12,12 +12,12 @@ namespace Imml.IO
     public interface IImmlSerialiser
     {
         /// <summary>
-        /// Gets a value indicating whether to omit the XML declaration.
+        /// Gets or sets a value indicating whether to omit the XML declaration.
         /// </summary>
         /// <value>
         ///   <c>true</c> if the XML declaration should be omitted; otherwise, <c>false</c>.
         /// </value>
-        bool OmitXmlDeclaration { get; }
+        bool OmitXmlDeclaration { get; set; }
 
         /// <summary>
         /// Gets the errors.
@@ -56,7 +56,23 @@ namespace Imml.IO
         /// Writes the specified element.
         /// </summary>
         /// <param name="element">The element.</param>
+        /// <param name="attributeSortComparer">The attribute sort comparer.</param>
+        /// <returns></returns>
+        string Write(IImmlElement element, IComparer<string> attributeSortComparer);
+
+        /// <summary>
+        /// Writes the specified element.
+        /// </summary>
+        /// <param name="element">The element.</param>
         /// <param name="outputStream">The output stream.</param>
         void Write(IImmlElement element, Stream outputStream);
+
+        /// <summary>
+        /// Writes the specified element.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="outputStream">The output stream.</param>
+        /// <param name="attributeSortComparer">The attribute sort comparer.</param>
+        void Write(IImmlElement element, Stream outputStream, IComparer<string> attributeSortComparer);
     }
 }

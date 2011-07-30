@@ -13,6 +13,7 @@ using Imml.Numerics;
 using Imml.Drawing;
 using System.Diagnostics;
 using Imml.Scene;
+using Moq;
 
 namespace Imml.Test
 {
@@ -370,5 +371,54 @@ namespace Imml.Test
             Assert.DoesNotContain("PhysicsSpeed=\"1\"", immlString);
             Assert.DoesNotContain("SoundSpeed=\"1\"", immlString);
         }
+
+        [Fact]
+        public void Using_A_Sort_Comparer_Alters_The_Order_Of_The_Attrbutes_Written_By_The_Serialiser()
+        {
+            var immlSerialiser = new ImmlSerialiser();
+            var primitive = new Primitive();
+            primitive.Behaviours.Add(Guid.NewGuid().ToString());
+            primitive.CastShadows = true;
+            primitive.Complexity = PrimitiveComplexity.VeryHigh;
+            primitive.Name = Guid.NewGuid().ToString();
+            primitive.Position = new Vector3(1, 2, 3);
+            primitive.Rotation = new Vector3(4, 5, 6);
+            primitive.Size = new Vector3(7, 8, 9);
+
+            var attribSortComparer = new Mock<IComparer<string>>();
+            attribSortComparer.Setup(c => c.Compare(It.IsAny<string>(), It.IsAny<string>())).Returns(new Func<string, string, int>(_NameFirstAttributeComparer));
+
+            var immlString = immlSerialiser.Write(primitive, attribSortComparer.Object);
+
+            var textReader = new StringReader(immlString);
+            var xDoc = XDocument.Load(textReader);
+
+            var xElementPrimitive = xDoc.Descendants(XName.Get("Primitive", immlSerialiser.Namespace)).FirstOrDefault();
+            Assert.NotNull(xElementPrimitive);
+
+            Assert.Equal("Name", xElementPrimitive.Attributes().First().Name.LocalName);
+        }
+
+        private int _NameFirstAttributeComparer(string x, string y)
+        {
+            if (x == y)
+            {
+                return 0;
+            }
+
+            if (x == "Name")
+            {
+                return -1;
+            }
+
+            if (y == "Name")
+            {
+                return 1;
+            }
+
+            return x.CompareTo(y);
+        }
+
+
     }
 }

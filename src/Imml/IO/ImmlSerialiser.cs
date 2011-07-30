@@ -140,7 +140,18 @@ namespace Imml.IO
         /// <returns></returns>
         public string Write(IImmlElement element)
         {
-            var xNodeParent = _WriteImml(element);
+            return this.Write(element, Comparer<string>.Default);
+        }
+
+        /// <summary>
+        /// Writes the specified element.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="attributeSortComparer">The attribute sort comparer.</param>
+        /// <returns></returns>
+        public string Write(IImmlElement element, IComparer<string> attributeSortComparer)
+        {
+            var xNodeParent = _WriteImml(element, attributeSortComparer);
             return xNodeParent.ToString(SaveOptions.None);
         }
 
@@ -151,8 +162,19 @@ namespace Imml.IO
         /// <param name="outputStream">The output stream.</param>
         public void Write(IImmlElement element, Stream outputStream)
         {
-            var xNodeParent = _WriteImml(element);
-            
+            this.Write(element, outputStream, Comparer<string>.Default);
+        }
+
+        /// <summary>
+        /// Writes the specified element.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="outputStream">The output stream.</param>
+        /// <param name="attributeSortComparer">The attribute sort comparer.</param>
+        public void Write(IImmlElement element, Stream outputStream, IComparer<string> attributeSortComparer)
+        {
+            var xNodeParent = _WriteImml(element, attributeSortComparer);
+
             //TODO: Optimise this so that it progressively writes the XML to the stream instead of one big chunk at the end
             using (var xmlWriter = XmlWriter.Create(outputStream, new XmlWriterSettings { OmitXmlDeclaration = this.OmitXmlDeclaration, Indent = true }))
             {
@@ -163,7 +185,7 @@ namespace Imml.IO
 
         #region Writer methods
 
-        private XNode _WriteImml(IImmlElement element)
+        private XNode _WriteImml(IImmlElement element, IComparer<string> attributeSortComparer)
         {
 
 #if SILVERLIGHT
@@ -183,7 +205,7 @@ namespace Imml.IO
                 _XmlSchemaValidator.ValidateEndOfAttributes(null);
             }
 
-            var documentXNode = _WriteElement(element);
+            var documentXNode = _WriteElement(element, attributeSortComparer);
 
             if (!isImmlContext)
             {
@@ -195,13 +217,13 @@ namespace Imml.IO
         }
 
 #if !SILVERLIGHT
-        private XElement _WriteElement(IImmlElement element)
+        private XElement _WriteElement(IImmlElement element, IComparer<string> attributeSortComparer)
         {            
             var elementType = _GetImmlName(element);
             var xNode = new XElement(XName.Get(elementType, this.Namespace));
 
             _XmlSchemaValidator.ValidateElement(elementType, this.Namespace, null);
-            _WriteAttributes(element, xNode);
+            _WriteAttributes(element, xNode, attributeSortComparer);
 
             //script elements are a special case, they need to have their value property written to the element value
             if (element is Script)
@@ -214,7 +236,7 @@ namespace Imml.IO
             {
                 foreach (var childElement in element.Elements)
 	            {
-                    var xChildNode = _WriteElement(childElement);
+                    var xChildNode = _WriteElement(childElement, attributeSortComparer);
                     xNode.Add(xChildNode);
 	            }
             }
@@ -224,12 +246,12 @@ namespace Imml.IO
             return xNode;
         }
 
-        private void _WriteAttributes(IImmlElement immlElement, XElement xElement)
+        private void _WriteAttributes(IImmlElement immlElement, XElement xElement, IComparer<string> attributeSortComparer)
         {
             var defaultAttributes = new System.Collections.ArrayList();
             _XmlSchemaValidator.GetUnspecifiedDefaultAttributes(defaultAttributes);
 
-            var validAttributes = _XmlSchemaValidator.GetExpectedAttributes();
+            var validAttributes = _XmlSchemaValidator.GetExpectedAttributes().OrderBy(k => k.Name, attributeSortComparer);
             var type = immlElement.GetType();
 
             foreach (var attribute in validAttributes)
