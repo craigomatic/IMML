@@ -250,6 +250,11 @@ namespace Imml.Scene.Container
         {
             this.Behaviours = new List<string>();
             this.Tags = new List<string>();
+            this.GlobalIllumination = new Color3("#4c4c4c");
+            this.Gravity = new Vector3(0, -9.8f, 0);
+            this.AnimationSpeed = 1;
+            this.PhysicsSpeed = 1;
+            this.SoundSpeed = 1;
         }
     }
 }
