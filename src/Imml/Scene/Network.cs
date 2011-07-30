@@ -17,7 +17,7 @@ namespace Imml.Scene
         /// The owner.
         /// </value>
         /// <remarks>An identifier that specifies the owner of a given element</remarks>
-        public string Owner { get; set; }
+        public virtual string Owner { get; set; }
 
         private bool _Enabled;
 
@@ -27,7 +27,7 @@ namespace Imml.Scene
         /// <value>
         ///   <c>true</c> if enabled; otherwise, <c>false</c>.
         /// </value>
-        public bool Enabled
+        public virtual bool Enabled
         {
             get { return _Enabled; }
             set

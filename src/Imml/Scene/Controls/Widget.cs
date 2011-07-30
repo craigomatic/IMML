@@ -32,7 +32,7 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The source.
         /// </value>
-        public string Source { get; set; }
+        public virtual string Source { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Widget"/> is enabled.
@@ -40,6 +40,6 @@ namespace Imml.Scene.Controls
         /// <value>
         ///   <c>true</c> if enabled; otherwise, <c>false</c>.
         /// </value>
-        public bool Enabled { get; set; }
+        public virtual bool Enabled { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace Imml.Scene
         /// <value>
         /// The ambient.
         /// </value>
-        public Color3 Ambient
+        public virtual Color3 Ambient
         {
             get { return _Ambient; }
             set
@@ -49,7 +49,7 @@ namespace Imml.Scene
         /// <value>
         /// The diffuse.
         /// </value>
-        public Color3 Diffuse
+        public virtual Color3 Diffuse
         {
             get { return _Diffuse; }
             set
@@ -77,7 +77,7 @@ namespace Imml.Scene
         /// <value>
         /// The emissive.
         /// </value>
-        public Color3 Emissive
+        public virtual Color3 Emissive
         {
             get { return _Emissive; }
             set
@@ -105,7 +105,7 @@ namespace Imml.Scene
         /// <value>
         /// The specular.
         /// </value>
-        public Color3 Specular
+        public virtual Color3 Specular
         {
             get { return _Specular; }
             set
@@ -133,7 +133,7 @@ namespace Imml.Scene
         /// <value>
         /// The power.
         /// </value>
-        public float Power
+        public virtual float Power
         {
             get { return _Power; }
             set
@@ -156,7 +156,7 @@ namespace Imml.Scene
         /// The opacity.
         /// </value>
         /// <remarks>Opacity is a value between 0 and 1 which represents how opaque the entity will appear. 0 is fully transparent and 1 is fully opaque.</remarks>
-        public float Opacity
+        public virtual float Opacity
         {
             get { return _Opacity; }
             set
@@ -180,7 +180,7 @@ namespace Imml.Scene
         /// The alpha threshold.
         /// </value>
         /// <remarks>the alpha threshold is a value between 0 and 1 which represents the alpha threshold for this material</remarks>
-        public float AlphaThreshold
+        public virtual float AlphaThreshold
         {
             get { return _AlphaThreshold; }
             set
@@ -199,6 +199,7 @@ namespace Imml.Scene
         /// <summary>
         /// Gets the default material.
         /// </summary>
+        /// <remarks>Has an ambient of #4c4c4c, diffuse of #cccccc, emissive of #000000, specular of #000000, power of 1 and opacity of 1.</remarks>
         public static Material Default
         {
             get
@@ -213,12 +214,6 @@ namespace Imml.Scene
         public Material()
         {
             this.AlphaThreshold = 0.5f;
-            this.Ambient = new Color3(0.3f, 0.3f, 0.3f);
-            this.Diffuse = new Color3(0.8f, 0.8f, 0.8f);
-            this.Emissive = new Color3(0, 0, 0);
-            this.Specular = new Color3(0, 0, 0);
-            this.Opacity = 1;
-            this.Power = 1;
         }
 
         /// <summary>

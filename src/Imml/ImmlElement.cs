@@ -27,6 +27,7 @@ namespace Imml
     /// </summary>
     public class ImmlElement : BindableObject, IImmlElement
     {
+        #region Properties
         /// <summary>
         /// Gets or sets the behaviours.
         /// </summary>
@@ -69,13 +70,13 @@ namespace Imml
                 if (_Name == value)
                 {
                     return;
-                }                
+                }
 
                 var oldName = _Name;
                 _Name = value;
 
-                _ElementRegistry.Remove(this);
-                _ElementRegistry.Add(this);
+                ElementRegistry.Remove(this);
+                ElementRegistry.Add(this);
 
                 base.RaisePropertyChanged("Name", oldName, _Name);
             }
@@ -96,21 +97,21 @@ namespace Imml
         /// The parent.
         /// </value>
         public virtual ImmlElement Parent { get; protected set; }
-        
+
         /// <summary>
         /// Gets the list of elements which are children of this element
         /// </summary>
-        public IList<ImmlElement> Elements { get; private set; }
-
-        internal IImmlElementRegistry _ElementRegistry;
+        public IList<ImmlElement> Elements { get; private set; } 
+        
+        internal IImmlElementRegistry ElementRegistry { get; set; }
+        #endregion
 
         public ImmlElement()
         {
             this.Behaviours = new List<string>();
             this.Elements = new List<ImmlElement>();
             this.ID = ImmlHelper.NextID();
-
-            _ElementRegistry = new ImmlElementRegistry();
+            this.ElementRegistry = new ImmlElementRegistry();
             
             this.Name = this.GetType().Name;
         }
@@ -123,7 +124,7 @@ namespace Imml
         {
             element.Parent = this;
     
-            _ElementRegistry.Add(element);        
+            ElementRegistry.Add(element);        
 
             //at this point, a relationship has been created between the added element and this element
             //all names must be unique before this method exits
@@ -139,7 +140,7 @@ namespace Imml
 
             foreach (var child in children)
             {
-                _ElementRegistry.Add(child);
+                ElementRegistry.Add(child);
             }
 
             this.Elements.Add(element);    
@@ -154,13 +155,13 @@ namespace Imml
             this.Elements.Remove(element);
             element.Parent = null;
 
-            _ElementRegistry.Remove(element);
+            ElementRegistry.Remove(element);
 
             var children = element.Elements.AsRecursiveEnumerable();
 
             foreach (var child in children)
             {
-                _ElementRegistry.Remove(child);
+                ElementRegistry.Remove(child);
             } 
 
             //TODO: restore the element's original registry
@@ -175,7 +176,7 @@ namespace Imml
             {
                 child.Parent = null;
 
-                _ElementRegistry.Remove(child);
+                ElementRegistry.Remove(child);
             }
 
             this.Elements.Clear();
@@ -190,9 +191,15 @@ namespace Imml
         /// <returns></returns>
         public virtual bool TryGetElementByName<T>(string name, out T element) where T : ImmlElement
         {
-            return _ElementRegistry.TryGetElementByName(name, out element);
+            return ElementRegistry.TryGetElementByName(name, out element);
         }
 
+        /// <summary>
+        /// Gets the the element by name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        /// <exception cref="ElementNotFoundException">If no element matching the name is found</exception>
         public virtual ImmlElement GetElementByName(string name)
         {
             ImmlElement outElement = null;
@@ -214,7 +221,7 @@ namespace Imml
         /// <returns></returns>
         public virtual bool TryGetElementByID<T>(int id, out T element) where T : ImmlElement
         {
-            return _ElementRegistry.TryGetElementById(id, out element);
+            return ElementRegistry.TryGetElementById(id, out element);
         }
 
         /// <summary>
@@ -242,7 +249,7 @@ namespace Imml
         /// <returns></returns>
         public virtual bool ContainsName(string name)
         {
-            return _ElementRegistry.ContainsName(name);
+            return ElementRegistry.ContainsName(name);
         }
 
         /// <summary>
@@ -252,9 +259,15 @@ namespace Imml
         /// <returns></returns>
         public virtual bool ContainsID(int id)
         {
-            return _ElementRegistry.ContainsID(id);
+            return ElementRegistry.ContainsID(id);
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return string.Format("[{0}] {1}", this.GetType().Name, this.Name);

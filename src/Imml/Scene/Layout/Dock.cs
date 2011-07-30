@@ -26,6 +26,7 @@ namespace Imml.Scene.Layout
     /// </summary>
     public class Dock : ImmlElement
     {
+        #region Properties
         private HorizontalAlignment _HorizontalAlignment;
 
         /// <summary>
@@ -34,10 +35,10 @@ namespace Imml.Scene.Layout
         /// <value>
         /// The horizontal alignment.
         /// </value>
-        public HorizontalAlignment HorizontalAlignment
+        public virtual HorizontalAlignment HorizontalAlignment
         {
             get { return _HorizontalAlignment; }
-            set 
+            set
             {
                 if (_HorizontalAlignment == value)
                     return;
@@ -56,7 +57,7 @@ namespace Imml.Scene.Layout
         /// <value>
         /// The vertical alignment.
         /// </value>
-        public VerticalAlignment VerticalAlignment
+        public virtual VerticalAlignment VerticalAlignment
         {
             get { return _VerticalAlignment; }
             set
@@ -79,7 +80,7 @@ namespace Imml.Scene.Layout
         /// The offset.
         /// </value>
         /// <remarks>The offset to apply during positioning where x is horizontal offset, y is vertical offset and z is depth offset</remarks>
-        public Vector3 Offset
+        public virtual Vector3 Offset
         {
             get { return _Offset; }
             set
@@ -91,7 +92,8 @@ namespace Imml.Scene.Layout
                 _Offset = value;
                 base.RaisePropertyChanged("Offset", oldValue, _Offset);
             }
-        }
+        } 
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Dock"/> class.

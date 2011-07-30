@@ -16,7 +16,7 @@ namespace Imml.Scene
         /// <value>
         /// The key.
         /// </value>
-        public string Key { get; set; }
+        public virtual string Key { get; set; }
 
         /// <summary>
         /// Gets or sets the value.
@@ -24,6 +24,6 @@ namespace Imml.Scene
         /// <value>
         /// The value.
         /// </value>
-        public string Value { get; set; }
+        public virtual string Value { get; set; }
     }
 }

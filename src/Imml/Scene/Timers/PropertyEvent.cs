@@ -28,11 +28,11 @@ namespace Imml.Scene.Timers
         /// <summary>
         /// The target property
         /// </summary>
-        public string Target { get; set; }
+        public virtual string Target { get; set; }
 
         /// <summary>
         /// The target property value
         /// </summary>
-        public string Value { get; set; }
+        public virtual string Value { get; set; }
     }
 }

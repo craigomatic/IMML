@@ -193,7 +193,7 @@ namespace Imml
             else if (destinationType == typeof(int))
                 return Convert.ToInt32(value);
             else if (destinationType == typeof(Color3))
-                return _ProcessRGBString(value);
+                return _ProcessColorString(value);
             else if (destinationType == typeof(TimeSpan))
                 return TimeSpan.Parse(value);
             else if (destinationType == typeof(ProjectionType))
@@ -231,7 +231,7 @@ namespace Imml
             throw new TypeLoadException("Failed to convert the string: " + value + " to type: " + destinationType.Name);
         }
 
-        private static object _ProcessRGBString(string value)
+        private static object _ProcessColorString(string value)
         {
             if (value.StartsWith("#"))
                 return new Color3(value);

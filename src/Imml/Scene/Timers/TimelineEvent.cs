@@ -28,11 +28,11 @@ namespace Imml.Scene.Timers
         /// <summary>
         /// Gets or sets the time the event will execute
         /// </summary>
-        public TimeSpan Time { get; set; }
+        public virtual TimeSpan Time { get; set; }
 
         /// <summary>
         /// Gets or sets the target element
         /// </summary>
-        public string Element { get; set; }
+        public virtual string Element { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace Imml.Scene.Controls
         /// The progress update.
         /// </value>
         /// <remarks>The name of the executable element to invoke on a progress update</remarks>
-        public string ProgressUpdate
+        public virtual string ProgressUpdate
         {
             get { return _ProgressUpdate; }
             set 
@@ -56,7 +56,7 @@ namespace Imml.Scene.Controls
         /// The document loaded.
         /// </value>
         /// <remarks>The name of the executable element to invoke when the document has finished loading</remarks>
-        public string DocumentLoaded
+        public virtual string DocumentLoaded
         {
             get { return _DocumentLoaded; }
             set

@@ -25,6 +25,7 @@ namespace Imml.Scene.Controls
     /// </summary>
     public class Web : ImmlElement
     {
+        #region Properties
         private int _UpdateRate;
 
         /// <summary>
@@ -102,7 +103,8 @@ namespace Imml.Scene.Controls
                 _Height = value;
                 base.RaisePropertyChanged("Width", oldValue, _Height);
             }
-        }
+        } 
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Web"/> class.

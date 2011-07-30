@@ -26,10 +26,11 @@ namespace Imml.Scene
     /// </summary>
     public class Interaction : ImmlElement
     {
+        #region Properties
         /// <summary>
         /// Name of the element to apply this interaction with
         /// </summary>
-        public string Element { get; set; }
+        public virtual string Element { get; set; }
 
         private float _StaticFriction;
 
@@ -39,7 +40,7 @@ namespace Imml.Scene
         /// <value>
         /// The static friction.
         /// </value>
-        public float StaticFriction
+        public virtual float StaticFriction
         {
             get { return _StaticFriction; }
             set
@@ -63,7 +64,7 @@ namespace Imml.Scene
         /// <value>
         /// The dynamic friction.
         /// </value>
-        public float DynamicFriction
+        public virtual float DynamicFriction
         {
             get { return _DynamicFriction; }
             set
@@ -87,7 +88,7 @@ namespace Imml.Scene
         /// <value>
         /// The elasticity.
         /// </value>
-        public float Elasticity
+        public virtual float Elasticity
         {
             get { return _Elasticity; }
             set
@@ -111,7 +112,7 @@ namespace Imml.Scene
         /// <value>
         /// The softness.
         /// </value>
-        public float Softness
+        public virtual float Softness
         {
             get { return _Softness; }
             set
@@ -125,7 +126,8 @@ namespace Imml.Scene
                 _Softness = value;
                 base.RaisePropertyChanged("Softness", oldValue, value);
             }
-        }
+        } 
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Interaction"/> class.
@@ -135,7 +137,7 @@ namespace Imml.Scene
             this.StaticFriction = 0.9f;
             this.DynamicFriction = 0.5f;
             this.Elasticity = 0.4f;
-            this.Softness = 0.1f;
+            this.Softness = 0.7f;
         }
     }
 }

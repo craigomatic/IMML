@@ -16,6 +16,6 @@ namespace Imml.Scene
         /// <value>
         /// The source.
         /// </value>
-        public string Source { get; set; }
+        public virtual string Source { get; set; }
     }
 }

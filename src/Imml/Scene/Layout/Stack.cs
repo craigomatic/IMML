@@ -36,7 +36,7 @@ namespace Imml.Scene.Layout
         /// The spacing.
         /// </value>
         /// <remarks>The amount of spacing to apply between each child element of the stack</remarks>
-        public Vector3 Spacing
+        public virtual Vector3 Spacing
         {
             get { return _Spacing; }
             set

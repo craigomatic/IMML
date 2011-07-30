@@ -13,6 +13,6 @@ namespace Imml.Scene
         /// <summary>
         /// The material group id
         /// </summary>
-        public int Id { get; set; }  
+        public virtual int Id { get; set; }  
     }
 }

@@ -25,6 +25,7 @@ namespace Imml.Scene.Layout
     /// </summary>
     public class Scatter : ImmlElement
     {
+        #region Properties
         /// <summary>
         /// Gets or sets the target.
         /// </summary>
@@ -32,7 +33,7 @@ namespace Imml.Scene.Layout
         /// The target.
         /// </value>
         /// <remarks>The target element to scatter upon.</remarks>
-        public string Target { get; set; }
+        public virtual string Target { get; set; }
 
         /// <summary>
         /// Gets or sets the seed.
@@ -41,7 +42,8 @@ namespace Imml.Scene.Layout
         /// The seed.
         /// </value>
         /// <remarks>The constant to use when generating the scatter positions. Enables persistent scatter on all document hosts. If not specified, consistent layout is not guaranteed.</remarks>
-        public int Seed { get; set; }
+        public virtual int Seed { get; set; } 
+        #endregion
 
         public Scatter()
         {

@@ -34,7 +34,7 @@ namespace Imml.Scene.Layout
         /// The count.
         /// </value>
         /// <remarks>Number of times to repeat the instances of the nested element</remarks>
-        public int Count
+        public virtual int Count
         {
             get { return _Count; }
             set

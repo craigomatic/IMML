@@ -25,6 +25,7 @@ namespace Imml.Scene.Controls
     /// </summary>
     public class Video : ImmlElement
     {
+        #region Properties
         private string _Source;
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace Imml.Scene.Controls
             {
                 if (_Source == value)
                     return;
-                
+
                 string oldValue = _Source;
                 _Source = value;
                 base.RaisePropertyChanged("Source", oldValue, _Source);
@@ -109,7 +110,7 @@ namespace Imml.Scene.Controls
         public virtual bool Stream
         {
             get { return _Stream; }
-            set 
+            set
             {
                 if (_Stream == value)
                     return;
@@ -118,7 +119,7 @@ namespace Imml.Scene.Controls
                 base.RaisePropertyChanged("Stream", !_Stream, _Stream);
             }
         }
-        
+
         private float _Volume;
 
         /// <summary>
@@ -172,7 +173,8 @@ namespace Imml.Scene.Controls
                 _Loop = value;
                 base.RaisePropertyChanged("Loop", !_Loop, _Loop, "Video.Loop");
             }
-        }
+        } 
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Video"/> class.
@@ -180,6 +182,8 @@ namespace Imml.Scene.Controls
         public Video()
         {
             this.Volume = 0.5f;
+            this.Enabled = true;
+            this.Seek = TimeSpan.Zero;
         }
     }
 }

@@ -26,13 +26,14 @@ namespace Imml.Scene.Controls
     /// </summary>
     public class Background : ImmlElement
     {
+        #region Properties
         /// <summary>
         /// Gets or sets the source.
         /// </summary>
         /// <value>
         /// The source.
         /// </value>
-        public string Source { get; set; }
+        public virtual string Source { get; set; }
 
         /// <summary>
         /// Gets or sets the colour.
@@ -40,7 +41,8 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The colour.
         /// </value>
-        public Color3 Colour { get; set; }
+        public virtual Color3 Colour { get; set; } 
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Background"/> class.

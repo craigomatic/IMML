@@ -11,6 +11,7 @@ namespace Imml.Scene
     /// </summary>
     public class Physics : ImmlElement
     {
+        #region Properties
         private bool _Enabled;
 
         /// <summary>
@@ -19,7 +20,7 @@ namespace Imml.Scene
         /// <value>
         ///   <c>true</c> if enabled; otherwise, <c>false</c>.
         /// </value>
-        public bool Enabled
+        public virtual bool Enabled
         {
             get { return _Enabled; }
             set
@@ -42,7 +43,7 @@ namespace Imml.Scene
         /// <value>
         ///   <c>true</c> if movable; otherwise, <c>false</c>.
         /// </value>
-        public bool Movable
+        public virtual bool Movable
         {
             get { return _Movable; }
             set
@@ -64,7 +65,7 @@ namespace Imml.Scene
         /// <value>
         /// The weight.
         /// </value>
-        public float Weight
+        public virtual float Weight
         {
             get { return _Weight; }
             set
@@ -87,7 +88,7 @@ namespace Imml.Scene
         /// <value>
         /// The centre.
         /// </value>
-        public Vector3 Centre
+        public virtual Vector3 Centre
         {
             get { return _Centre; }
             set
@@ -109,8 +110,18 @@ namespace Imml.Scene
         /// <value>
         /// The bounding.
         /// </value>
-        public BoundingType Bounding { get; set; }
+        public virtual BoundingType Bounding { get; set; }
 
-        public bool IsCentreDefault { get; private set; }
+        public bool IsCentreDefault { get; private set; } 
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Physics"/> class.
+        /// </summary>
+        public Physics()
+        {
+            this.Movable = true;
+            this.Bounding = BoundingType.ConvexHull;
+        }
     }
 }

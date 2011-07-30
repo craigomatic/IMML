@@ -9,6 +9,7 @@ namespace Imml.Scene.Controls
     /// </summary>
     public class Texture : ImmlElement
     {
+        #region Properties
         protected string _Source;
 
         /// <summary>
@@ -169,7 +170,8 @@ namespace Imml.Scene.Controls
                 _OffsetV = value;
                 base.RaisePropertyChanged("OffsetV", oldValue, OffsetV, "Texture.OffsetV");
             }
-        }
+        } 
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Texture"/> class.
@@ -178,9 +180,6 @@ namespace Imml.Scene.Controls
         {
             this.TileU = 1.0f;
             this.TileV = 1.0f;
-            this.OffsetU = 0.0f;
-            this.OffsetV = 0.0f;
-            this.Source = string.Empty;
             this.Type = TextureType.Diffuse;
         }
     }

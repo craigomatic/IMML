@@ -26,13 +26,14 @@ namespace Imml.Scene.Controls
     /// </summary>
     public class Anchor : PositionalElement
     {
+        #region Properties
         /// <summary>
         /// Gets or sets the URI.
         /// </summary>
         /// <value>
         /// The URI.
         /// </value>
-        public string Uri { get; set; }
+        public virtual string Uri { get; set; }
 
         /// <summary>
         /// Gets or sets the type.
@@ -40,7 +41,8 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The type.
         /// </value>
-        public AnchorType Type { get; set; }
+        public virtual AnchorType Type { get; set; } 
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Anchor"/> class.

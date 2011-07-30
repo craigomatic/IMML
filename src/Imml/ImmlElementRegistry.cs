@@ -46,7 +46,7 @@ namespace Imml
 
             //update the element name
             element.Name = elementName;
-            element._ElementRegistry = this;
+            element.ElementRegistry = this;
         }
 
         public void Remove(ImmlElement element)

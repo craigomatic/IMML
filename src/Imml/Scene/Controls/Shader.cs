@@ -33,7 +33,7 @@ namespace Imml.Scene.Controls
         /// <value>
         ///   <c>true</c> if enabled; otherwise, <c>false</c>.
         /// </value>
-        public bool Enabled
+        public virtual bool Enabled
         {
             get { return _Enabled; }
             set
@@ -52,6 +52,14 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The source.
         /// </value>
-        public string Source { get; set; }
+        public virtual string Source { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Shader"/> class.
+        /// </summary>
+        public Shader()
+        {
+            this.Enabled = true;
+        }
     }
 }

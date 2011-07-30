@@ -25,8 +25,10 @@ namespace Imml.Scene.Controls
     /// <summary>
     /// Provides functionality for spatial display of text.
     /// </summary>
-    public class Text : PositionalElement
+    public class Text : VisibleElement
     {
+        #region Properties
+
         private TextAlignment _Alignment;
 
         /// <summary>
@@ -260,7 +262,9 @@ namespace Imml.Scene.Controls
 
                 base.RaisePropertyChanged("Font", oldValue, _Font);
             }
-        }
+        } 
+
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Text"/> class.
@@ -270,6 +274,7 @@ namespace Imml.Scene.Controls
             this.Opacity = 1.0f;
             this.Size = 0.2f;
             this.Alignment = TextAlignment.Left;
+            this.Font = "Arial";
         }
     }
 }

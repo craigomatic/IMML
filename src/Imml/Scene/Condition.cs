@@ -32,7 +32,7 @@ namespace Imml.Scene
         /// <value>
         /// The expression.
         /// </value>
-        public string Expression { get; set; }
+        public virtual string Expression { get; set; }
 
         /// <summary>
         /// Gets or sets the type.
@@ -40,7 +40,7 @@ namespace Imml.Scene
         /// <value>
         /// The type.
         /// </value>
-        public ConditionType Type { get; set; }
+        public virtual ConditionType Type { get; set; }
 
         /// <summary>
         /// Gets or sets the source.
@@ -48,7 +48,7 @@ namespace Imml.Scene
         /// <value>
         /// The source.
         /// </value>
-        public ConditionSource Source { get; set; }
+        public virtual ConditionSource Source { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Condition"/> class.

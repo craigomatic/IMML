@@ -29,17 +29,17 @@ namespace Imml.Scene.Timers
         /// <summary>
         /// When true, the destination transform is relative to where it is currently
         /// </summary>
-        public bool Relative { get; set; }
+        public virtual bool Relative { get; set; }
 
         /// <summary>
         /// The value to apply for this keyframe event
         /// </summary>
-        public Vector3 Value { get; set; }
+        public virtual Vector3 Value { get; set; }
 
         /// <summary>
         /// The type of key framing occuring as the result of this event
         /// </summary>
-        public KeyFrameType Target { get; set; }
+        public virtual KeyFrameType Target { get; set; }
 
         ///// <summary>
         ///// TODO: Research the validity/benefit of this

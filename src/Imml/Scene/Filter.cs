@@ -13,7 +13,7 @@ namespace Imml.Scene
         /// <summary>
         /// The target property
         /// </summary>
-        public string Target { get; set; }
+        public virtual string Target { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Filter"/> is enabled.
@@ -21,12 +21,12 @@ namespace Imml.Scene
         /// <value>
         ///   <c>true</c> if enabled; otherwise, <c>false</c>.
         /// </value>
-        public bool Enabled { get; set; }
+        public virtual bool Enabled { get; set; }
 
         /// <summary>
         /// The upper limit of updates that should occur for this property per second. A value of -1 will prevent updates to the target ever being propagated
         /// </summary>
-        public int UpdateRate { get; set; }
+        public virtual int UpdateRate { get; set; }
 
         /// <summary>
         /// The time the last update that passed through this filter was sent

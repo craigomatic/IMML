@@ -36,7 +36,7 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The type.
         /// </value>
-        public PrimitiveType Type
+        public virtual PrimitiveType Type
         {
             get { return _Type; }
             set
@@ -58,7 +58,7 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The complexity.
         /// </value>
-        public PrimitiveComplexity Complexity
+        public virtual PrimitiveComplexity Complexity
         {
             get { return _Complexity; }
             set

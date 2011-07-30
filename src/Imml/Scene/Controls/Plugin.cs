@@ -31,7 +31,7 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The source.
         /// </value>
-        public string Source { get; set; }
+        public virtual string Source { get; set; }
 
         private bool _Enabled;
 
@@ -41,7 +41,7 @@ namespace Imml.Scene.Controls
         /// <value>
         ///   <c>true</c> if enabled; otherwise, <c>false</c>.
         /// </value>
-        public bool Enabled
+        public virtual bool Enabled
         {            
             get { return _Enabled; }
             set 

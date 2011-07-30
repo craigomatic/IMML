@@ -317,10 +317,6 @@ namespace Imml.Scene.Controls
             _Enabled = true;
             _Range = 20;
             _Type = LightType.Point;
-            _Diffuse = new Color3(0.4f, 0.4f, 0.4f);
-            _Specular = new Color3(0.2f, 0.2f, 0.2f);
-            _InnerCone = 10;
-            _OuterCone = 100;
         }
     }
 }

@@ -10,8 +10,9 @@ namespace Imml.Scene.Layout
     /// <summary>
     /// Allows one or more elements to be scaled uniformly.
     /// </summary>
-    public class Canvas : PositionalElement
+    public class Canvas : VisibleElement
     {
+        #region Properties
         private ICubicElement _ScalableParent;
 
         /// <summary>
@@ -98,6 +99,7 @@ namespace Imml.Scene.Layout
                     this.Scale = new Vector3(value.X / parentWorldScale.X, value.Y / parentWorldScale.Y, value.Z / parentWorldScale.Z);
                 }
             }
-        }
+        } 
+        #endregion
     }
 }

@@ -36,7 +36,7 @@ namespace Imml.Scene.Controls
         /// <value>
         ///   <c>true</c> if it should loop; otherwise, <c>false</c>.
         /// </value>
-        public bool Loop
+        public virtual bool Loop
         {
             get { return _Loop; }
             set
@@ -87,7 +87,7 @@ namespace Imml.Scene.Controls
         /// The volume.
         /// </value>
         /// <remarks>A value between 0 and 1 that describes the amount of volume to use, where 1 is the full amount of available volume.</remarks>
-        public float Volume
+        public virtual float Volume
         {
             get { return _Volume; }
             set
@@ -110,7 +110,7 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The pitch.
         /// </value>
-        public float Pitch
+        public virtual float Pitch
         {
             get { return _Pitch; }
             set
@@ -134,7 +134,7 @@ namespace Imml.Scene.Controls
         ///   <c>true</c> if spatial; otherwise, <c>false</c>.
         /// </value>
         /// <remarks>When true, the sound is positional according to the rotation and position specified</remarks>
-        public bool Spatial
+        public virtual bool Spatial
         {
             get { return _Spatial; }
             set
@@ -155,7 +155,7 @@ namespace Imml.Scene.Controls
         /// <value>
         /// The source.
         /// </value>
-        public string Source
+        public virtual string Source
         {
             get { return _Source; }
             set
@@ -180,6 +180,7 @@ namespace Imml.Scene.Controls
             this.Volume = 0.5f;
             this.Pitch = 1f;
             this.Spatial = true;
+            this.Enabled = true;
         }
     }
 }

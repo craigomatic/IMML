@@ -163,7 +163,7 @@ namespace Imml.Scene.Controls
             this.LifeMin = 1;
             this.LifeMax = 3;
             this.Force = new Vector3(0, 1, 0);
-            this.Rate = 50;
+            this.Rate = 100;
             this.Count = 1000;
         }
     }

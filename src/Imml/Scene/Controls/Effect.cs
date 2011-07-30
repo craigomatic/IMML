@@ -26,6 +26,8 @@ namespace Imml.Scene.Controls
     /// </summary>
     public class Effect : VisibleElement
     {
+        #region Properties
+        
         protected bool _Enabled;
 
         /// <summary>
@@ -46,6 +48,7 @@ namespace Imml.Scene.Controls
                 base.RaisePropertyChanged("Enabled", !_Enabled, _Enabled);
             }
         }
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Effect"/> class.
