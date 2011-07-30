@@ -1,15 +1,4 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!--
-You may not remove this copyright notice. This work is an XML schema. Parts of this work are copyright VastPark Pty Ltd, 2007-2008.  Unless you have been granted a commercial license from VastPark that provides you with the rights to distribute your own version of the schema, using this work is subject to the Creative Commons Attribution-No Derivative Works version 3 license (See http://creativecommons.org/licenses/by-nd/3.0/legalcode). 
-
-What we take this license to mean: You may use this schema as is in any open source or commercial application you like. You have a choice if you pay us a royalty fee in relation to this schema. The license frees you from any requirement to pay a fee to use the schema. You may not alter this schema or distribute such a change with the VastPark software or with other software without agreement in writing with VastPark. We make the exception that if you are posting parts of the schema to be viewed as text on a webpage we allow you to show off suggested alterations to the schema. 
-
-Also please note that using a non-official modified version of this work with the VastPark software breaches VastPark’s software EULA. 
-
-Why we are releasing this schema in this way: We provide this schema so that other applications can be created that are compatible with the VastPark applications and so we can expand the ecosystem of projects using this framework. Rather than attempting to restrict you, we are wishing to create greater uniformity for anyone coding in IMML. IMML is intended as a “Write once, run anyway” markup language. Developers with strong understanding of XML and IMML are welcome to work with us to improve IMML. Please contact the dev team at with a detailed outline of your ideas and test cases: developer @ vastpark.com.
-Modified: 9/9/08
-
--->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:imml="http://schemas.vastpark.com/2007/imml/"
            targetNamespace="http://schemas.vastpark.com/2007/imml/"

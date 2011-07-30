@@ -1,20 +1,4 @@
-﻿//-----------------------------------------------------------------------
-//VastPark is a lightweight extensible virtual world platform 
-//and this file is a program released under the GPL.
-//Copyright (C) 2009 VastPark
-//This program is free software; you can redistribute it and/or
-//modify it under the terms of the GNU General Public License
-//as published by the Free Software Foundation; either version 2
-//of the License, or (at your option) any later version.
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-//GNU General Public License for more details.
-//You should have received a copy of the GNU General Public License
-//along with this program; if not, write to the Free Software
-//Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-//-----------------------------------------------------------------------
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -22,30 +6,6 @@ using System.Reflection;
 
 namespace Imml
 {
-    //CP:allow for old value and new value in the eventargs
-    public class PropertyNotificationEventArgs : PropertyChangedEventArgs
-    {
-        /// <summary>
-        /// The owner of the property
-        /// </summary>
-        public object Owner { get; set; }
-
-        public object OldValue { get; set; }
-        public object NewValue { get; set; }
-        public string PropertyHierarchy { get; set; }
-
-        public PropertyNotificationEventArgs(string propertyName)
-            : this(propertyName, null, null)
-        { }
-
-        public PropertyNotificationEventArgs(string propertyName, object oldValue, object newValue)
-            : base(propertyName)
-        {
-            this.OldValue = oldValue;
-            this.NewValue = newValue;
-        }
-    }
-
     /// <summary>  
     /// Implements the INotifyPropertyChanged interface and 
     /// exposes a RaisePropertyChanged method for derived 
@@ -213,5 +173,28 @@ namespace Imml
         }
 
         #endregion // Private Helpers
+    }
+
+    public class PropertyNotificationEventArgs : PropertyChangedEventArgs
+    {
+        /// <summary>
+        /// The owner of the property
+        /// </summary>
+        public object Owner { get; set; }
+
+        public object OldValue { get; set; }
+        public object NewValue { get; set; }
+        public string PropertyHierarchy { get; set; }
+
+        public PropertyNotificationEventArgs(string propertyName)
+            : this(propertyName, null, null)
+        { }
+
+        public PropertyNotificationEventArgs(string propertyName, object oldValue, object newValue)
+            : base(propertyName)
+        {
+            this.OldValue = oldValue;
+            this.NewValue = newValue;
+        }
     }
 }
