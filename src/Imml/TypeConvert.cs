@@ -14,6 +14,11 @@ namespace Imml
     /// </summary>
     public static class TypeConvert
     {
+        /// <summary>
+        /// Parses the specified object into a string representation.
+        /// </summary>
+        /// <param name="toConvert">To convert.</param>
+        /// <returns></returns>
         public static string Parse(object toConvert)
         {
             if (toConvert is List<string>)
@@ -23,7 +28,7 @@ namespace Imml
             else if (toConvert is DateTime)
                 return ((DateTime)toConvert).ToString("s");
 
-            return Convert.ToString(toConvert);
+            return Convert.ToString(toConvert, CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -102,7 +107,7 @@ namespace Imml
         private static string _ProcessVectorString(object toConvert)
         {
             Vector3 v = (Vector3)toConvert;
-            return v.ToString();
+            return v.ToString(CultureInfo.InvariantCulture);
         }
 
         private static string _ProcessListString(object toConvert)

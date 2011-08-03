@@ -14,6 +14,8 @@ using Imml.Drawing;
 using System.Diagnostics;
 using Imml.Scene;
 using Moq;
+using System.Threading;
+using System.Globalization;
 
 namespace Imml.Test
 {
@@ -419,6 +421,39 @@ namespace Imml.Test
             return x.CompareTo(y);
         }
 
+        [Fact]
+        public void Cultures_That_Are_Not_Invariant_Write_Invariant_Culture_Imml()
+        {
+            if (Thread.CurrentThread.CurrentCulture.IsReadOnly)
+            {
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentCulture.Clone() as CultureInfo;
+            }
+
+            Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ",";
+            Thread.CurrentThread.CurrentCulture.NumberFormat.NumberGroupSeparator = ".";
+
+            try
+            {
+                var immlDocument = new ImmlDocument();
+                immlDocument.Gravity = new Vector3(1.2345f, 2.3456f, 3.4567f);
+                immlDocument.SoundSpeed = 10.34566f;
+
+                var immlSerialiser = new ImmlSerialiser();
+                var immlString = immlSerialiser.Write(immlDocument);
+
+                var textReader = new StringReader(immlString);
+                var xDoc = XDocument.Load(textReader);
+
+                Assert.Equal("1.2345,2.3456,3.4567", xDoc.Root.Attribute(XName.Get("Gravity", string.Empty)).Value);
+                Assert.Equal("10.34566", xDoc.Root.Attribute(XName.Get("SoundSpeed", string.Empty)).Value);
+            }
+            finally
+            {
+                //restore it
+                Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator;
+                Thread.CurrentThread.CurrentCulture.NumberFormat.NumberGroupSeparator = CultureInfo.InvariantCulture.NumberFormat.NumberGroupSeparator;
+            }
+        }
 
     }
 }
