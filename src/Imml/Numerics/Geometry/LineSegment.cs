@@ -325,21 +325,6 @@ namespace Imml.Numerics.Geometry
 				return false;
 			}
 		}
-
-		/// <summary>
-		/// Returns the current line segment with the specified fields replaced with the specified values.
-		/// </summary>
-		/// <param name="end1">The new value for the <see cref="End1"/> field. Use null to keep the old value.</param>
-		/// <param name="end2">The new value for the <see cref="End2"/> field. Use null to keep the old value.</param>
-		/// <returns>The current line segment with the specified fields replaced with the specified values.</returns>
-		public LineSegment With(Vector3? end1 = null, Vector3? end2 = null)
-		{
-			return new LineSegment
-			{
-				End1 = end1 ?? this.End1,
-				End2 = end2 ?? this.End2,
-			};
-		}
 		#endregion
 
 		#region Operators

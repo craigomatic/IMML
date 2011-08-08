@@ -494,25 +494,6 @@ namespace Imml.Numerics.Geometry
 		}
 
 		/// <summary>
-		/// Returns the current plane with the specified components replaced with the specified values.
-		/// </summary>
-		/// <param name="a">The new value for the <see cref="A"/> component. Use null to keep the old value.</param>
-		/// <param name="b">The new value for the <see cref="B"/> component. Use null to keep the old value.</param>
-		/// <param name="c">The new value for the <see cref="C"/> component. Use null to keep the old value.</param>
-		/// <param name="d">The new value for the <see cref="D"/> component. Use null to keep the old value.</param>
-		/// <returns>The current plane with the specified components replaced with the specified values.</returns>
-		public Plane With(Number? a = null, Number? b = null, Number? c = null, Number? d = null)
-		{
-			return new Plane
-			{
-				A = a ?? this.A,
-				B = b ?? this.B,
-				C = c ?? this.C,
-				D = d ?? this.D,
-			};
-		}
-
-		/// <summary>
 		/// Gets the <see cref="T:System.Xml.Schema.XmlSchema"/> that describes the XML representation of the object that is produced by the <see cref="M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)"/> method and consumed by the <see cref="M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)"/> method.
 		/// </summary>
 		/// <returns>This method returns always null.</returns>

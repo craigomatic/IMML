@@ -340,21 +340,6 @@ namespace Imml.Numerics.Geometry
 				return false;
 			}
 		}
-
-		/// <summary>
-		/// Returns the current bounding box with the specified fields replaced with the specified values.
-		/// </summary>
-		/// <param name="minimum">The new value for the <see cref="Minimum"/> field. Use null to keep the old value.</param>
-		/// <param name="maximum">The new value for the <see cref="Maximum"/> field. Use null to keep the old value.</param>
-		/// <returns>The current bounding box with the specified fields replaced with the specified values.</returns>
-		public BoundingBox With(Vector3? minimum = null, Vector3? maximum = null)
-		{
-			return new BoundingBox
-			{
-				Minimum = minimum ?? this.Minimum,
-				Maximum = maximum ?? this.Maximum,
-			};
-		}
 		#endregion
 
 		#region Operators

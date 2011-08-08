@@ -368,21 +368,6 @@ namespace Imml.Numerics.Geometry
 				return false;
 			}
 		}
-
-		/// <summary>
-		/// Returns the current ray with the specified fields replaced with the specified values.
-		/// </summary>
-		/// <param name="position">The new value for the <see cref="Position"/> field. Use null to keep the old value.</param>
-		/// <param name="direction">The new value for the <see cref="Direction"/> field. Use null to keep the old value.</param>
-		/// <returns>The current ray with the specified fields replaced with the specified values.</returns>
-		public Ray With(Vector3? position = null, Vector3? direction = null)
-		{
-			return new Ray
-			{
-				Position = position ?? this.Position,
-				Direction = direction ?? this.Direction,
-			};
-		}
 		#endregion
 
 		#region Operators

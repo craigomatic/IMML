@@ -325,21 +325,6 @@ namespace Imml.Numerics.Geometry
 				return false;
 			}
 		}
-
-		/// <summary>
-		/// Returns the current line with the specified fields replaced with the specified values.
-		/// </summary>
-		/// <param name="point1">The new value for the <see cref="Point1"/> field. Use null to keep the old value.</param>
-		/// <param name="point2">The new value for the <see cref="Point2"/> field. Use null to keep the old value.</param>
-		/// <returns>The current line with the specified fields replaced with the specified values.</returns>
-		public Line With(Vector3? point1 = null, Vector3? point2 = null)
-		{
-			return new Line
-			{
-				Point1 = point1 ?? this.Point1,
-				Point2 = point2 ?? this.Point2,
-			};
-		}
 		#endregion
 
 		#region Operators

@@ -353,21 +353,6 @@ namespace Imml.Numerics.Geometry
 				return false;
 			}
 		}
-
-		/// <summary>
-		/// Returns the current bounding sphere with the specified fields replaced with the specified values.
-		/// </summary>
-		/// <param name="position">The new value for the <see cref="Position"/> field. Use null to keep the old value.</param>
-		/// <param name="radius">The new value for the <see cref="Radius"/> field. Use null to keep the old value.</param>
-		/// <returns>The current bounding sphere with the specified fields replaced with the specified values.</returns>
-		public BoundingSphere With(Vector3? position = null, Number? radius = null)
-		{
-			return new BoundingSphere
-			{
-				Position = position ?? this.Position,
-				Radius = radius ?? this.Radius,
-			};
-		}
 		#endregion
 
 		#region Operators
