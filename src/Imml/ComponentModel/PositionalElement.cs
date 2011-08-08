@@ -170,7 +170,7 @@ namespace Imml.ComponentModel
         {
             get
             {
-                return BoundingBox.With(null, this.Position);
+                return new BoundingBox(Vector3.Zero, this.Position);
             }
         }
 
@@ -178,7 +178,7 @@ namespace Imml.ComponentModel
         {
             get
             {
-                return BoundingBox.With(null, this.Matrix.Translation);
+                return new BoundingBox(Vector3.Zero, this.Matrix.Translation);
             }
         }
 

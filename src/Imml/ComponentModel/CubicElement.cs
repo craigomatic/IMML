@@ -119,7 +119,7 @@ namespace Imml.ComponentModel
                 Vector3 vMin = new Vector3(this.Position.X - (this.Size.X / 2), this.Position.Y, this.Position.Z - (this.Size.Z / 2));
                 Vector3 vMax = new Vector3(this.Position.X + (this.Size.X / 2), this.Position.Y + this.Size.Y, this.Position.Z + (this.Size.Z / 2));
 
-                return BoundingBox.With(vMin, vMax);
+                return new BoundingBox(vMin, vMax);
             }
         }
 
@@ -132,7 +132,7 @@ namespace Imml.ComponentModel
                 Vector3 vMin = new Vector3(worldPos.X - (worldSize.X / 2), worldPos.Y, worldPos.Z - (worldSize.Z / 2));
                 Vector3 vMax = new Vector3(worldPos.X + (worldSize.X / 2), worldPos.Y + this.Size.Y, worldPos.Z + (worldSize.Z / 2));
 
-                return BoundingBox.With(vMin, vMax);
+                return new BoundingBox(vMin, vMax);
             }
         }
     }
