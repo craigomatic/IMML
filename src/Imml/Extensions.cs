@@ -42,7 +42,6 @@ namespace Imml
         /// <summary>
         /// Gets the material group with the given Id.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="element">The element.</param>
         /// <param name="id">The id.</param>
         /// <returns></returns>

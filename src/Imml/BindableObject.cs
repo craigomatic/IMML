@@ -95,13 +95,13 @@ namespace Imml
         }
 
         /// <summary>
-        /// Attempts to raise the PropertyChanged event, and 
-        /// invokes the virtual AfterPropertyChanged method, 
+        /// Attempts to raise the PropertyChanged event, and
+        /// invokes the virtual AfterPropertyChanged method,
         /// regardless of whether the event was raised or not.
         /// </summary>
-        /// <param name="propertyName">
-        /// The property which was changed.
-        /// </param>
+        /// <param name="propertyName">The property which was changed.</param>
+        /// <param name="oldValue">The old value.</param>
+        /// <param name="newValue">The new value.</param>
         protected void RaisePropertyChanged(string propertyName, object oldValue, object newValue)
         {
             _RaisePropertyChanged(propertyName, propertyName, oldValue, newValue, true);

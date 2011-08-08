@@ -131,8 +131,8 @@ namespace Imml
         /// <summary>
         /// Parse the given value into the destination type
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="type"></param>
+        /// <param name="value">The value.</param>
+        /// <param name="destinationType">Type of the destination.</param>
         /// <returns></returns>
         public static object Parse(string value, Type destinationType)
         {

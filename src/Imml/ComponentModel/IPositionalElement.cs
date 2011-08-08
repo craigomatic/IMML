@@ -1,6 +1,5 @@
 ﻿using System;
 using Imml.Numerics;
-using Imml.Numerics;
 
 namespace Imml.ComponentModel
 {
@@ -9,11 +8,6 @@ namespace Imml.ComponentModel
     /// </summary>
     public interface IPositionalElement : IImmlElement
     {
-        /// <summary>
-        /// The parent collection
-        /// </summary>
-        ImmlElement Parent { get; }
-
         /// <summary>
         /// The rotation of this element relative to its parent container
         /// </summary>

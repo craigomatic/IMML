@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Imml.Numerics;
 using Imml.Numerics.Geometry;
-using Imml.Numerics;
 
 namespace Imml.ComponentModel
 {
