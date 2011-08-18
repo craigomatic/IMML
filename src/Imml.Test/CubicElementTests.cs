@@ -33,13 +33,6 @@ namespace Imml.Test
         }
 
         [Fact]
-        public void Default_Pivot_Is_Zero_Vector()
-        {
-            var element = new Mock<CubicElement>();
-            Assert.Equal(new Vector3(), element.Object.Pivot);
-        }
-
-        [Fact]
         public void Default_RenderMode_Is_Fill()
         {
             var element = new Mock<CubicElement>();

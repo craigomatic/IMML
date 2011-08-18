@@ -68,7 +68,7 @@ namespace Imml.Test
         }
 
         [Fact]
-        public void Resizing_The_Parent_Element_Propagates_To_The_Child()
+        public void Resizing_The_Parent_Element_Does_Not_Alter_The_Child()
         {
             var element = new Mock<CubicElement> { CallBase = true };
             element.Object.Size = new Vector3(100, 200, 300);
@@ -79,7 +79,86 @@ namespace Imml.Test
 
             parent.Object.Size = new Vector3(2000, 1000, 10);
 
-            Assert.NotEqual(new Vector3(100, 200, 300), element.Object.Size);
+            Assert.Equal(new Vector3(100, 200, 300), element.Object.Size);
+        }
+
+        [Fact]
+        public void Scaling_A_Hierarchy_Correctly_Scales_All_Elements_Involved()
+        {
+            var canvas = new Imml.Scene.Layout.Canvas();
+
+            var topParent = new Mock<CubicElement> { CallBase = true };
+            topParent.Object.Size = new Vector3(1, 2, 3);
+            canvas.Add(topParent.Object);
+
+            var firstLevelChildA = new Mock<CubicElement> { CallBase = true };
+            firstLevelChildA.Object.Size = new Vector3(1, 2, 3);
+            topParent.Object.Add(firstLevelChildA.Object);
+
+            var firstLevelChildB = new Mock<CubicElement> { CallBase = true };
+            firstLevelChildB.Object.Size = new Vector3(1, 2, 3);
+            topParent.Object.Add(firstLevelChildB.Object);
+
+            var firstLevelCanvas = new Imml.Scene.Layout.Canvas();
+            firstLevelChildA.Object.Add(firstLevelCanvas);
+
+            var secondLevelChilA = new Mock<CubicElement> { CallBase = true };
+            secondLevelChilA.Object.Size = new Vector3(1, 2, 3);
+            firstLevelCanvas.Add(secondLevelChilA.Object);
+
+            var secondLevelChilB = new Mock<CubicElement> { CallBase = true };
+            secondLevelChilB.Object.Size = new Vector3(1, 2, 3);
+            firstLevelCanvas.Add(secondLevelChilB.Object);
+
+            canvas.Scale = new Vector3(10, 20, 30);
+            firstLevelCanvas.Scale = new Vector3(10, 10, 10);
+
+            Assert.Equal(new Vector3(10, 20, 30), topParent.Object.WorldScale);
+            Assert.Equal(new Vector3(10, 40, 90), topParent.Object.WorldSize);
+            Assert.Equal(new Vector3(1, 2, 3), topParent.Object.Size);
+
+            Assert.Equal(new Vector3(10, 20, 30), firstLevelChildA.Object.WorldScale);
+            Assert.Equal(new Vector3(10, 40, 90), firstLevelChildA.Object.WorldSize);
+            Assert.Equal(new Vector3(1, 2, 3), firstLevelChildA.Object.Size);
+
+            Assert.Equal(new Vector3(10, 20, 30), firstLevelChildB.Object.WorldScale);
+            Assert.Equal(new Vector3(10, 40, 90), firstLevelChildB.Object.WorldSize);
+            Assert.Equal(new Vector3(1, 2, 3), firstLevelChildB.Object.Size);
+
+            Assert.Equal(new Vector3(100, 200, 300), secondLevelChilA.Object.WorldScale);
+            Assert.Equal(new Vector3(100, 400, 900), secondLevelChilA.Object.WorldSize);
+            Assert.Equal(new Vector3(1, 2, 3), secondLevelChilA.Object.Size);
+
+            Assert.Equal(new Vector3(100, 200, 300), secondLevelChilB.Object.WorldScale);
+            Assert.Equal(new Vector3(100, 400, 900), secondLevelChilB.Object.WorldSize);
+            Assert.Equal(new Vector3(1, 2, 3), secondLevelChilB.Object.Size);
+        }
+
+        [Fact]
+        public void Scaling_Text_Alters_Its_World_Size()
+        {
+            var canvas = new Imml.Scene.Layout.Canvas();
+
+            var text = new Imml.Scene.Controls.Text();
+            text.Size = 10;
+            canvas.Add(text);
+
+            canvas.Scale = new Vector3(10, 20, 30);
+
+            Assert.Equal(text.WorldSize, 200);
+        }
+
+        [Fact]
+        public void Scaling_An_Element_Alters_Its_World_Position()
+        {
+            var canvas = new Imml.Scene.Layout.Canvas();
+            canvas.Scale = new Vector3(1, 2, 3);
+
+            var element = new Mock<CubicElement>() { CallBase = true };
+            element.Object.Position = new Vector3(1,2,3);
+            canvas.Add(element.Object);
+
+            Assert.Equal(new Vector3(1,4,9), element.Object.WorldPosition);
         }
     }
 }
