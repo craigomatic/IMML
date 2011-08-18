@@ -29,7 +29,12 @@ namespace Imml.ComponentModel
         Vector3 WorldPosition { get; set; }
 
         /// <summary>
-        /// Gets the matrix.
+        /// Gets the world scale.
+        /// </summary>
+        Vector3 WorldScale { get; }
+
+        /// <summary>
+        /// Gets the relavitve matrix.
         /// </summary>
         Matrix4 Matrix { get; }
 

@@ -9,17 +9,7 @@ namespace Imml.ComponentModel
 {
     public abstract class PositionalElement : ImmlElement, IPositionalElement, INetworkHostElement
     {
-        /// <summary>
-        /// Gets or sets the point for the element to pivot on when performing transformations.
-        /// </summary>
-        /// <value>
-        /// The pivot.
-        /// </value>
-        public virtual Vector3 Pivot { get; set; }
-
         protected IPositionalElement _PositionalParent;
-
-        protected ICubicElement _CubicParent;
 
         public override ImmlElement Parent
         {
@@ -32,21 +22,6 @@ namespace Imml.ComponentModel
                     _PositionalParent = value as IPositionalElement;
                 else
                     _PositionalParent = null;
-
-                if (value is ICubicElement)
-                    _CubicParent = value as ICubicElement;
-                else
-                    _CubicParent = null;
-            }
-        }
-
-        protected Matrix4 _Matrix;
-
-        public virtual Matrix4 RelativeMatrix
-        {
-            get
-            {
-                return Matrix4.Multiply(Matrix4.Rotate(Angle.FromRadians(_Rotation.Y), Angle.FromRadians(_Rotation.X), Angle.FromRadians(_Rotation.Z)), Matrix4.Translate(_Position));
             }
         }
 
@@ -54,13 +29,10 @@ namespace Imml.ComponentModel
         {
             get
             {
-                if (_CubicParent != null)
-                    return this.RelativeMatrix * _PositionalParent.WorldMatrix * Matrix4.Scale(_CubicParent.WorldScale.X, _CubicParent.WorldScale.Y, _CubicParent.WorldScale.Z);
-
                 if (_PositionalParent != null)
-                    return this.RelativeMatrix * _PositionalParent.WorldMatrix;
+                    return this.Matrix * _PositionalParent.WorldMatrix;
 
-                return this.RelativeMatrix;
+                return this.Matrix;
             }
         }
 
@@ -68,25 +40,34 @@ namespace Imml.ComponentModel
         {
             get
             {
-                return this.WorldMatrix;
+                return Matrix4.Multiply(Matrix4.Rotate(Angle.FromRadians(_Rotation.Y), Angle.FromRadians(_Rotation.X), Angle.FromRadians(_Rotation.Z)), Matrix4.Translate(_Position));
             }
         }
-
 
         public virtual Vector3 WorldPosition
         {
             get
             {
-                return this.WorldMatrix.Translation;
+                var worldScale = this.WorldScale;
+
+                if (_PositionalParent != null)
+                    return new Vector3(this.Position.X * worldScale.X, this.Position.Y * worldScale.Y, this.Position.Z * worldScale.Z) + _PositionalParent.WorldPosition;
+
+                return new Vector3(this.Position.X * worldScale.X, this.Position.Y * worldScale.Y, this.Position.Z * worldScale.Y);
             }
             set
             {
-                if (_CubicParent != null)
-                    this.Position = (Matrix4.Translate(value) * Matrix4.Scale(_CubicParent.WorldScale.X, _CubicParent.WorldScale.Y, _CubicParent.WorldScale.Z)).Translation;
-                else if (_PositionalParent != null)
-                    this.Position = (Matrix4.Translate(value) * Matrix4.Invert(_PositionalParent.WorldMatrix)).Translation;
+                var worldScale = this.WorldScale;
+
+                if (_PositionalParent != null)
+                {
+                    var parentWorldPosition = _PositionalParent.WorldPosition;
+                    this.Position = new Vector3((value.X - parentWorldPosition.X) / worldScale.X, (value.Y - parentWorldPosition.Y) / worldScale.Y, (value.Z - parentWorldPosition.Z) / worldScale.Z);
+                }
                 else
-                    this.Position = value;
+                {
+                    this.Position = value - worldScale;
+                }
             }
         }
 
@@ -94,7 +75,6 @@ namespace Imml.ComponentModel
         {
             get
             {
-
                 if (_PositionalParent != null)
                     return _PositionalParent.WorldRotation + _Rotation;
 
@@ -102,7 +82,6 @@ namespace Imml.ComponentModel
             }
             set
             {
-                //calculate the local position to set based on the world position requested
                 if (_PositionalParent != null)
                     this.Rotation = value - _PositionalParent.WorldRotation;
                 else
@@ -114,10 +93,10 @@ namespace Imml.ComponentModel
         {
             get
             {
-                Vector3 s, t;
-                Quaternion q;                
-                this.WorldMatrix.Decompose(out s, out q, out t);
-                return s;
+                if (_PositionalParent != null)
+                    return _PositionalParent.WorldScale;
+                else
+                    return Vector3.One;
             }
         }
 
@@ -178,7 +157,7 @@ namespace Imml.ComponentModel
         {
             get
             {
-                return new BoundingBox(Vector3.Zero, this.Matrix.Translation);
+                return new BoundingBox(Vector3.Zero, this.WorldPosition);
             }
         }
 
@@ -219,13 +198,6 @@ namespace Imml.ComponentModel
             base.Clear();
 
             _PositionalElements.Clear();
-        }        
-
-        public virtual bool IsTransforming { get; set; }
-
-        public virtual void ApplyTransform()
-        {
-            _Matrix = Matrix4.Multiply(Matrix4.Rotate(Angle.FromRadians(_Rotation.Y), Angle.FromRadians(_Rotation.X), Angle.FromRadians(_Rotation.Z)), Matrix4.Translate(_Position));
-        }
+        }     
     }
 }

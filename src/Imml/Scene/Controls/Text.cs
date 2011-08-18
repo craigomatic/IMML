@@ -246,7 +246,18 @@ namespace Imml.Scene.Controls
 
                 base.RaisePropertyChanged("Font", oldValue, _Font);
             }
-        } 
+        }
+
+        /// <summary>
+        /// Gets the world size of the font
+        /// </summary>
+        public virtual float WorldSize
+        {
+            get
+            {
+                return this.Size * this.WorldScale.Y;
+            }
+        }
 
         #endregion
 

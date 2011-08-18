@@ -13,38 +13,6 @@ namespace Imml.Scene.Layout
     public class Canvas : VisibleElement
     {
         #region Properties
-        private ICubicElement _ScalableParent;
-
-        /// <summary>
-        /// Gets or sets the parent.
-        /// </summary>
-        /// <value>
-        /// The parent.
-        /// </value>
-        public override ImmlElement Parent
-        {
-            get
-            {
-                return base.Parent;
-            }
-            protected set
-            {
-                base.Parent = value;
-
-                var parent = this.Parent;
-
-                while (parent != null)
-                {
-                    if (parent is ICubicElement)
-                    {
-                        _ScalableParent = parent as ICubicElement;
-                        break;
-                    }
-
-                    parent = parent.Parent;
-                }
-            }
-        }
 
         private Vector3 _Scale;
 
@@ -77,27 +45,12 @@ namespace Imml.Scene.Layout
         /// <value>
         /// The world scale.
         /// </value>
-        public new Vector3 WorldScale
+        public override Vector3 WorldScale
         {
             get
             {
-                if (_ScalableParent != null)
-                {
-                    var parentWorldScale = _ScalableParent.WorldScale;
-                    return new Vector3(parentWorldScale.X * _Scale.X, parentWorldScale.Y * _Scale.Y, parentWorldScale.Z * _Scale.Z);
-                }
-                else
-                {
-                    return _Scale;
-                }
-            }
-            set
-            {
-                if (_ScalableParent != null)
-                {
-                    var parentWorldScale = _ScalableParent.WorldScale;
-                    this.Scale = new Vector3(value.X / parentWorldScale.X, value.Y / parentWorldScale.Y, value.Z / parentWorldScale.Z);
-                }
+                var baseScale = base.WorldScale;
+                return new Vector3(baseScale.X * this.Scale.X, baseScale.Y * this.Scale.Y, baseScale.Z * this.Scale.Z);
             }
         } 
         #endregion
