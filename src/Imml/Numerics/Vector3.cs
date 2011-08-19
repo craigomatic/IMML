@@ -260,6 +260,26 @@ namespace Imml.Numerics
 			return this.MagnitudeSquared.CompareTo(value.MagnitudeSquared);
 		}
 
+        public Vector3 ComponentWiseMultiply(Vector3 value)
+        {
+            return new Vector3
+            {
+                X = this.X * value.X,
+                Y = this.Y * value.Y,
+                Z = this.Z * value.Z
+            };
+        }
+
+        public Vector3 ComponentWiseDivide(Vector3 value)
+        {
+            return new Vector3
+            {
+                X = this.X / value.X,
+                Y = this.Y / value.Y,
+                Z = this.Z / value.Z
+            };
+        }
+
 		/// <summary>
 		/// Returns the cross product of the current vector and the specified vector.
 		/// </summary>
