@@ -1636,5 +1636,58 @@ namespace Imml.Numerics
 		/// </summary>
 		private static readonly Quaternion zero = new Quaternion(0);
 		#endregion
+
+        /// <summary>
+        /// Returns this quaternion rotation as Pitch, Yaw and Roll
+        /// </summary>
+        /// <returns></returns>
+        public Vector3 ToPitchYawRoll()
+        {
+            const float Epsilon = 0.0009765625f;
+            const float Threshold = 0.5f - Epsilon;
+
+            float yaw;
+            float pitch;
+            float roll;
+
+            float XY = this.X * this.Y;
+            float ZW = this.Z * this.W;
+
+            float TEST = XY + ZW;
+
+            if (TEST < -Threshold || TEST > Threshold)
+            {
+
+                int sign = System.Math.Sign(TEST);
+
+                yaw = (float)(sign * 2 * (float)System.Math.Atan2(this.X, this.W));
+
+                pitch = (float)(sign * (System.Math.PI / 2));
+
+                roll = 0;
+
+            }
+            else
+            {
+
+                float XX = this.X * this.X;
+                float XZ = this.X * this.Z;
+                float XW = this.X * this.W;
+
+                float YY = this.Y * this.Y;
+                float TW = this.Y * this.W;
+                float YZ = this.Y * this.Z;
+
+                float KK = this.Z * this.Z;
+
+                yaw = (float)System.Math.Atan2(2 * TW - 2 * XZ, 1 - 2 * YY - 2 * KK);
+
+                pitch = (float)System.Math.Atan2(2 * XW - 2 * YZ, 1 - 2 * XX - 2 * KK);
+
+                roll = (float)System.Math.Asin(2 * TEST);
+            }
+
+            return new Vector3(pitch, yaw, roll);
+        }
 	}
 }
