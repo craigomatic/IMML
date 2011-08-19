@@ -364,6 +364,13 @@
           <xs:element type="imml:Physics" name="Physics" maxOccurs="1" minOccurs="0"/>
           <xs:element name="Network" type="imml:Network" minOccurs="0" maxOccurs="1"/>
         </xs:choice>
+        <xs:attribute name="Pivot" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>
+              The pivot point for the element to pivot on when performing transformations
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="Type" type="imml:PrimitiveType" use="required">
           <xs:annotation>
             <xs:documentation>The type of primitive to represent: Box, Cone, Cylinder or Sphere</xs:documentation>
@@ -1533,6 +1540,13 @@
             <xs:documentation>The amount of spacing to apply between each child element of the stack</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="Pivot" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>
+              The pivot point for the element to pivot on when performing transformations
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="Visible" type="imml:Boolean" use="optional" default="True">
           <xs:annotation>
             <xs:documentation>When true, the element is visible</xs:documentation>
@@ -1564,6 +1578,13 @@
           <xs:element type="imml:Primitive" name="Primitive"/>
         </xs:choice>
 
+        <xs:attribute name="Pivot" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>
+              The pivot point for the element to pivot on when performing transformations
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="Visible" type="imml:Boolean" use="optional" default="True">
           <xs:annotation>
             <xs:documentation>When true, the element is visible</xs:documentation>
@@ -1970,6 +1991,13 @@
         <xs:attribute name="Size" use="optional" type="imml:Vector3">
           <xs:annotation>
             <xs:documentation>Size of the element</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Pivot" use="optional" type="imml:Vector3">
+          <xs:annotation>
+            <xs:documentation>
+              The pivot point for the element to pivot on when performing transformations
+            </xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
