@@ -3341,9 +3341,9 @@ namespace Imml.Numerics
             scale.Y = cols[1].Magnitude;
             scale.Z = cols[2].Magnitude;
 
-            translation.X = this.M41;// / (scale.X == 0 ? 1 : scale.X);
-            translation.Y = this.M42;// / (scale.Y == 0 ? 1 : scale.Y);
-            translation.Z = this.M43;// / (scale.Z == 0 ? 1 : scale.Z);
+            translation.X = this.M14;// / (scale.X == 0 ? 1 : scale.X);
+            translation.Y = this.M24;// / (scale.Y == 0 ? 1 : scale.Y);
+            translation.Z = this.M34;// / (scale.Z == 0 ? 1 : scale.Z);
 
             if (scale.X != 0)
             {
