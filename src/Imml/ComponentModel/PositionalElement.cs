@@ -25,81 +25,6 @@ namespace Imml.ComponentModel
             }
         }
 
-        public virtual Matrix4 WorldMatrix
-        {
-            get
-            {
-                if (_PositionalParent != null)
-                    return this.Matrix * _PositionalParent.WorldMatrix;
-
-                return this.Matrix;
-            }
-        }
-
-        public virtual Matrix4 Matrix
-        {
-            get
-            {
-                return Matrix4.Multiply(Matrix4.Rotate(Angle.FromRadians(_Rotation.Y), Angle.FromRadians(_Rotation.X), Angle.FromRadians(_Rotation.Z)), Matrix4.Translate(_Position));
-            }
-        }
-
-        public virtual Vector3 WorldPosition
-        {
-            get
-            {
-                var worldScale = this.WorldScale;
-
-                if (_PositionalParent != null)
-                    return new Vector3(this.Position.X * worldScale.X, this.Position.Y * worldScale.Y, this.Position.Z * worldScale.Z) + _PositionalParent.WorldPosition;
-
-                return new Vector3(this.Position.X * worldScale.X, this.Position.Y * worldScale.Y, this.Position.Z * worldScale.Y);
-            }
-            set
-            {
-                var worldScale = this.WorldScale;
-
-                if (_PositionalParent != null)
-                {
-                    var parentWorldPosition = _PositionalParent.WorldPosition;
-                    this.Position = new Vector3((value.X - parentWorldPosition.X) / worldScale.X, (value.Y - parentWorldPosition.Y) / worldScale.Y, (value.Z - parentWorldPosition.Z) / worldScale.Z);
-                }
-                else
-                {
-                    this.Position = value - worldScale;
-                }
-            }
-        }
-
-        public virtual Vector3 WorldRotation
-        {
-            get
-            {
-                if (_PositionalParent != null)
-                    return _PositionalParent.WorldRotation + _Rotation;
-
-                return _Rotation;
-            }
-            set
-            {
-                if (_PositionalParent != null)
-                    this.Rotation = value - _PositionalParent.WorldRotation;
-                else
-                    this.Rotation = value;
-            }
-        }
-
-        public virtual Vector3 WorldScale
-        {
-            get
-            {
-                if (_PositionalParent != null)
-                    return _PositionalParent.WorldScale;
-                else
-                    return Vector3.One;
-            }
-        }
-
         protected Vector3 _Rotation;
 
         /// <summary>
@@ -142,6 +67,102 @@ namespace Imml.ComponentModel
                 Vector3 oldValue = _Position;
                 _Position = value;
                 base.RaisePropertyChanged("Position", oldValue, _Position);
+            }
+        }
+
+        protected Vector3 _Pivot;
+
+        /// <summary>
+        /// Get/set the pivot point for the element in local coordinates
+        /// </summary>
+        public virtual Vector3 Pivot
+        {
+            get
+            {
+                return _Pivot;
+            }
+            set
+            {
+                if (_Pivot == value)
+                    return;
+
+                Vector3 oldValue = _Pivot;
+                _Pivot = value;
+                base.RaisePropertyChanged("Pivot", oldValue, _Pivot);
+            }
+        }
+
+        public virtual Vector3 WorldScale
+        {
+            get
+            {
+                if (_PositionalParent != null)
+                    return _PositionalParent.WorldScale;
+                
+                return Vector3.One;
+            }
+        }
+
+        public virtual Matrix4 Matrix
+        {
+            get
+            {
+                var worldPos = this.WorldPosition;
+                var worldRot = this.WorldRotation;
+
+                return Matrix4.Rotate(Angle.FromRadians(worldRot.Y), Angle.FromRadians(worldRot.X), Angle.FromRadians(worldRot.Z)) * Matrix4.Translate(worldPos);
+            }
+        }
+
+        public virtual Vector3 WorldPosition
+        {
+            get
+            {
+                var worldScale = this.WorldScale;
+                var pivotTranslation = this.Pivot.ComponentWiseMultiply(worldScale);
+                var scaledPosition = this.Position.ComponentWiseMultiply(worldScale);
+
+                var transMat = Matrix4.Translate(-pivotTranslation);
+                transMat *= Matrix4.Rotate(Angle.FromRadians(_Rotation.Y), Angle.FromRadians(_Rotation.X), Angle.FromRadians(_Rotation.Z));
+
+                if (_PositionalParent != null)
+                    transMat *= Matrix4.Translate(pivotTranslation + scaledPosition + _PositionalParent.WorldPosition);
+                else
+                    transMat *= Matrix4.Translate(pivotTranslation + scaledPosition);
+
+                return transMat.Translation;
+            }
+            set
+            {
+                var worldScale = this.WorldScale;
+
+                if (_PositionalParent != null)
+                {
+                    var parentWorldPosition = _PositionalParent.WorldPosition;
+                    this.Position = (value - parentWorldPosition).ComponentWiseDivide(worldScale);
+                }
+                else
+                {
+                    this.Position = value.ComponentWiseDivide(worldScale);
+                }
+            }
+        }
+
+        public virtual Vector3 WorldRotation
+        {
+            get
+            {
+                if (_PositionalParent != null)
+                    return _PositionalParent.WorldRotation + _Rotation;
+
+                return _Rotation;
+            }
+            set
+            {
+                if (_PositionalParent != null)
+                    this.Rotation = value - _PositionalParent.WorldRotation;
+                
+                this.Rotation = value;
             }
         }
 

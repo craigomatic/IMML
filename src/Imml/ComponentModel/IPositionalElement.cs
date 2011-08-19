@@ -9,6 +9,11 @@ namespace Imml.ComponentModel
     public interface IPositionalElement : IImmlElement
     {
         /// <summary>
+        /// The pivot position this element should rotate about
+        /// </summary>
+        Vector3 Pivot { get; set; }
+
+        /// <summary>
         /// The rotation of this element relative to its parent container
         /// </summary>
         Vector3 Rotation { get; set; }
@@ -29,18 +34,13 @@ namespace Imml.ComponentModel
         Vector3 WorldPosition { get; set; }
 
         /// <summary>
-        /// Gets the world scale.
+        /// Gets the world scale
         /// </summary>
         Vector3 WorldScale { get; }
 
         /// <summary>
-        /// Gets the relavitve matrix.
+        /// Gets the absolute matrix
         /// </summary>
         Matrix4 Matrix { get; }
-
-        /// <summary>
-        /// Gets the world matrix.
-        /// </summary>
-        Matrix4 WorldMatrix { get; }
     }
 }
