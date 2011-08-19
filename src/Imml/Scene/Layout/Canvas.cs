@@ -10,7 +10,7 @@ namespace Imml.Scene.Layout
     /// <summary>
     /// Allows one or more elements to be scaled uniformly.
     /// </summary>
-    public class Canvas : VisibleElement
+    public class Canvas : PositionalElement
     {
         #region Properties
 
