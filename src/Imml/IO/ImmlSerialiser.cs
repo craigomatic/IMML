@@ -37,7 +37,7 @@ namespace Imml.IO
 
         private XmlReaderSettings _ReaderSettings;
 
-#if !SILVERLIGHT        
+#if !SILVERLIGHT && !MONO
         private XmlSchemaValidator _XmlSchemaValidator;
 #endif
 
@@ -49,7 +49,7 @@ namespace Imml.IO
             this.Errors = new List<MarkupException>();
             this.OmitXmlDeclaration = true;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !MONO
             //load the schema from the embedded resource
             var assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             var schemaStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(string.Format("{0}.imml.xsd", assemblyName));
@@ -68,7 +68,7 @@ namespace Imml.IO
             //setup the reader
             _ReaderSettings = new System.Xml.XmlReaderSettings();
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !MONO
             _ReaderSettings.ValidationEventHandler += new ValidationEventHandler(_ReaderSettings_ValidationEventHandler);
             _ReaderSettings.Schemas.Add(schema);
             _ReaderSettings.ValidationType = ValidationType.Schema;
@@ -76,7 +76,7 @@ namespace Imml.IO
 #endif
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !MONO
         void _ReaderSettings_ValidationEventHandler(object sender, ValidationEventArgs e)
         {
             this.Errors.Add(new MarkupException(e.Message, e.Exception.LineNumber, e.Exception.LinePosition));
@@ -188,11 +188,11 @@ namespace Imml.IO
         private XNode _WriteImml(IImmlElement element, IComparer<string> attributeSortComparer)
         {
 
-#if SILVERLIGHT
-            throw new NotImplementedException("Writing IMML is not supported under Silverlight");
+#if SILVERLIGHT || MONO
+            throw new NotImplementedException("Writing IMML is not supported under this runtime.");
 #endif
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !MONO
 
             //validate the IMML element to put the validator in the correct position
             var isImmlContext = element is Imml.ComponentModel.IImmlContext;
@@ -216,7 +216,7 @@ namespace Imml.IO
 #endif
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !MONO
         private XElement _WriteElement(IImmlElement element, IComparer<string> attributeSortComparer)
         {            
             var elementType = _GetImmlName(element);
