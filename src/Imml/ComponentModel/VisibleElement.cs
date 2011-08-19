@@ -10,6 +10,8 @@ namespace Imml.ComponentModel
     {        
         protected List<ImmlElement> _VisibleElements;
 
+        protected IVisibleElement _VisibleParent;
+
         public VisibleElement()
         {
             _VisibleElements = new List<ImmlElement>();
@@ -54,9 +56,9 @@ namespace Imml.ComponentModel
                 base.Parent = value;
 
                 if (value is IVisibleElement)
-                {
-                    //TODO: propagate the visibility change
-                }
+                    _VisibleParent = value as IVisibleElement;
+                else
+                    _VisibleParent = null;
             }
         }        
 
@@ -86,10 +88,10 @@ namespace Imml.ComponentModel
         {
             get
             {
-                if (this.Parent != null && this.Parent is IVisibleElement)
-                    return (this.Parent as IVisibleElement).IsVisible && _Visible;
-                else
-                    return this.Visible;
+                if (_VisibleParent != null)
+                    return _VisibleParent.IsVisible && _Visible;
+
+                return _Visible;
             }
         }       
     }
