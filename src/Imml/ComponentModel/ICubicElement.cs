@@ -13,11 +13,6 @@ namespace Imml.ComponentModel
     public interface ICubicElement : IVisibleElement
     {
         /// <summary>
-        /// Gets the world scale.
-        /// </summary>
-        Vector3 WorldScale { get; }
-
-        /// <summary>
         /// The local-space bounding box
         /// </summary>
         BoundingBox BoundingBox { get; }
