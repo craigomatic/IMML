@@ -91,24 +91,15 @@ namespace Imml.Test
             topParent.Object.Size = new Vector3(1, 2, 3);
             canvas.Add(topParent.Object);
 
-            var firstLevelChildA = new Mock<CubicElement> { CallBase = true };
-            firstLevelChildA.Object.Size = new Vector3(1, 2, 3);
-            topParent.Object.Add(firstLevelChildA.Object);
-
-            var firstLevelChildB = new Mock<CubicElement> { CallBase = true };
-            firstLevelChildB.Object.Size = new Vector3(1, 2, 3);
-            topParent.Object.Add(firstLevelChildB.Object);
-
+            var firstLevelChild = new Mock<CubicElement> { CallBase = true };
+            firstLevelChild.Object.Size = new Vector3(1, 2, 3);
+            topParent.Object.Add(firstLevelChild.Object);
             var firstLevelCanvas = new Imml.Scene.Layout.Canvas();
-            firstLevelChildA.Object.Add(firstLevelCanvas);
+            firstLevelChild.Object.Add(firstLevelCanvas);
 
-            var secondLevelChilA = new Mock<CubicElement> { CallBase = true };
-            secondLevelChilA.Object.Size = new Vector3(1, 2, 3);
-            firstLevelCanvas.Add(secondLevelChilA.Object);
-
-            var secondLevelChilB = new Mock<CubicElement> { CallBase = true };
-            secondLevelChilB.Object.Size = new Vector3(1, 2, 3);
-            firstLevelCanvas.Add(secondLevelChilB.Object);
+            var secondLevelChild = new Mock<CubicElement> { CallBase = true };
+            secondLevelChild.Object.Size = new Vector3(1, 2, 3);
+            firstLevelCanvas.Add(secondLevelChild.Object);
 
             canvas.Scale = new Vector3(10, 20, 30);
             firstLevelCanvas.Scale = new Vector3(10, 10, 10);
@@ -117,21 +108,13 @@ namespace Imml.Test
             Assert.Equal(new Vector3(10, 40, 90), topParent.Object.WorldSize);
             Assert.Equal(new Vector3(1, 2, 3), topParent.Object.Size);
 
-            Assert.Equal(new Vector3(10, 20, 30), firstLevelChildA.Object.WorldScale);
-            Assert.Equal(new Vector3(10, 40, 90), firstLevelChildA.Object.WorldSize);
-            Assert.Equal(new Vector3(1, 2, 3), firstLevelChildA.Object.Size);
+            Assert.Equal(new Vector3(10, 20, 30), firstLevelChild.Object.WorldScale);
+            Assert.Equal(new Vector3(10, 40, 90), firstLevelChild.Object.WorldSize);
+            Assert.Equal(new Vector3(1, 2, 3), firstLevelChild.Object.Size);
 
-            Assert.Equal(new Vector3(10, 20, 30), firstLevelChildB.Object.WorldScale);
-            Assert.Equal(new Vector3(10, 40, 90), firstLevelChildB.Object.WorldSize);
-            Assert.Equal(new Vector3(1, 2, 3), firstLevelChildB.Object.Size);
-
-            Assert.Equal(new Vector3(100, 200, 300), secondLevelChilA.Object.WorldScale);
-            Assert.Equal(new Vector3(100, 400, 900), secondLevelChilA.Object.WorldSize);
-            Assert.Equal(new Vector3(1, 2, 3), secondLevelChilA.Object.Size);
-
-            Assert.Equal(new Vector3(100, 200, 300), secondLevelChilB.Object.WorldScale);
-            Assert.Equal(new Vector3(100, 400, 900), secondLevelChilB.Object.WorldSize);
-            Assert.Equal(new Vector3(1, 2, 3), secondLevelChilB.Object.Size);
+            Assert.Equal(new Vector3(100, 200, 300), secondLevelChild.Object.WorldScale);
+            Assert.Equal(new Vector3(100, 400, 900), secondLevelChild.Object.WorldSize);
+            Assert.Equal(new Vector3(1, 2, 3), secondLevelChild.Object.Size);
         }
 
         [Fact]
@@ -154,11 +137,68 @@ namespace Imml.Test
             var canvas = new Imml.Scene.Layout.Canvas();
             canvas.Scale = new Vector3(1, 2, 3);
 
-            var element = new Mock<CubicElement>() { CallBase = true };
+            var element = new Mock<PositionalElement>() { CallBase = true };
             element.Object.Position = new Vector3(1,2,3);
             canvas.Add(element.Object);
 
             Assert.Equal(new Vector3(1,4,9), element.Object.WorldPosition);
+        }
+
+        [Fact]
+        public void Scaling_An_Element_Does_Not_Alter_Its_Position_Or_Rotation()
+        {
+            var canvas = new Imml.Scene.Layout.Canvas();
+            canvas.Scale = new Vector3(1, 2, 3);
+
+            var element = new Mock<PositionalElement>() { CallBase = true };
+            element.Object.Position = new Vector3(1, 2, 3);
+            element.Object.Rotation = new Vector3(4, 5, 6);
+            canvas.Add(element.Object);
+
+            Assert.Equal(new Vector3(1, 2, 3), element.Object.Position);
+            Assert.Equal(new Vector3(4, 5, 6), element.Object.Rotation);
+        }
+
+        [Fact]
+        public void Setting_A_Positional_Pivot_Does_Not_Alter_Its_Position()
+        {
+            var element = new Mock<PositionalElement>() { CallBase = true };
+            element.Object.Position = new Vector3(1, 2, 3);
+            element.Object.Pivot = new Vector3(4, 5, 6);
+
+            Assert.Equal(new Vector3(1, 2, 3), element.Object.Position);
+        }
+
+        [Fact]
+        public void Rotating_A_Positional_With_Non_Zero_Pivot_Will_Alter_World_Position()
+        {
+            var element = new Mock<PositionalElement>() { CallBase = true };
+            element.Object.Position = new Vector3(0,0,0);
+            element.Object.Rotation = new Vector3((float)Math.PI, 0, 0);
+            element.Object.Pivot = new Vector3(0,1,0);
+
+            Assert.NotEqual(new Vector3(0, 0, 0), element.Object.WorldPosition);
+        }
+
+        [Fact]
+        public void A_Tranformed_Positional_Matrix_Matches_Its_Transformations()
+        {
+            var element = new Mock<PositionalElement>() { CallBase = true };
+            element.Object.Position = new Vector3(1, 2, 3);
+            element.Object.Rotation = new Vector3((float)Math.PI, 0, 0);
+            element.Object.Pivot = new Vector3(0, -3, 0);
+
+            var matrix = element.Object.Matrix;
+
+            Vector3 t, s;
+            Quaternion rq;
+
+            matrix.Decompose(out s, out rq, out t);
+
+            var ypr = rq.ToPitchYawRoll(); 
+
+            Assert.Equal(new Vector3(1, -4, 3), new Vector3((float)Math.Round(t.X), (float)Math.Round(t.Y), (float)Math.Round(t.Z)));
+            Assert.Equal(new Vector3((int)Math.PI, 0, 0), new Vector3((float)Math.Round(ypr.X), (float)Math.Round(ypr.Y), (float)Math.Round(ypr.Z)));
         }
     }
 }
