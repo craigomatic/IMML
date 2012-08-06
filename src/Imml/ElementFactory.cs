@@ -10,7 +10,14 @@ namespace Imml
     {
         public static ImmlElement Create(string elementName)
         {
-            var type = _FindType(elementName, Assembly.GetExecutingAssembly());
+
+#if !NETFX_CORE
+            var rootAssembly = Assembly.GetExecutingAssembly();
+#else
+            var rootAssembly = typeof(ElementFactory).GetTypeInfo().Assembly;
+#endif
+
+            var type = _FindType(elementName, rootAssembly);
 
             if (type == null)
             {
@@ -29,9 +36,13 @@ namespace Imml
 
         private static Type _FindType(string typeName, Assembly assembly)
         {
-            Type[] assemblyTypes = assembly.GetTypes();
 
-            foreach (Type type in assemblyTypes)
+#if !NETFX_CORE
+            var assemblyTypes = assembly.GetTypes();
+#else
+            var assemblyTypes = assembly.ExportedTypes;
+#endif
+            foreach (var type in assemblyTypes)
             {
                 if (type.Name == typeName)
                     return type;

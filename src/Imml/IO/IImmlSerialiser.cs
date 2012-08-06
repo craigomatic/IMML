@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
+#if NETFX_CORE
+using System.Threading.Tasks;
+using Windows.Storage;
+#endif
+
 namespace Imml.IO
 {
     /// <summary>
@@ -36,6 +41,16 @@ namespace Imml.IO
         /// <param name="filePath">The file path.</param>
         /// <returns></returns>
         T Read<T>(string filePath) where T : IImmlElement;
+
+#if NETFX_CORE
+        /// <summary>
+        /// Reads the specified storage file
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storageFile">The storage file.</param>
+        /// <returns></returns>
+        Task<T> Read<T>(IStorageFile storageFile) where T : IImmlElement;
+#endif
 
         /// <summary>
         /// Reads the specified stream.

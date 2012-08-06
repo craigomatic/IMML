@@ -156,8 +156,12 @@ namespace Imml
             Type type = this.GetType();
 
             // Look for a public property with the specified name.
-            PropertyInfo propInfo = type.GetProperty(propertyName);
 
+#if !NETFX_CORE
+            PropertyInfo propInfo = type.GetProperty(propertyName);
+#else
+            PropertyInfo propInfo = type.GetRuntimeProperty(propertyName);
+#endif
             if (propInfo == null)
             {
                 // The property could not be found,
