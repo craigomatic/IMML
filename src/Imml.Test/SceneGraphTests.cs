@@ -200,5 +200,19 @@ namespace Imml.Test
             Assert.Equal(new Vector3(1, -4, 3), new Vector3((float)Math.Round(t.X), (float)Math.Round(t.Y), (float)Math.Round(t.Z)));
             Assert.Equal(new Vector3((int)Math.PI, 0, 0), new Vector3((float)Math.Round(ypr.X), (float)Math.Round(ypr.Y), (float)Math.Round(ypr.Z)));
         }
+
+        [Fact]
+        public void Setting_The_WorldRotation_Of_A_Nested_Element_Results_In_The_Expected_Local_Rotation()
+        {
+            var parentElement = new Mock<PositionalElement>() { CallBase = true };
+            parentElement.Object.Rotation = new Vector3(1.1f, 1.1f, 1.1f);
+
+            var childElement = new Mock<PositionalElement>() { CallBase = true };
+            parentElement.Object.Add(childElement.Object);
+            
+            childElement.Object.WorldRotation = new Vector3(2, 2, 2);
+
+            Assert.Equal(new Vector3(0.9f, 0.9f, 0.9f), childElement.Object.Rotation);
+        }
     }
 }

@@ -160,7 +160,10 @@ namespace Imml.ComponentModel
             set
             {
                 if (_PositionalParent != null)
+                {
                     this.Rotation = value - _PositionalParent.WorldRotation;
+                    return;
+                }
                 
                 this.Rotation = value;
             }
