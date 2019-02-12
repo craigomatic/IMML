@@ -9,11 +9,7 @@ using System.Xml;
 using Imml.Scene.Container;
 using System.Reflection;
 using Imml.Scene.Controls;
-
-#if NETFX_CORE
 using System.Threading.Tasks;
-using Windows.Storage;
-#endif
 
 namespace Imml.IO
 {
@@ -42,9 +38,7 @@ namespace Imml.IO
 
         private XmlReaderSettings _ReaderSettings;
 
-#if !SILVERLIGHT && !MONO && !NETFX_CORE
         private XmlSchemaValidator _XmlSchemaValidator;
-#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImmlSerialiser"/> class.
@@ -54,7 +48,6 @@ namespace Imml.IO
             this.Errors = new List<MarkupException>();
             this.OmitXmlDeclaration = true;
 
-#if !SILVERLIGHT && !MONO && !NETFX_CORE
             //load the schema from the embedded resource
             var assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             var schemaStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(string.Format("{0}.imml.xsd", assemblyName));
@@ -68,27 +61,21 @@ namespace Imml.IO
             _XmlSchemaValidator.Initialize();
             
             this.Namespace = schema.TargetNamespace;
-#endif
 
             //setup the reader
             _ReaderSettings = new System.Xml.XmlReaderSettings();
 
-#if !SILVERLIGHT && !MONO && !NETFX_CORE
             _ReaderSettings.ValidationEventHandler += new ValidationEventHandler(_ReaderSettings_ValidationEventHandler);
             _ReaderSettings.Schemas.Add(schema);
             _ReaderSettings.ValidationType = ValidationType.Schema;
             _ReaderSettings.NameTable = schemaSet.NameTable;         
-#endif
         }
 
-#if !SILVERLIGHT && !MONO && !NETFX_CORE
         void _ReaderSettings_ValidationEventHandler(object sender, ValidationEventArgs e)
         {
             this.Errors.Add(new MarkupException(e.Message, e.Exception.LineNumber, e.Exception.LinePosition));
         }
-#endif
 
-#if !NETFX_CORE
         /// <summary>
         /// Reads the specified file path.
         /// </summary>
@@ -102,29 +89,7 @@ namespace Imml.IO
                 return this.Read<T>(fs); 
             }
         }
-#else
-        public T Read<T>(string filePath) where T : IImmlElement
-        {
-            throw new NotImplementedException();
-        }
 
-        /// <summary>
-        /// Reads the specified file path.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="filePath">The file path.</param>
-        /// <returns></returns>
-        public async Task<T> Read<T>(IStorageFile storageFile) where T : IImmlElement
-        {
-            using (var fileStream = await storageFile.OpenReadAsync())
-            {
-                using (var streamReader = new StreamReader(fileStream.AsStreamForRead()))
-                {
-                    return this.Read<T>(streamReader.BaseStream);
-                }
-            }
-        }
-#endif
         /// <summary>
         /// Reads the specified stream.
         /// </summary>
@@ -215,13 +180,6 @@ namespace Imml.IO
 
         private XNode _WriteImml(IImmlElement element, IComparer<string> attributeSortComparer)
         {
-
-#if SILVERLIGHT || MONO || NETFX_CORE
-            throw new NotImplementedException("Writing IMML is not supported under this runtime.");
-#endif
-
-#if !SILVERLIGHT && !MONO && !NETFX_CORE
-
             //validate the IMML element to put the validator in the correct position
             var isImmlContext = element is Imml.ComponentModel.IImmlContext;
 
@@ -241,10 +199,8 @@ namespace Imml.IO
             }
 
             return documentXNode;
-#endif
         }
 
-#if !SILVERLIGHT && !MONO && !NETFX_CORE
         private XElement _WriteElement(IImmlElement element, IComparer<string> attributeSortComparer)
         {            
             var elementType = _GetImmlName(element);
@@ -324,7 +280,6 @@ namespace Imml.IO
 
             _XmlSchemaValidator.ValidateEndOfAttributes(null);
         }
-#endif
         #endregion
 
         #region Reader methods
@@ -415,11 +370,8 @@ namespace Imml.IO
                     {
                         var attributeName = attribute.Name.LocalName;
 
-#if !NETFX_CORE
                         var pInfo = element.GetType().GetProperty(attributeName);
-#else
-                        var pInfo = element.GetType().GetRuntimeProperty(attributeName);
-#endif
+
                         if (pInfo == null)
                         {
                             this.Errors.Add(new MarkupException("Attribute with name " + attributeName + " is invalid in this context."));
