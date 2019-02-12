@@ -16,6 +16,7 @@ using Imml.Scene;
 using Moq;
 using System.Threading;
 using System.Globalization;
+using System.IO.Compression;
 
 namespace Imml.Test
 {
@@ -66,15 +67,32 @@ namespace Imml.Test
         [Fact(Skip="Inconclusive test, needs to be implemented correctly")]
         public void Serialiser_Creates_Object_Instances_For_All_Elements_Contained_Within_A_Document()
         {
-            var bytes = EmbeddedResourceHelper.GetBytes("Imml.Test.Samples.Sample1.gz", System.Reflection.Assembly.GetExecutingAssembly());
+            var stream = EmbeddedResourceHelper.GetMemoryStream("Imml.Test.Samples.Sample1.gz", System.Reflection.Assembly.GetExecutingAssembly());
 
             //unzip to get to the imml sample
-            var decompressed = new MemoryStream(Ionic.Zlib.GZipStream.UncompressBuffer(bytes));
-            var immlSerialiser = new ImmlSerialiser();
-            var document = immlSerialiser.Read<ImmlDocument>(decompressed);
+            using (var gzipStream = new GZipStream(stream, CompressionMode.Decompress))
+            {                
+                const int size = 4096;
+                byte[] buffer = new byte[size];
+                using (var decompressed = new MemoryStream())
+                {
+                    int count = 0;
+                    do
+                    {
+                        count = gzipStream.Read(buffer, 0, size);
+                        if (count > 0)
+                        {
+                            decompressed.Write(buffer, 0, count);
+                        }
+                    }
+                    while (count > 0);
 
-            Assert.NotEmpty(document.Elements);
+                    var immlSerialiser = new ImmlSerialiser();
+                    var document = immlSerialiser.Read<ImmlDocument>(decompressed);
 
+                    Assert.NotEmpty(document.Elements);
+                }
+            }
             //TODO: improve the assertions to do as the method name suggests
         }
 
