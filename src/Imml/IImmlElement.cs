@@ -20,9 +20,9 @@ namespace Imml
         
         IList<ImmlElement> Elements { get; }
         
-        ImmlElement GetElementByID(int id);
-        
-        ImmlElement GetElementByName(string name);
+        T GetElementByID<T>(int id) where T : ImmlElement;
+
+        T GetElementByName<T>(string name) where T : ImmlElement;
         
         bool HasChildren { get; }
         

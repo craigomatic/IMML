@@ -184,11 +184,9 @@ namespace Imml
         /// <param name="name">The name.</param>
         /// <returns></returns>
         /// <exception cref="ElementNotFoundException">If no element matching the name is found</exception>
-        public virtual ImmlElement GetElementByName(string name)
+        public virtual T GetElementByName<T>(string name) where T : ImmlElement
         {
-            ImmlElement outElement = null;
-
-            if (this.TryGetElementByName(name, out outElement))
+            if (this.TryGetElementByName(name, out T outElement))
             {
                 return outElement;
             }
@@ -214,11 +212,9 @@ namespace Imml
         /// <param name="id">VastPark ID of the desired element</param>
         /// <returns></returns>
         /// <exception cref="ElementNotFoundException">If no element matching the Id is found</exception>
-        public virtual ImmlElement GetElementByID(int id)
-        {
-            ImmlElement outElement = null;
-
-            if (this.TryGetElementByID(id, out outElement))
+        public virtual T GetElementByID<T>(int id) where T: ImmlElement
+        {            
+            if (this.TryGetElementByID(id, out T outElement))
             {
                 return outElement;
             }
