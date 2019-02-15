@@ -8,7 +8,7 @@ namespace Imml.Scene.Controls
     /// <summary>
     /// Provides support for shader based manipulation of elements.
     /// </summary>
-    public class Shader : ImmlElement, IParameterHost
+    public class Shader : ImmlElement, IParameterHost, ISourcedElement
     {
         private bool _Enabled;
 

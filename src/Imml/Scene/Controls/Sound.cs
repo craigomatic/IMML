@@ -8,7 +8,7 @@ namespace Imml.Scene.Controls
     /// <summary>
     /// Provides functionality for audio playback.
     /// </summary>
-    public class Sound : PositionalElement
+    public class Sound : PositionalElement, ISourcedElement
     {
         #region Properties
 

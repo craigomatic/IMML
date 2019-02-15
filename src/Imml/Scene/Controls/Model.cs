@@ -9,7 +9,7 @@ namespace Imml.Scene.Controls
     /// <summary>
     /// Provides functionality for displaying mesh data.
     /// </summary>
-    public class Model : CubicElement, IPhysicsHostElement, IMaterialHostElement
+    public class Model : CubicElement, IPhysicsHostElement, IMaterialHostElement, ISourcedElement
     {
         #region Properties
 

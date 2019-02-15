@@ -50,6 +50,11 @@ namespace Imml
             return element.Elements.OfType<MaterialGroup>().Where(e => e.Id == id).FirstOrDefault();
         }
 
+        public static IEnumerable<MaterialGroup> GetMaterialGroups(this IMaterialHostElement element)
+        {
+            return element.Elements.OfType<MaterialGroup>();
+        }
+
         /// <summary>
         /// Gets the material element from the material group.
         /// </summary>
