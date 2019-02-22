@@ -24,6 +24,8 @@ To achieve this, IMML provides an abstract series of elements as its foundation 
 - Video
 - Widget
 
+> Visit the [wiki](https://github.com/craigomatic/IMML/wiki) for code samples that show how to use the library. 
+
 #### Examples
 
 ##### Hello world with an image
@@ -67,6 +69,4 @@ To achieve this, IMML provides an abstract series of elements as its foundation 
 	
 #### License
 
-IMML was developed at VastPark under the VastPark [Open Specification Promise](http://vastpark.org/wiki/vp/Open_specification_license).
-
-The libraries available on GitHub are under the MIT license.
+IMML was developed at VastPark under the VastPark Open Specification Promise and has been made available on GitHub under the MIT license.
