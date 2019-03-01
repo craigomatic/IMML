@@ -14,6 +14,9 @@ All elements are defined within an [xsd file](src/Imml/imml.xsd) that can be use
 ![vs-associate-xsd](https://user-images.githubusercontent.com/146438/53659003-300f5d00-3c0f-11e9-904a-4d4c549887ab.gif)
 
 
+
+
+
 Visit the [wiki](https://github.com/craigomatic/IMML/wiki) for code samples that show how to use the library.
 
 #### Examples
@@ -30,31 +33,32 @@ Visit the [wiki](https://github.com/craigomatic/IMML/wiki) for code samples that
 		</Primitive>
 	</IMML>
 ```	
-##### Hello world with video
+##### Stack of elements
+
+In addition to elements representing various media types, the specification provides several layout elements that can be used to arrange child elements with ease, such as stack or grid layout.
+
 ```xml
 	<IMML Camera="Camera" xmlns="http://schemas.vastpark.com/2007/imml/">
 		<Camera Name="Camera" Position="0,0,-5" />
 		
-		<Primitive Type="Box">
-			<MaterialGroup Id="-1">
-				<Video Enabled="True" Source="hello-world.webm" />					
-			</MaterialGroup>
-		</Primitive>
+		<Stack Spacing="0,1,0">
+			<Model Source="robot-head.model" Size="1,1,1" />
+			<Model Source="robot-body.model" Size="1,2,1" />
+			<Model Source="robot-legs.model" Size="1,2,1" />
+		</Stack>
 	</IMML>
 ```
-##### Hello world with audio
+##### Compose from multiple independent documents
+
+For increased flexibility, multiple IMML files can be combined to form a single scene via the Include element.
+
 ```xml
 	<IMML Camera="Camera" xmlns="http://schemas.vastpark.com/2007/imml/">
 		<Camera Name="Camera" Position="0,0,-5" />
-		<Sound Enabled="True" Source="hello-world.ogg" Spatial="True"/>
-	</IMML>
-```
-	
-##### Hello world with text
-```xml
-	<IMML Camera="Camera" xmlns="http://schemas.vastpark.com/2007/imml/">
-		<Camera Name="Camera" Position="0,0,-5" />
-		<Text Value="Hello World!" Alignment="Centre"/>
+		
+		<Include Source="file1.imml" />
+		<Include Source="file2.imml" />
+		<Include Source="file3.imml" />
 	</IMML>
 ```
 
