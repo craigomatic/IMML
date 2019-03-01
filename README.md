@@ -7,29 +7,14 @@ _Abstract, lightweight, flexible_
 
 IMML aims to be a lightweight, lean and mean specification that supports spatial presentation of media, without being tied to any particular format or device. 
 
-To achieve this, IMML provides an abstract series of elements as its foundation including:
+To achieve this, IMML provides an abstract series of elements as its foundation that represent common media types including 3d models, primitive models (box, sphere, etc), sounds, text, video and images.
 
-- Anchor
-- Background
-- Camera
-- Effect
-- Light
-- Model
-- Plugin
-- Primitive
-- Script
-- Shader
-- Sound
-- Text
-- Video
-- Widget
-
-The codebase includes an [xsd file](src/Imml/imml.xsd) that can be used to validate markup in any editor that supports xsd files, such as Visual Studio:
+All elements are defined within an [xsd file](src/Imml/imml.xsd) that can be used to validate markup in any editor that supports xsd files, such as Visual Studio:
 
 ![vs-associate-xsd](https://user-images.githubusercontent.com/146438/53659003-300f5d00-3c0f-11e9-904a-4d4c549887ab.gif)
 
 
-> Visit the [wiki](https://github.com/craigomatic/IMML/wiki) for code samples that show how to use the library. 
+Visit the [wiki](https://github.com/craigomatic/IMML/wiki) for code samples that show how to use the library.
 
 #### Examples
 
