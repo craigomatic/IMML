@@ -6,11 +6,21 @@ using System.Reflection;
 
 namespace Imml
 {
-    public static class ElementFactory
+    /// <summary>
+    /// Default implementation of <see cref="IElementFactory"/> that instantiates elements by matching their name to types within the executing assembly
+    /// </summary>
+    public class ElementFactory : IElementFactory
     {
-        public static ImmlElement Create(string elementName)
+        public static ElementFactory Default = new ElementFactory();
+
+        public virtual Assembly ResolveAssembly()
         {
-            var rootAssembly = Assembly.GetExecutingAssembly();
+            return Assembly.GetExecutingAssembly();
+        }
+
+        public virtual ImmlElement Create(string elementName, IImmlElement parentElement)
+        {
+            var rootAssembly = this.ResolveAssembly();
 
             var type = _FindType(elementName, rootAssembly);
 
@@ -29,7 +39,7 @@ namespace Imml
             return element as ImmlElement;
         }
 
-        private static Type _FindType(string typeName, Assembly assembly)
+        private Type _FindType(string typeName, Assembly assembly)
         {
             var assemblyTypes = assembly.GetTypes();
 

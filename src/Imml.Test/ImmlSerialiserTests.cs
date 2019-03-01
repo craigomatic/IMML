@@ -241,7 +241,7 @@ namespace Imml.Test
                     var index = random.Next(0, elementTypeArray.Length);
                     var typeToCreate = elementTypeArray[index];
 
-                    var element = ElementFactory.Create(typeToCreate);
+                    var element = ElementFactory.Default.Create(typeToCreate, immlContext);
                     immlContext.Add(element);
                 }
 
@@ -473,5 +473,20 @@ namespace Imml.Test
             }
         }
 
+        [Fact]
+        public void Custom_ElementFactory_Implementations_Are_Used_For_Element_Instantiation()
+        {
+            var elementFactory = new Mock<IElementFactory>();
+            elementFactory.Setup(e => e.Create(It.IsAny<string>(), It.IsAny<ImmlElement>())).Returns(new ImmlElement());
+
+            var immlSerialiser = new ImmlSerialiser(elementFactory.Object);
+            var immlString = "<IMML Author=\"craigomatic\" Camera=\"Camera\" xmlns=\"http://schemas.vastpark.com/2007/imml/\"><Camera Name=\"Camera\" Position=\"5,5,5\" /><Primitive Type=\"Box\" Size=\"1,1,1\" /></IMML>"; ;
+            var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(immlString));
+
+            var document = immlSerialiser.Read<ImmlDocument>(stream);
+
+            elementFactory.Verify(e => e.Create("Camera", It.IsAny<ImmlElement>()), Times.Once());
+            elementFactory.Verify(e => e.Create("Primitive", It.IsAny<ImmlElement>()), Times.Once());
+        }
     }
 }

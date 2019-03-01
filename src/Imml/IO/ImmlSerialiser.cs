@@ -40,11 +40,15 @@ namespace Imml.IO
 
         private XmlSchemaValidator _XmlSchemaValidator;
 
+        private IElementFactory _ElementFactory;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ImmlSerialiser"/> class.
         /// </summary>
-        public ImmlSerialiser()
+        public ImmlSerialiser(IElementFactory elementFactory = null)
         {
+            _ElementFactory = elementFactory ?? ElementFactory.Default;
+
             this.Errors = new List<MarkupException>();
             this.OmitXmlDeclaration = true;
 
@@ -306,7 +310,7 @@ namespace Imml.IO
                         {
                             //create document object and populate its properties
                             var xElement = (child as XElement);
-                            var childElement = ElementFactory.Create(xElement.Name.LocalName);
+                            var childElement = _ElementFactory.Create(xElement.Name.LocalName, parentElement);
 
                             if (childElement == null)
                                 throw new MarkupException("Element processing failure at element: " + (child as XElement).Name.LocalName); //should never get here or it means there are schema issues
