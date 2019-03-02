@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imml.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace Imml.Scene.Controls
     /// <summary>
     /// Defines a custom texture and the mapping to use when applying it to a material group.
     /// </summary>
-    public class Texture : ImmlElement
+    public class Texture : ImmlElement, ISourcedElement
     {
         #region Properties
         protected string _Source;
