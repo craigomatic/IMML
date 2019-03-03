@@ -74,7 +74,7 @@ namespace Imml.Runtime
                     parentNode = (item.Parent as IRuntimeElement<T>).Node;
                 }
 
-                item.LoadAsync(parentNode);
+                await item.LoadAsync(parentNode);
             }
 
             //second pass, apply layout

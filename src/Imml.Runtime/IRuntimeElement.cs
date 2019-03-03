@@ -25,7 +25,7 @@ namespace Imml.Runtime
         /// </summary>
         /// <param name="parentNode"></param>
         /// <returns></returns>
-        T LoadAsync(T parentNode);
+        Task<T> LoadAsync(T parentNode);
 
         /// <summary>
         /// Release any resources used by this element
