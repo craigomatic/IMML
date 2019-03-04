@@ -21,5 +21,16 @@ namespace Imml.ComponentModel
         /// The world-space bounding box
         /// </summary>
         BoundingBox WorldBoundingBox { get; }
+
+
+        /// <summary>
+        /// Gets the size of the element in world coordinate space
+        /// </summary>
+        Vector3 WorldSize { get; }
+
+        /// <summary>
+        /// Gets or sets the size of the element in local coordinate space
+        /// </summary>
+        Vector3 Size { get; set; }
     }
 }
