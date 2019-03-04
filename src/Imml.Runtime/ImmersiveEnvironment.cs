@@ -26,6 +26,11 @@ namespace Imml.Runtime
 
         public T ParentNode { get; private set; }
 
+        /// <summary>
+        /// Gets the active camera element
+        /// </summary>
+        public Camera Camera { get; private set; }
+
         public ImmersiveEnvironment(IImmlSerialiser serialiser, IResourceAcquisitionService resourceAcquisitionService, T parentNode)
         {
             this.Serialiser = serialiser;
@@ -59,7 +64,7 @@ namespace Imml.Runtime
                 {
                     System.Diagnostics.Debug.WriteLine($"Unable to load Include from '{include.Source}'");
                 }
-            }  
+            }
 
             var allRuntimeElements = this.Document.Elements.AsRecursiveEnumerable().OfType<IRuntimeElement<T>>();
 
@@ -82,6 +87,8 @@ namespace Imml.Runtime
             {
                 await item.ApplyLayoutAsync();
             }
+
+            this.Camera = this.Document.GetCamera();
         }
 
         public void Dispose()

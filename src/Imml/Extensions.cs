@@ -6,6 +6,7 @@ using System.Collections;
 using Imml.Scene;
 using Imml.Scene.Controls;
 using Imml.ComponentModel;
+using Imml.Scene.Container;
 
 namespace Imml
 {
@@ -183,6 +184,24 @@ namespace Imml
         public static IList<ParticleChange> GetParticleChanges(this Emitter emitter)
         {
             return emitter.Elements.OfType<ParticleChange>().ToList();
+        }
+
+        /// <summary>
+        /// Gets the camera element as specified by the Camera property of the <see cref="ImmlDocument"/>
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        public static Camera GetCamera(this ImmlDocument document)
+        {
+            if (!string.IsNullOrWhiteSpace(document.Camera))
+            {
+                if (document.TryGetElementByName<Camera>(document.Camera, out Camera camera))
+                {
+                    return camera;
+                }
+            }
+
+            return null;
         }
     }
 }
