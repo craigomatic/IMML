@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Imml.Runtime
 {
-    public interface IRuntimeElement<T>
+    public interface IRuntimeElement<T> : IDisposable
     {
         /// <summary>
         /// Gets the parent of this element
@@ -18,19 +18,19 @@ namespace Imml.Runtime
         /// Calculate any layout changes that need to be applied to the <see cref="T"/>
         /// </summary>
         /// <returns></returns>
-        Task ApplyLayoutAsync();
+        void ApplyLayout();
 
         /// <summary>
-        /// Load the resource for this element, ie: download model from remote location then load bytes for draw
+        /// Acquire any resources this element is dependent on for load
+        /// </summary>
+        /// <returns></returns>
+        Task AcquireResourcesAsync();
+
+        /// <summary>
+        /// Load the resource for this element, all resources required should have been already retrieved by <see cref="AcquireResourcesAsync"/>
         /// </summary>
         /// <param name="parentNode"></param>
         /// <returns></returns>
-        Task<T> LoadAsync(T parentNode);
-
-        /// <summary>
-        /// Release any resources used by this element
-        /// </summary>
-        /// <returns></returns>
-        Task DestroyAsync();
+        T Load(T parentNode);
     }
 }

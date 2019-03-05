@@ -31,17 +31,16 @@ namespace Imml.Runtime
         /// </summary>
         public Camera Camera { get; private set; }
 
-        public ImmersiveEnvironment(IImmlSerialiser serialiser, IResourceAcquisitionService resourceAcquisitionService, T parentNode)
+        public ImmersiveEnvironment(IImmlSerialiser serialiser, IResourceAcquisitionService resourceAcquisitionService)
         {
             this.Serialiser = serialiser;
             this.ResourceAcquisitionService = resourceAcquisitionService;
-            this.ParentNode = parentNode;
         }
 
-        public async Task Run(Stream sceneData)
+        public async Task CreateAsync(Stream sceneData)
         {
             this.Document = this.Serialiser.Read<ImmlDocument>(sceneData);
-            
+
             System.Diagnostics.Debug.WriteLine($"Loading '{this.Document.Name}'");
 
             //look for includes and add those elements to the collection before load occurs below. Elements that have been included in this way are not isolated from the main this.Document context and name collisions, etc are possible
@@ -68,10 +67,22 @@ namespace Imml.Runtime
 
             var allRuntimeElements = this.Document.Elements.AsRecursiveEnumerable().OfType<IRuntimeElement<T>>();
 
+            foreach (var item in allRuntimeElements)
+            {
+                await item.AcquireResourcesAsync();
+            }
+        }
+
+        public void Run(T parentNode)
+        {
+            this.ParentNode = parentNode;
+
+            var allRuntimeElements = this.Document.Elements.AsRecursiveEnumerable().OfType<IRuntimeElement<T>>();
+
             //first pass, load all elements
             foreach (var item in allRuntimeElements)
             {
-                var parentNode = this.ParentNode;
+                parentNode = this.ParentNode;
 
                 if (item.Parent != this.Document &&
                     item.Parent is IRuntimeElement<T>)
@@ -79,13 +90,13 @@ namespace Imml.Runtime
                     parentNode = (item.Parent as IRuntimeElement<T>).Node;
                 }
 
-                await item.LoadAsync(parentNode);
+                item.Load(parentNode);
             }
 
             //second pass, apply layout
             foreach (var item in allRuntimeElements)
             {
-                await item.ApplyLayoutAsync();
+                item.ApplyLayout();
             }
 
             this.Camera = this.Document.GetCamera();
@@ -97,7 +108,7 @@ namespace Imml.Runtime
 
             foreach (var element in runtimeElements)
             {
-                element.DestroyAsync();
+                element.Dispose();
             }
         }
 
