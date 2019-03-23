@@ -19,6 +19,10 @@ All elements are defined within an [xsd file](src/Imml/imml.xsd) that can be use
 
 Visit the [wiki](https://github.com/craigomatic/IMML/wiki) for code samples that show how to use the library.
 
+#### Implementations
+
+[IMMLjs](https://github.com/craigomatic/immljs) - JavaScript implementation powered by Babylon.js
+
 #### Examples
 
 ##### Hello world with an image
