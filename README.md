@@ -19,9 +19,13 @@ All elements are defined within an [xsd file](src/Imml/imml.xsd) that can be use
 
 Visit the [wiki](https://github.com/craigomatic/IMML/wiki) for code samples that show how to use the library.
 
-#### Implementations
+#### Runtime Implementations
 
-[IMMLjs](https://github.com/craigomatic/immljs) - JavaScript implementation powered by Babylon.js
+While this repository contains an implementation of the IMML specificaion in C#, it does not contain bindings to a 3d renderer which is typically where you would want to use IMML. 
+
+Below are some runtimes that support IMML:
+
+* [IMMLjs](https://github.com/craigomatic/immljs) - JavaScript runtime powered by Babylon.js
 
 #### Examples
 
