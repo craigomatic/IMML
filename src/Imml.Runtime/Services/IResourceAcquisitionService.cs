@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Imml.ComponentModel;
 
-namespace Imml.Runtime
+namespace Imml.Runtime.Services
 {
     public interface IResourceAcquisitionService
     {

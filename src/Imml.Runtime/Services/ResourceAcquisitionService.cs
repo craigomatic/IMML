@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Imml.Runtime
+namespace Imml.Runtime.Services
 {
     public class ResourceAcquisitionService : IResourceAcquisitionService
     {
@@ -20,7 +20,7 @@ namespace Imml.Runtime
 
         public async Task<byte[]> AcquireResource(ISourcedElement sourcedElement)
         {
-            //first look on disk
+            //try cache first
             var fileExtension = sourcedElement.Source.FileExtension();
             var hash = sourcedElement.Source.ToMD5() + fileExtension;
             var bytes = await this.CacheService.Retrieve(hash);
