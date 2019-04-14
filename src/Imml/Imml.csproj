@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Implementation of the Immersive Media Markup Language (IMML) that makes it simple to read markup into an object model or write an object model for transmission or storage.</Description>
   </PropertyGroup>
 
   <ItemGroup>
