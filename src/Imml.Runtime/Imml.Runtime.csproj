@@ -1,11 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.1</LangVersion>
+    <Description>Provides a simple framework for applications to build IMML based experienses on top of</Description>
+    <CIBuild>false</CIBuild>
   </PropertyGroup>
 
-  <ItemGroup>
+  
+  <ItemGroup Condition="$(CIBuild)==true">
+    <PackageReference Include="Imml" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(CIBuild)==false">
     <ProjectReference Include="..\Imml\Imml.csproj" />
   </ItemGroup>
 
