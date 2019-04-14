@@ -37,8 +37,12 @@ namespace Imml.Runtime
             this.ResourceAcquisitionService = resourceAcquisitionService;
         }
 
+        private bool _IsCreated;
+
         public async Task CreateAsync(Stream sceneData)
         {
+            _IsCreated = false;
+
             this.Document = this.Serialiser.Read<ImmlDocument>(sceneData);
 
             System.Diagnostics.Debug.WriteLine($"Loading '{this.Document.Name}'");
@@ -71,10 +75,17 @@ namespace Imml.Runtime
             {
                 await item.AcquireResourcesAsync();
             }
+
+            _IsCreated = true;
         }
 
         public void Run(T parentNode)
         {
+            if (!_IsCreated)
+            {
+                throw new Exception("Environment must first be created via a call to CreateAsync.");
+            }
+
             this.ParentNode = parentNode;
 
             var allRuntimeElements = this.Document.Elements.AsRecursiveEnumerable().OfType<IRuntimeElement<T>>();
