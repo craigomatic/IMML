@@ -1,3 +1,4 @@
+using Imml.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace Imml.Scene.Controls
     /// <summary>
     /// Provides support for script based logic.
     /// </summary>
-    public class Script : ImmlElement
+    public class Script : ImmlElement, ISourcedElement
     {
         /// <summary>
         /// Gets or sets the code value for the script
