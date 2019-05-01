@@ -24,6 +24,8 @@ namespace Imml.Runtime
 
         public IResourceAcquisitionService ResourceAcquisitionService { get; private set; }
 
+        public ILog Log { get; private set; }
+
         public T ParentNode { get; private set; }
 
         /// <summary>
@@ -31,10 +33,13 @@ namespace Imml.Runtime
         /// </summary>
         public Camera Camera { get; private set; }
 
-        public ImmersiveEnvironment(IImmlSerialiser serialiser, IResourceAcquisitionService resourceAcquisitionService)
+        public ImmersiveEnvironment(IImmlSerialiser serialiser, IResourceAcquisitionService resourceAcquisitionService, ILog log = null)
         {
             this.Serialiser = serialiser;
             this.ResourceAcquisitionService = resourceAcquisitionService;
+
+            this.Log = log == null ? 
+                new DiagnosticLog() : this.Log = log;
         }
 
         private bool _IsCreated;
@@ -45,7 +50,7 @@ namespace Imml.Runtime
 
             this.Document = this.Serialiser.Read<ImmlDocument>(sceneData);
 
-            System.Diagnostics.Debug.WriteLine($"Loading '{this.Document.Name}'");
+            this.Log.Write($"Loading '{this.Document.Name}'");
 
             //look for includes and add those elements to the collection before load occurs below. Elements that have been included in this way are not isolated from the main this.Document context and name collisions, etc are possible
             var allIncludes = this.Document.Elements.AsRecursiveEnumerable().OfType<Include>().ToArray();
@@ -65,7 +70,7 @@ namespace Imml.Runtime
                 }
                 catch
                 {
-                    System.Diagnostics.Debug.WriteLine($"Unable to load Include from '{include.Source}'");
+                    this.Log.Write($"Unable to load Include from '{include.Source}'");
                 }
             }
 
@@ -73,7 +78,14 @@ namespace Imml.Runtime
 
             foreach (var item in allRuntimeElements)
             {
-                await item.AcquireResourcesAsync();
+                try
+                {
+                    await item.AcquireResourcesAsync();
+                }
+                catch (Exception e)
+                {
+                    this.Log.Write($"Unable to acquire resources for {(item as ImmlElement).Name}");
+                }
             }
 
             _IsCreated = true;
