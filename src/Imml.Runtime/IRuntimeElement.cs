@@ -32,5 +32,10 @@ namespace Imml.Runtime
         /// <param name="parentNode"></param>
         /// <returns></returns>
         T Load(T parentNode);
+
+        /// <summary>
+        /// Perform any tasks that need to occur to render the <see cref="T"/>
+        /// </summary>
+        void Render();
     }
 }
